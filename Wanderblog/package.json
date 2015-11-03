@@ -11,6 +11,13 @@
     "express": "3.4.4",
     "jade": "*",
     "stylus": "*",
-    "mysql": "2.9.0"
+    "mysql": "2.9.0",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "express-session": "*",
+    "bcrypt-nodejs": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "bookshelf": "0.5"
   }
 }
