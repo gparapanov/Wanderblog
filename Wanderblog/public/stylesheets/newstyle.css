@@ -49,7 +49,9 @@
     color: forestgreen;
 }
 
-
+.body-content{
+    padding-top: 100px;
+}
 body {
     height: 100%;
     margin: 0;
@@ -58,18 +60,16 @@ body {
     //background: no-repeat, center;
 }
 
-
-
 .navbar {
     font-family: 'Slabo 27px', serif;
     font-weight: 100;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     padding: 10px;
     padding-left: 30px;
 }
 
 .welcome-page {
-    margin-top: 200px;
+    margin-top: 50px;
     border-radius: 25px;
     border: solid 5px;
     border-color: white;
