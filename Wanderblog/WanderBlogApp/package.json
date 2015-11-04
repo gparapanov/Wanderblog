@@ -1,0 +1,10 @@
+{
+  "name": "WanderBlogApp",
+  "version": "0.0.0",
+  "description": "WanderBlogApp",
+  "main": "server.js",
+  "author": {
+    "name": "Biswas",
+    "email": ""
+  }
+}
