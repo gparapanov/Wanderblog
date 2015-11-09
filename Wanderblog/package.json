@@ -19,5 +19,9 @@
     "passport": "*",
     "passport-local": "*",
     "bookshelf": "0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git:github.com/ponyczek/Wanderblog.git"
   }
 }
