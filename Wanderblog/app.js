@@ -10,8 +10,14 @@ var path = require('path');
 
 var app = express();
 
+//Body-parser
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+
+
+
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 1337);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -32,7 +38,16 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
-app.get('/register', routes.register);
+
+//Registration
+app.get('/register', function(req,res){
+    res.render('register.jade');
+});
+
+app.post('/register', function(req,res){
+    res.json(req.body);
+    res.render('register.jade');
+});
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
