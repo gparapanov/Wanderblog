@@ -4,19 +4,32 @@
 extends layout
 block content
    - var title = 'Register'
-   h1 Create an Account
-   form(method="post")
-      input(type="hidden", name="_csrf", value=csrfToken)
-      span First Name:
-      input(type="text", name="firstName", required=true)
-      br
-      span Last Name:
-      input(type="text", name="lastName", required=true)
-      br
-      span Email:
-      input(type="email", name="email", required=true)
-      br
-      span Password:
-      input(type="password", name="password", required=true)
-      br
-      input(type="submit")
+   .testbox
+       .registration-title
+            p Create an Account
+       form(method="post")
+          span User name:
+          input(type="text", name="userName", required=true)
+          br
+          span First Name:
+          input(type="text", name="firstName", required=true)
+          br
+          span Last Name:
+          input(type="text", name="lastName", required=true)
+          br
+          span Country:
+          input(type="text", name="country", required=true)
+          br
+          span User type:
+          select(required=true name="userType")
+             option(value='author') Author
+             option(value='reader') Reader
+          br
+          span Email:
+          input(type="email", name="email", required=true)
+          br
+          span Password:
+          input(type="password", name="password", required=true)
+          br
+          input(type="submit")
+

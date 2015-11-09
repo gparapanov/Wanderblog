@@ -89,3 +89,50 @@ body {
     font-family: 'Slabo 27px', serif;
     text-shadow: 4px 4px 4px #aaa;
 }
+
+.registration-title{
+    font-family: Lato;
+    font-size: 24px;
+    text-align: center;
+}
+
+.testbox {
+    margin: 20px auto;
+    font-family: Lato;
+    padding: 30px;
+    text-align: left;
+    width: 453px;
+    height: 554px;
+    -webkit-border-radius: 8px/7px;
+    -moz-border-radius: 8px/7px;
+    border-radius: 8px/7px;
+    background-color: #ebebeb;
+    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border: solid 1px #cbc9c9;
+}
+
+input, select, textarea{
+    width:195px;
+    border:10px solid #ccc;
+
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    box-sizing:content-box;
+    -webkit-box-sizing:content-box;
+}
+
+input[type=text],input[type=password],input[type=email]{
+    height: 39px;
+    -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+    -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
+    border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+    background-color: #fff;
+    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+    box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+    border: solid 1px #cbc9c9;
+    margin-left: 15px;
+    margin-top: 20px;
+}
