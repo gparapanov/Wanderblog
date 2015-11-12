@@ -4,32 +4,26 @@
 extends layout
 block content
    - var title = 'Register'
-   .testbox
+   .registerbox
        .registration-title
             p Create an Account
        form(method="post")
-          span User name:
-          input(type="text", name="userName", required=true)
+          input(type="text", name="userName", placeholder ="User Name", required=true)
           br
-          span First Name:
-          input(type="text", name="firstName", required=true)
+          input(type="text", name="firstName", placeholder ="First Name" required=true)
           br
-          span Last Name:
-          input(type="text", name="lastName", required=true)
+          input(type="text", name="lastName", placeholder ="Last Name" required=true)
           br
-          span Country:
-          input(type="text", name="country", required=true)
+          input(type="text", name="country", placeholder ="User name", required=true)
           br
-          span User type:
-          select(required=true name="userType")
-             option(value='author') Author
-             option(value='reader') Reader
+          .sel
+             select(required=true name="userType")
+                option(value='author') Author
+                option(value='reader') Reader
+          input(type="email", name="email",placeholder ="email ex. john@doe.com" required=true)
           br
-          span Email:
-          input(type="email", name="email", required=true)
+          input(type="password", name="password",placeholder ="password" required=true)
           br
-          span Password:
-          input(type="password", name="password", required=true)
-          br
-          input(type="submit")
+          .submit-button
+            input(type="submit", value="Join to Wanderblog")
 
