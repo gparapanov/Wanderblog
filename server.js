@@ -9,7 +9,7 @@ var http = require('http');
 var path = require('path');
 
 var app = express();
-
+var favicon = require('serve-favicon');
 //Body-parser
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -28,7 +28,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.favicon(__dirname + '/images/favicon.ico'));
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
