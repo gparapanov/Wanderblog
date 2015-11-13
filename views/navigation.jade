@@ -14,7 +14,11 @@
             a(href='/about') About
         li
             a(href='/contact') Contact
-        li
-            a(href='/login') Login
-        li
-            a(href='/register') Register
+
+        ul.nav-btns
+            .btn-toolbar
+                a.btn.btn-primary.log-btn(href='/login', role='button') Login
+                a.btn.btn-info.reg-btn(href='/register', role='button') Register
+
+
+

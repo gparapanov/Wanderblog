@@ -3,17 +3,17 @@
 
 extends layout
 block content
-   - var title = 'Login'
-   .loginbox
-      .registration-title
-         p Sign in to Wanderblog
-      if error
-         p ERROR: #{error}
-      form(method="post")
-         input(type="hidden", name="_csrf", value=csrfToken)
-         input(type="email", name="email", , placeholder="email",required=true)
-         br
-         input(type="password", name="password", placeholder="password", required=true)
-         br
-         .submit-button
-            input(type="submit", value="Login to Wanderblog")
+    - var title = 'Login'
+    .loginbox
+        .registration-title
+            p Sign in to Wanderblog
+        if error
+            p ERROR: #{error}
+        form(method="post")
+            input(type="hidden", name="_csrf", value=csrfToken)
+            input(type="email", name="email", , placeholder="email",required=true)
+            br
+            input(type="password", name="password", placeholder="password", required=true)
+            br
+            .submit-button
+                input(type="submit", value="Login to Wanderblog")

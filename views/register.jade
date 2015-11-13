@@ -3,27 +3,27 @@
 
 extends layout
 block content
-   - var title = 'Register'
-   .registerbox
-       .registration-title
+    - var title = 'Register'
+    .registerbox
+        .registration-title
             p Create an Account
-       form(method="post")
-          input(type="text", name="userName", placeholder ="User Name", required=true)
-          br
-          input(type="text", name="firstName", placeholder ="First Name" required=true)
-          br
-          input(type="text", name="lastName", placeholder ="Last Name" required=true)
-          br
-          input(type="text", name="country", placeholder ="User name", required=true)
-          br
-          .sel
-             select(required=true name="userType")
-                option(value='author') Author
-                option(value='reader') Reader
-          input(type="email", name="email",placeholder ="email ex. john@doe.com" required=true)
-          br
-          input(type="password", name="password",placeholder ="password" required=true)
-          br
-          .submit-button
-            input(type="submit", value="Join to Wanderblog")
+        form(method="post")
+            input(type="text", name="userName", placeholder ="User Name", required=true)
+            br
+            input(type="text", name="firstName", placeholder ="First Name" required=true)
+            br
+            input(type="text", name="lastName", placeholder ="Last Name" required=true)
+            br
+            input(type="text", name="country", placeholder ="User name", required=true)
+            br
+            .sel
+                select(required=true name="userType")
+                    option(value='author') Author
+                    option(value='reader') Reader
+            input(type="email", name="email",placeholder ="email ex. john@doe.com" required=true)
+            br
+            input(type="password", name="password",placeholder ="password" required=true)
+            br
+            .submit-button
+                input(type="submit", value="Join to Wanderblog")
 
