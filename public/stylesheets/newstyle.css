@@ -15,7 +15,7 @@
 / / position : fixed;
 / / margin-bottom : - 7.5 em;
 / / min-height : 100 %;
-
+    font-family: Lato;
     margin-top: 250px;
 }
 
@@ -30,7 +30,8 @@
 }
 
 .footer-signature i {
-    color: red;
+    color: #428bca;
+
 }
 
 .footer-socials li {
