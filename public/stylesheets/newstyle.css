@@ -286,9 +286,14 @@ body {
 
 .search-nav{
     display: inline;
-    width: 250px;
+    max-width: 250px;
 }
 
 .serc{
-    width: 250px;
+    max-width: 250px;
+    display: inline;
+}
+
+.form-control{
+    width: 20% !important;
 }
