@@ -14,11 +14,15 @@
             a(href='/about') About
         li
             a(href='/contact') Contact
-
-        ul.nav-btns
-            .btn-toolbar
-                a.btn.btn-primary.log-btn(href='/login', role='button') Login
-                a.btn.btn-info.reg-btn(href='/register', role='button') Register
+        li.serc
+            .input-group.search-nav
+                input.form-control(type='text', placeholder='Search for...')
+                button.btn.btn-default(type='button') Go!
+        li
+            ul.nav-btns
+                .btn-toolbar
+                    a.btn.btn-primary.log-btn(href='/login', role='button') Login
+                    a.btn.btn-info.reg-btn(href='/register', role='button') Register
 
 
 
