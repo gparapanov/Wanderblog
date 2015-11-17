@@ -1,10 +1,10 @@
 /* delete the database if it already exists and create a new one*/
-drop database if exists wanderblog;
-create database wanderblog;
+DROP DATABASE IF EXISTS wanderblog;
+CREATE DATABASE wanderblog;
 
-use wanderblog;
+USE wanderblog;
 
-drop table if exists user;
+DROP TABLE IF EXISTS user;
 CREATE TABLE user(
     id INTEGER PRIMARY KEY auto_increment,
     type VARCHAR(10) NOT NULL,
@@ -13,8 +13,7 @@ CREATE TABLE user(
     password VARCHAR(20) NOT NULL,
     country VARCHAR(20) NOT NULL,
     description TINYTEXT(20) NULL,
-    avatar VARCHAR(10) NULL,
-    CONSTRAINT chk_Type CHECK (type IN ('reader','admin', 'author'))
+    avatar VARCHAR(10) NULL
 )engine=innodb;
 
 DROP TABLE IF EXISTS adventure;
@@ -49,6 +48,25 @@ CREATE TABLE comment(
     content TEXT NOT NULL,
     user_id INTEGER NOT NULL,
     adventure_id INTEGER NOT NULL,
+    FOREIGN KEY (adventure_id) REFERENCES adventure(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+)engine=innodb;
+
+DROP TABLE IF EXISTS picture;
+CREATE TABLE picture(
+    id INTEGER PRIMARY KEY auto_increment,
+    adventure_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    url VARCHAR(50) NOT NULL,
+    FOREIGN KEY (adventure_id) REFERENCES adventure(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+)engine=innodb;
+
+DROP TABLE IF EXISTS rating;
+CREATE TABLE rating(
+    id INTEGER PRIMARY KEY auto_increment,
+    adventure_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
     FOREIGN KEY (adventure_id) REFERENCES adventure(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 )engine=innodb;
