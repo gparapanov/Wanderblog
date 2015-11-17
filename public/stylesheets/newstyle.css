@@ -8,11 +8,10 @@
     margin-top: 30px;
 }
 
-
-
 /* footer css */
 #footer {
     background-image: url('images/footer-landscape.png');
+
     height: 250px;
 / / position : fixed;
 / / margin-bottom : - 7.5 em;
@@ -89,35 +88,18 @@ body {
     text-shadow: 4px 4px 4px #aaa;
 }
 
-.registration-title {
-    font-family: Lato;
-    font-size: 24px;
-    text-align: center;
+.sel {
+    padding-top: 15px;
 }
 
-.registerbox {
-    margin: 20px auto;
-    font-family: Lato;
-    padding: 30px;
-    text-align: center;
-    width: 453px;
-    height: 584px;
-    -webkit-border-radius: 8px/7px;
-    -moz-border-radius: 8px/7px;
-    border-radius: 8px/7px;
-    background-color: #ebebeb;
-    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
-    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
-    border: solid 1px #cbc9c9;
+.submit-button {
+    padding-top: 15px;
 }
 
-.loginbox {
-    margin: 20px auto;
-    font-family: Lato;
-    padding: 30px;
-    text-align: center;
-    width: 453px;
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
     height: 300px;
     -webkit-border-radius: 8px/7px;
     -moz-border-radius: 8px/7px;
@@ -127,144 +109,86 @@ body {
     -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
     box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
     border: solid 1px #cbc9c9;
+
 }
 
-.registerbox input, select, textarea {
-    width: 290px;
-    border: 4px solid #428bca;
-    -ms-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    -webkit-box-sizing: content-box;
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+
 }
 
-.registerbox input[type=text], input[type=password], input[type=email] {
-    height: 39px;
-    -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
-    -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
-    border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
-    background-color: #fff;
-    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-    border: solid 1px #cbc9c9;
-    margin-left: 15px;
-    margin-top: 20px;
-}
-
-.loginbox input, select, textarea {
-    width: 290px;
-    border: 4px solid #428bca;
-    -ms-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-}
-
-.loginbox input[type=text], input[type=password], input[type=email] {
-    height: 39px;
-    -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
-    -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
-    border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
-    background-color: #fff;
-    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-    box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-    border: solid 1px #cbc9c9;
-    margin-left: 15px;
-    margin-top: 20px;
-}
-
-.loginbox input[type=submit] {
-    -moz-box-shadow: 0px 0px 0px 0px #9fb4f2;
-    -webkit-box-shadow: 0px 0px 0px 0px #9fb4f2;
-    box-shadow: 0px 0px 0px 0px #9fb4f2;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5e7deb), color-stop(1, #3b8ef5));
-    background: -moz-linear-gradient(top, #5e7deb 5%, #3b8ef5 100%);
-    background: -webkit-linear-gradient(top, #5e7deb 5%, #3b8ef5 100%);
-    background: -o-linear-gradient(top, #5e7deb 5%, #3b8ef5 100%);
-    background: -ms-linear-gradient(top, #5e7deb 5%, #3b8ef5 100%);
-    background: linear-gradient(to bottom, #5e7deb 5%, #3b8ef5 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e7deb', endColorstr='#3b8ef5', GradientType=0);
-    background-color: #5e7deb;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 12px;
-    border: 1px solid #4e6096;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
+.signin-btn {
     font-family: 'Slabo 27px', serif;
     font-size: 20px;
-    padding: 10px 10px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #283966;
 }
 
-.loginbox.input[type=submit]:hover {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3b8ef5), color-stop(1, #5e7deb));
-    background: -moz-linear-gradient(top, #3b8ef5 5%, #5e7deb 100%);
-    background: -webkit-linear-gradient(top, #3b8ef5 5%, #5e7deb 100%);
-    background: -o-linear-gradient(top, #3b8ef5 5%, #5e7deb 100%);
-    background: -ms-linear-gradient(top, #3b8ef5 5%, #5e7deb 100%);
-    background: linear-gradient(to bottom, #3b8ef5 5%, #5e7deb 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b8ef5', endColorstr='#5e7deb', GradientType=0);
-    background-color: #3b8ef5;
+.form-signin .checkbox {
+    font-family: Lato;
 }
 
-.loginbox.input[type=submit]:active {
+.form-signin-heading {
+    font-family: Lato;
+    font-size: 24px;
+    text-align: center;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
     position: relative;
-    top: 1px;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
 }
 
-.sel {
-    padding-top: 15px;
+.form-signin .form-control:focus {
+    z-index: 2;
 }
 
-.submit-button {
-    padding-top: 15px;
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-.registerbox input[type=submit] {
-    -moz-box-shadow: 0px 0px 0px 0px #9fb4f2;
-    -webkit-box-shadow: 0px 0px 0px 0px #9fb4f2;
-    box-shadow: 0px 0px 0px 0px #9fb4f2;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5e7deb), color-stop(1, #3b8ef5));
-    background: -moz-linear-gradient(top, #5e7deb 5%, #3b8ef5 100%);
-    background: -webkit-linear-gradient(top, #5e7deb 5%, #3b8ef5 100%);
-    background: -o-linear-gradient(top, #5e7deb 5%, #3b8ef5 100%);
-    background: -ms-linear-gradient(top, #5e7deb 5%, #3b8ef5 100%);
-    background: linear-gradient(to bottom, #5e7deb 5%, #3b8ef5 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e7deb', endColorstr='#3b8ef5', GradientType=0);
-    background-color: #5e7deb;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 12px;
-    border: 1px solid #4e6096;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    font-family: 'Lato';
+    background-color: #fff;
+    border-radius: 0.3em;
+    -webkit-border-radius: 8px/7px;
+    -moz-border-radius: 8px/7px;
+    border-radius: 8px/7px;
+    background-color: #ebebeb;
+    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    border: solid 1px #cbc9c9;
+}
+
+*[role="form"] h2 {
+    font-family: 'Lato';
+    margin-left: 5em;
+    margin-bottom: 1em;
+}
+
+*[role="form"] .btn-group {
     font-family: 'Slabo 27px', serif;
     font-size: 20px;
-    padding: 10px 10px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #283966;
-}
-
-.registerbox.input[type=submit]:hover {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3b8ef5), color-stop(1, #5e7deb));
-    background: -moz-linear-gradient(top, #3b8ef5 5%, #5e7deb 100%);
-    background: -webkit-linear-gradient(top, #3b8ef5 5%, #5e7deb 100%);
-    background: -o-linear-gradient(top, #3b8ef5 5%, #5e7deb 100%);
-    background: -ms-linear-gradient(top, #3b8ef5 5%, #5e7deb 100%);
-    background: linear-gradient(to bottom, #3b8ef5 5%, #5e7deb 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b8ef5', endColorstr='#5e7deb', GradientType=0);
-    background-color: #3b8ef5;
-}
-
-.registerbox.input[type=submit]:active {
-    position: relative;
-    top: 1px;
 }
 
 .log-btn {
@@ -284,16 +208,11 @@ body {
     padding-top: 10px;
 }
 
-.search-nav{
+.search-nav {
     display: inline;
     max-width: 250px;
 }
 
-.serc{
-    max-width: 250px;
-    display: inline;
-}
 
-.form-control{
-    width: 20% !important;
-}
+
+
