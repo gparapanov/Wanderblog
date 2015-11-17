@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 // all environments
-app.set('port', process.env.PORT || 1337);
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -47,6 +47,16 @@ app.get('/register', function(req,res){
 app.post('/register', function(req,res){
     res.json(req.body);
     res.render('register.jade');
+
+});
+app.post('register', function(req, res) {
+    res.send(req.body.optradio);
+});
+
+//Adventures
+
+app.get('/newPost', function(req,res){
+    res.render('newPost.jade');
 });
 
 http.createServer(app).listen(app.get('port'), function () {

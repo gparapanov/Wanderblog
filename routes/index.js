@@ -22,3 +22,7 @@ exports.login = function (req, res) {
 exports.register = function (req, res) {
     res.render('register', { title: 'Register', year: new Date().getFullYear(), message: 'Your Register page' });
 };
+
+exports.newPost = function (req, res) {
+    res.render('newPost', { title: 'New Adventure', year: new Date().getFullYear(), message: 'Write an adventure' });
+};
