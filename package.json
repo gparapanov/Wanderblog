@@ -19,7 +19,8 @@
     "passport": "*",
     "passport-local": "*",
     "serve-favicon": "^2.3.0",
-    "stylus": "*"
+    "stylus": "*",
+    "serve-favicon": "*"
   },
   "repository": {
     "type": "git",
