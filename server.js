@@ -9,7 +9,8 @@ var http = require('http');
 var path = require('path');
 
 //cookies
-var session = require('client-sessions');
+var sessions = require('client-sessions');
+
 
 var app = express();
 
@@ -29,10 +30,29 @@ var connection = mysql.createConnection({
     database : 'wanderblog'
 });
 
-
 connection.connect();
 
+//mysql-model
+//var mysqlModel = require('mysql-model');
+//var MyAppModel = mysqlModel.createConnection({
+//    host     : 'localhost',
+//    user     : 'root',
+//    password : 'password',
+//    database : 'wanderblog'
+//});
 
+//var User = new MyAppModel({tableName: "users"});
+
+//COOKIES
+app.use(sessions({
+    cookieName: 'session',
+    //hashing
+    secret: 'b23iujnxklm23mcoenUOifj!xxaXSBf2nn',
+    //when will log off
+    duration: 30*60*1000,
+    activeDuration: 5*60*1000,
+
+}));
 
 
 // all environments
@@ -53,17 +73,7 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-//COOKIES
-app.use(session({
-    cookieName: 'session',
-    //hashing
-    secret: 'b23iujnxklm23mcoenUOifj!xxaXSBf2nn',
-    //when will log off
-    duration: 30*60*1000,
-    activeDuration: 5*60*1000,
 
-
-}));
 
 //ROUTES
 app.get('/', routes.index);
@@ -73,10 +83,29 @@ app.get('/login', routes.login);
 app.get('/newPost', routes.newPost);
 app.get('/profile', routes.profile);
 
+var credentials = {
+    login_name: "",
+    name: "",
+    country: "",
+    type: ""
+};
+
 
 //profile page
 app.get('/profile', function(req,res){
-    res.render('profile.jade');
+    console.log('kasdkas');
+    if(req.session.credentials && req.session){
+            console.log("KSAKDK");
+            res.session.credentials = credentials;
+            console.log('KAKSDKSAFKSKFKSAKF');
+            res.render('profile.jade');
+
+    }
+    else{
+        req.session.reset();
+        res.redirect('/login');
+        console.log('123KAKSDKSAFKSKFKSAKF');
+    }
 });
 
 
@@ -85,24 +114,34 @@ app.get('/login', function(req,res){
    res.render('login.jade');
 });
 
+
+
+
 app.post('/login', function(req,res){
 
-    var credentials = {
+    var loginData = {
         login_name: req.body.login_name,
-        password: req.body.password,
+        password: req.body.password
     };
 
     console.log(credentials);
     //var query = connection.query('SELECT * FROM users where login name = credentials.login.name');
-    var query = connection.query("SELECT * from users WHERE login_name=? AND password=? LIMIT 1",[credentials.login_name,credentials.password],function(err, rows, fields) {
+    var query = connection.query("SELECT * from users WHERE login_name=? AND password=? LIMIT 1",[loginData.login_name,loginData.password],function(err, rows, fields) {
         if(rows.length != 0){
+            credentials.login_name = rows[0].login_name;
+            credentials.name = rows[0].name;
+            credentials.country = rows[0].country;
+            credentials.type = rows[0].type;
+
             req.session.credentials = credentials;
+            console.log(req.session.credentials);
+            res.redirect('/profile');
             res.render('profile.jade', {error: ' Successfully logged in.'});
         }else {
             res.render('login.jade', {error: ' Invalid email or password.'});
         }
     });
-
+    console.log(credentials);
 });
 
 
