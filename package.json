@@ -21,6 +21,8 @@
     "serve-favicon": "^2.3.0",
     "stylus": "*",
     "client-sessions": "*",
+    "mysql-model": "*",
+    "backbone": "*",
     "serve-favicon": "*"
   },
   "repository": {
