@@ -4,25 +4,28 @@
 extends layout
 block content
    - var title = 'New Adventure'
-   .adventurebox
-      .adventure-title
-         p Create a new adventure
-      form(method="post")
-         input(type="text", name="adventureTitle", placeholder ="Adventure Title", required=true)
-         br
-         label(for='adventure-description') Adventure Content:
-         textarea#adventure-description.form-control(rows='10')
-         input(type="text", name="lastName", placeholder ="Last Name" required=true)
-         br
-         input(type="text", name="country", placeholder ="User name", required=true)
-         br
-         .sel
-            select(required=true name="userType")
-               option(value='author') Author
-               option(value='reader') Reader
-         input(type="email", name="email",placeholder ="email ex. john@doe.com" required=true)
-         br
-         input(type="password", name="password",placeholder ="password" required=true)
-         br
-         .submit-button
-            input(type="submit", value="Join to Wanderblog")
+   .container.post-box.post-form
+      form.form-horizontal(role='postform' method='post')
+         h2.form-post-heading Create Adventure
+         fieldset
+            // Text input
+            .form-group
+               label.col-md-4.control-label.adventure-title(for='textinput') Title
+               .col-md-6
+                  input#textinput.form-control.input-md(name='textinput', type='text', placeholder='', required='')
+            // Textarea
+            .form-group
+               label.col-md-4.control-label(for='adventure-content') Describe Your Adventure
+               .col-md-4
+                  textarea#adventure-content.form-control(name='adventure-content')
+            // File Button
+            .form-group
+               label.col-md-4.control-label(for='adventures-pictures') Add Pictures
+               .col-md-4
+                  input#adventures-pictures.input-file(name='adventures-pictures', type='file')
+            // Button (Double)
+            .form-group
+               label.col-md-4.control-label(for='adventure-back')
+               .col-md-8.btn-toolbar
+                  button#adventure-back.btn.btn-primary(name='adventure-back') Go Back
+                  button#adventure-submit.btn.btn-success(name='adventure-submit') Post Adventure
