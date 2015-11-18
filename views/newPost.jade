@@ -1,0 +1,28 @@
+//
+   Created by Ponczek on 17/11/2015.
+
+extends layout
+block content
+   - var title = 'New Adventure'
+   .adventurebox
+      .adventure-title
+         p Create a new adventure
+      form(method="post")
+         input(type="text", name="adventureTitle", placeholder ="Adventure Title", required=true)
+         br
+         label(for='adventure-description') Adventure Content:
+         textarea#adventure-description.form-control(rows='10')
+         input(type="text", name="lastName", placeholder ="Last Name" required=true)
+         br
+         input(type="text", name="country", placeholder ="User name", required=true)
+         br
+         .sel
+            select(required=true name="userType")
+               option(value='author') Author
+               option(value='reader') Reader
+         input(type="email", name="email",placeholder ="email ex. john@doe.com" required=true)
+         br
+         input(type="password", name="password",placeholder ="password" required=true)
+         br
+         .submit-button
+            input(type="submit", value="Join to Wanderblog")
