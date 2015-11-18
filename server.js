@@ -9,7 +9,7 @@ var http = require('http');
 var path = require('path');
 
 //cookies
-var session = require('cient-sessions');
+var session = require('client-sessions');
 
 var app = express();
 
@@ -53,6 +53,18 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
+//COOKIES
+app.use(session({
+    cookieName: 'session',
+    //hashing
+    secret: 'b23iujnxklm23mcoenUOifj!xxaXSBf2nn',
+    //when will log off
+    duration: 30*60*1000,
+    activeDuration: 5*60*1000,
+
+
+}));
+
 //ROUTES
 app.get('/', routes.index);
 app.get('/about', routes.about);
@@ -84,6 +96,7 @@ app.post('/login', function(req,res){
     //var query = connection.query('SELECT * FROM users where login name = credentials.login.name');
     var query = connection.query("SELECT * from users WHERE login_name=? AND password=? LIMIT 1",[credentials.login_name,credentials.password],function(err, rows, fields) {
         if(rows.length != 0){
+            req.session.credentials = credentials;
             res.render('profile.jade', {error: ' Successfully logged in.'});
         }else {
             res.render('login.jade', {error: ' Invalid email or password.'});
