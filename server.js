@@ -8,11 +8,30 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
+//cookies
+var session = require('cient-sessions');
+
 var app = express();
+
+//favicon
 var favicon = require('serve-favicon');
+
 //Body-parser
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
+
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    //Here put credentials for your local sql.
+    host     : 'localhost',
+    user     : 'root',
+    password : 'password',
+    database : 'wanderblog'
+});
+
+
+connection.connect();
+
 
 
 
@@ -34,10 +53,45 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
+//ROUTES
 app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
+app.get('/newPost', routes.newPost);
+app.get('/profile', routes.profile);
+
+
+//profile page
+app.get('/profile', function(req,res){
+    res.render('profile.jade');
+});
+
+
+//Login
+app.get('/login', function(req,res){
+   res.render('login.jade');
+});
+
+app.post('/login', function(req,res){
+
+    var credentials = {
+        login_name: req.body.login_name,
+        password: req.body.password,
+    };
+
+    console.log(credentials);
+    //var query = connection.query('SELECT * FROM users where login name = credentials.login.name');
+    var query = connection.query("SELECT * from users WHERE login_name=? AND password=? LIMIT 1",[credentials.login_name,credentials.password],function(err, rows, fields) {
+        if(rows.length != 0){
+            res.render('profile.jade', {error: ' Successfully logged in.'});
+        }else {
+            res.render('login.jade', {error: ' Invalid email or password.'});
+        }
+    });
+
+});
+
 
 //Registration
 app.get('/register', function(req,res){
@@ -45,10 +99,26 @@ app.get('/register', function(req,res){
 });
 
 app.post('/register', function(req,res){
-    res.json(req.body);
-    res.render('register.jade');
+    //res.json(req.body);
+    //res.render('register.jade');
+    var user = {
+        name: req.body.name,
+        login_name: req.body.login_name,
+        password: req.body.password,
+        country: req.body.country,
+        type: req.body.type
+    };
 
+    var query = connection.query('insert into users set ?', user, function (err, result) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.error(result);
+    });
+    res.redirect('/newPost');
 });
+
 app.post('register', function(req, res) {
     res.send(req.body.optradio);
 });
