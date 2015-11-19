@@ -8,21 +8,22 @@
     "email": ""
   },
   "dependencies": {
+    "backbone": "*",
     "bcrypt-nodejs": "*",
     "body-parser": "*",
     "bookshelf": "0.5",
+    "client-sessions": "*",
     "cookie-parser": "*",
     "express": "3.4.4",
     "express-session": "*",
     "jade": "*",
+    "multer": "^1.1.0",
     "mysql": "2.9.0",
+    "mysql-model": "*",
     "passport": "*",
     "passport-local": "*",
-    "stylus": "*",
-    "client-sessions": "*",
-    "mysql-model": "*",
-    "backbone": "*",
-    "serve-favicon": "*"
+    "serve-favicon": "*",
+    "stylus": "*"
   },
   "repository": {
     "type": "git",
