@@ -31,3 +31,7 @@ exports.newPost = function (req, res) {
 exports.profile = function (req, res) {
     res.render('profile', { title: 'User Profile Page', year: new Date().getFullYear(), message: 'Profile Page' });
 };
+
+exports.profile = function (req, res) {
+    res.render('adventures', { title: 'Adventures Page', year: new Date().getFullYear(), message: 'Profile Page' });
+};
