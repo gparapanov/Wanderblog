@@ -43,7 +43,7 @@ app.use(session({
 }));
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 1337);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -69,11 +69,16 @@ app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/newPost', routes.newPost);
 app.get('/profile', routes.profile);
-
+app.get('/adventures', routes.profile);
 
 //profile page
 app.get('/profile', function (req, res) {
     res.render('profile.jade');
+});
+
+//adventures
+app.get('/adventures', function (req, res) {
+    res.render('adventures.jade');
 });
 
 
