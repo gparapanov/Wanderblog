@@ -26,3 +26,7 @@ exports.register = function (req, res) {
 exports.newPost = function (req, res) {
     res.render('newPost', { title: 'New Adventure', year: new Date().getFullYear(), message: 'Write an adventure' });
 };
+
+exports.profile = function (req, res) {
+    res.render('profile', { title: 'User Profile Page', year: new Date().getFullYear(), message: 'Profile Page' });
+};

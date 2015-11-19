@@ -4,13 +4,13 @@
 extends layout
 block content
     - var title = 'Register'
-    .container
+    .container.signup-box
         form.form-horizontal(role='form' method='post')
             h2 Registration Form
             .form-group
-                label.col-sm-3.control-label(for='name') First Name
+                label.col-sm-3.control-label(for='name') Full Name
                 .col-sm-9
-                    input#firstName.form-control(type='text', placeholder='First Name', autofocus='', name ='name')
+                    input#firstName.form-control(type='text', placeholder='Full Name', autofocus='', name ='name')
                     span.help-block full name eg.: John Doe
             .form-group
                 label.col-sm-3.control-label(for='email') Email
