@@ -24,6 +24,7 @@ exports.register = function (req, res) {
 };
 
 exports.newPost = function (req, res) {
+    //res.render('newPost.jade');
     res.render('newPost', { title: 'New Adventure', year: new Date().getFullYear(), message: 'Write an adventure' });
 };
 
