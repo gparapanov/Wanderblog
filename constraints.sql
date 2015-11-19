@@ -6,6 +6,8 @@ DROP TRIGGER IF EXISTS chk_user_type_on_insert;
 DROP TRIGGER IF EXISTS chk_user_type_on_update;
 DROP TRIGGER IF EXISTS chk_rating_bounds_on_insert;
 DROP TRIGGER IF EXISTS chk_rating_bounds_on_update;
+DROP TRIGGER IF EXISTS chk_loginname_length_on_insert;
+DROP TRIGGER IF EXISTS chk_loginname_length_on_update;
 
 delimiter //
 #check user type is admin, author or reader before inserting
@@ -48,6 +50,28 @@ BEGIN
 	IF NEW.score < 0 OR NEW.score > 10 THEN
 		SIGNAL SQLSTATE '45000'
 			SET MESSAGE_TEXT = 'Score out of bounds MIN 0 MAX 10!';
+	END IF;
+END; 
+//
+//
+#check rating is between 0 and 10 before updating
+CREATE TRIGGER chk_loginname_length_on_insert BEFORE INSERT ON users
+FOR EACH ROW
+BEGIN
+	IF CHAR_LENGTH(NEW.login_name) < 3 OR CHAR_LENGTH(NEW.login_name) > 20 THEN
+		SIGNAL SQLSTATE '45000'
+			SET MESSAGE_TEXT = 'login_name length out of bounds MIN 3 MAX 20!';
+	END IF;
+END; 
+//
+//
+#check rating is between 0 and 10 before updating
+CREATE TRIGGER chk_loginname_length_on_update BEFORE UPDATE ON users
+FOR EACH ROW
+BEGIN
+	IF CHAR_LENGTH(NEW.login_name) < 3 OR CHAR_LENGTH(NEW.login_name) > 20 THEN
+		SIGNAL SQLSTATE '45000'
+			SET MESSAGE_TEXT = 'login_name length out of bounds MIN 3 MAX 20!';
 	END IF;
 END; 
 //

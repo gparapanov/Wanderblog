@@ -14,7 +14,7 @@ VALUES (DEFAULT,"reader","Herrod Whitehead","ipsum","nunc.sed.pede@imperdiet.co.
 (DEFAULT,"author","Emery Gillespie","scelerisque,","mi.tempor@nonnisi.edu","SHE82VQX9DV","Ireland","ut odio vel est tempor bibendum.","aliquet"),
 (DEFAULT,"author","Knox Glass","neque","leo.Cras@malesuada.edu","TYN88ZEX4OL","Congo, the Democratic Republic of the","sem ut cursus luctus, ipsum leo elementum sem, vitae","lacinia"),
 (DEFAULT,"reader","Vance Colon","lorem","mauris.eu@Nulla.org","QWS92VXJ2KT","Panama","diam vel arcu. Curabitur ut odio vel","et"),
-(DEFAULT,"author","Bryar Booth","a","Nunc@Aliquamornare.ca","TTM88DXQ5EP","Libya","dignissim magna a tortor. Nunc commodo auctor","cursus");
+(DEFAULT,"author","Bryar Booth","aba","Nunc@Aliquamornare.ca","TTM88DXQ5EP","Libya","dignissim magna a tortor. Nunc commodo auctor","cursus");
 
 
 INSERT INTO adventure (id,title,location,visit_date,post_date,user_id)
