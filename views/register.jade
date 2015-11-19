@@ -8,6 +8,10 @@ block content
         form.form-horizontal(role='form' method='post')
             h2 Registration Form
             .form-group
+                label.col-sm-3.control-label(for='login_name') Login name
+                .col-sm-9
+                    input#email.form-control(type='text', placeholder='Login name', name ='login_name')
+            .form-group
                 label.col-sm-3.control-label(for='name') Full Name
                 .col-sm-9
                     input#firstName.form-control(type='text', placeholder='Full Name', autofocus='', name ='name')
@@ -15,7 +19,7 @@ block content
             .form-group
                 label.col-sm-3.control-label(for='email') Email
                 .col-sm-9
-                    input#email.form-control(type='email', placeholder='Email', name ='login_name')
+                    input#email.form-control(type='email', placeholder='Email', name ='email')
             .form-group
                 label.col-sm-3.control-label(for='password') Password
                 .col-sm-9
