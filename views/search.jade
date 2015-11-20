@@ -1,9 +1,49 @@
 extends layout
 
 block content
+    - if (typeof(searchResult) == 'undefined')
+        h1 Refine search
+        form.form-horizontal(role='form', method='post')
+            .form-group
+                label.col-sm-3.control-label(for='select_search_category') Search for:
+                .col-sm-9
+                    select#select_search_category.form-control(name ='select_search_category', onChange='changeSearchCategory()')
+                        option Users
+                        option Adventures
+            #refine_adventure_search.form-group
+                label.control-label.col-sm-3 Search by:
+                .col-sm-6
+                    .row
+                        .col-sm-4
+                            label.radio-inline
+                                input(type='radio', value='post_date')
+                                | Date posted
+                        .col-sm-4
+                            label.radio-inline
+                                input(type='radio', value='visit_date')
+                                | Date traveller visited
+                        .col-sm-4
+                            label.radio-inline
+                                input(type='radio', value='location')
+                                | Location
+                        .col-sm-4
+                            label.radio-inline
+                                input(type='radio', value='tags')
+                                | Tags
+                        .col-sm-4
+                            label.radio-inline
+                                input(type='radio', value='rating')
+                                | Rating
+            input.form-control(type='text', placeholder='Search for...', name='searchedFor', required=true)
+            .form-group
+                .col-sm-9.col-sm-offset-3.btn-toolbar
+                    button.btn.btn-success.btn-group(type='submit') Search!
+
     h1 Search results!
-        p #{noticeresults}
-        - if (typeof(searchResult) !== 'undefined')
-            ul
-                each val in searchResult
-                    li= val.title + ' posted by user ' + val.user_id + ' on ' + val.post_date
+    p #{noticeresults}
+    - if (typeof(searchResult) !== 'undefined')
+        ul
+            each val in searchResult
+                li= val.title + ' posted by user ' + val.user_id + ' on ' + val.post_date
+block scripts
+    script(type='text/javascript', src='/javascripts/search.js')

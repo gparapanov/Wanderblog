@@ -36,8 +36,12 @@ var connection = mysql.createConnection({
     host     : 'the name of the host of your local db.',
     user     : 'your user name',
     password : 'your password for local db',
-    database : 'dbname'
+    database : 'wanderblog'
 });
 ```
+
+### Create and populate database
+
+Run schema.sql, constraints.sql and populate.sql in this order
 
 

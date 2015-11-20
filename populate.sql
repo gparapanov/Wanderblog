@@ -18,16 +18,16 @@ VALUES (DEFAULT,"reader","Herrod Whitehead","ipsum","nunc.sed.pede@imperdiet.co.
 
 
 INSERT INTO adventure (id,title,location,content_text,visit_date,post_date,user_id)
-VALUES (DEFAULT,"parturient montes,","Krishnanagar","sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris","2014-08-08","2015-06-23 10:02:44",1),
-(DEFAULT,"vitae, posuere","Timkur","tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a","2014-02-24","2015-06-19 17:11:49",3),
-(DEFAULT,"fermentum vel,","Fauvillers","diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer","2015-09-30","2015-10-10 07:10:30",8),
-(DEFAULT,"Sed molestie.","Şereflikoçhisar","malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit.","2014-08-11","2015-07-08 08:01:45",9),
-(DEFAULT,"ac, fermentum","Rabbi","tellus lorem eu metus. In lorem. Donec elementum, lorem ut","2015-07-07","2016-06-07 19:17:23",4),
-(DEFAULT,"Curabitur dictum.","Gonnosfanadiga","vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim.","2015-11-15","2016-03-14 11:54:11",1),
-(DEFAULT,"lobortis tellus","Albagiara","eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit","2014-05-26","2016-06-28 10:29:50",3),
-(DEFAULT,"euismod urna.","Newton Stewart","leo, in lobortis tellus justo sit amet nulla. Donec non","2014-02-21","2016-08-11 04:12:11",5),
-(DEFAULT,"libero at","Valley East","tempor erat neque non quam. Pellentesque habitant morbi tristique senectus","2014-06-26","2015-05-02 07:20:51",3),
-(DEFAULT,"nonummy ut,","Biloxi","Quisque varius. Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada","2014-08-31","2016-10-13 03:18:41",9);
+VALUES (DEFAULT,"My fun adventure","Krishnanagar","sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris","2014-08-08","2015-06-23 10:02:44",1),
+(DEFAULT,"Another Day In Paradise","Timkur","tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a","2014-02-24","2015-06-19 17:11:49",3),
+(DEFAULT,"Come On A Safari With Me","Fauvillers","diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer","2015-09-30","2015-10-10 07:10:30",8),
+(DEFAULT,"Bon Voyage!","Şereflikoçhisar","malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit.","2014-08-11","2015-07-08 08:01:45",9),
+(DEFAULT,"Beyond The Sea","Rabbi","tellus lorem eu metus. In lorem. Donec elementum, lorem ut","2015-07-07","2016-06-07 19:17:23",4),
+(DEFAULT,"Having A Wonderful Time","Gonnosfanadiga","vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim.","2015-11-15","2016-03-14 11:54:11",1),
+(DEFAULT,"Around The World","Albagiara","eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit","2014-05-26","2016-06-28 10:29:50",3),
+(DEFAULT,"Down By The Sea","Newton Stewart","leo, in lobortis tellus justo sit amet nulla. Donec non","2014-02-21","2016-08-11 04:12:11",5),
+(DEFAULT,"Having A Wonderful Time","Valley East","tempor erat neque non quam. Pellentesque habitant morbi tristique senectus","2014-06-26","2015-05-02 07:20:51",3),
+(DEFAULT,"Around The World","Biloxi","Quisque varius. Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada","2014-08-31","2016-10-13 03:18:41",9);
 
 
 INSERT INTO tag (id,name)

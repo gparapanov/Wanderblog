@@ -58,6 +58,7 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.favicon(__dirname + '/images/favicon.ico'));
 
+app.locals.pretty = true;
 
 // development only
 if ('development' == app.get('env')) {
@@ -196,7 +197,7 @@ app.get('/newPost', function (req, res) {
 app.post('/search', function(req,res){
     var searched = req.body.searchedFor;
 
-    connection.query('SELECT * from adventure WHERE title=?', [searched], function(err, rows){
+    connection.query('SELECT * from adventure WHERE title LIKE ?', '%'+[searched]+'%', function(err, rows){
         if(err){
             console.log(err.stack);
             res.render('index.jade');
