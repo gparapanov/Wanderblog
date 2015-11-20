@@ -69,7 +69,8 @@ app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/newPost', routes.newPost);
 app.get('/profile', routes.profile);
-app.get('/adventures', routes.profile);
+//app.get('/adventures', routes.adventures);
+app.get('/adventure', routes.adventure);
 
 //profile page
 app.get('/profile', function (req, res) {
@@ -78,7 +79,32 @@ app.get('/profile', function (req, res) {
 
 //adventures
 app.get('/adventures', function (req, res) {
-    res.render('adventures.jade');
+    // Description of adventure needs to be added,
+    // query for amount of comments
+    // pictures/avatar
+    connection.query("SELECT u.login_name, u.avatar, u.id, a.visit_date, a.title, a.location, a.user_id FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id", function (err, rows, fields) {
+        var adventures = [];
+        for (i = 0; i < rows.length; i++) {
+            var adv = {
+                title: rows[i].title,
+                login_name: rows[i].login_name,
+                avatar: rows[i].avatar,
+                location: rows[i].location,
+                visit_date: rows[i].visit_date,
+                post_date: rows[i].post_date,
+                user_id: rows[i].user_id
+            }
+            adventures.push(adv);
+        }
+        console.log(adventures);
+        res.render('adventures', {adventures: adventures});
+    });
+
+});
+
+
+app.get('/adventure', function (req, res) {
+    res.render('adventure.jade');
 });
 
 
@@ -97,7 +123,7 @@ app.post('/login', function (req, res) {
     var query = connection.query("SELECT * from users WHERE login_name=? AND password=? LIMIT 1", [loginData.login_name, loginData.password], function (err, rows, fields) {
 
         var user = req.session;
-        if (rows.length != 0) {
+        if (query.rows.length != 0) {
             user.type = rows[0].type;
             user.name = rows[0].name;
             user.login_name = rows[0].login_name;

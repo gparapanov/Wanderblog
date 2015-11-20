@@ -1,63 +1,36 @@
 extends layout
 block content
     - var title = 'Adventures Page'
-    .container
-        .well
-            .media
-                a.pull-left(href='#')
-                    img.media-object(src='https://aboutourism.files.wordpress.com/2010/01/adventure-travel-6.jpg')
-                .media-body
-                    h4.media-heading Adventure 2
-                    p.text-right By LORD VADER
-                    p
-                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                        | Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-                        | dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-                        | Aliquam in felis sit amet augue.
-                    ul.list-inline.list-unstyled
-                        li
-                            span
-                                i.glyphicon.glyphicon-calendar
-                                |  2 days, 8 hours
-                        li |
-                        span
-                            i.glyphicon.glyphicon-comment
-                            |  2 comments
-                        li |
-                        li
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star-empty
-                        li |
-        .well
-            .media
-                a.pull-left(href='#')
-                    img.media-object(src='https://aboutourism.files.wordpress.com/2010/01/adventure-travel-6.jpg')
-                .media-body
-                    h4.media-heading Adventure title 1
-                    p.text-right By user123
-                    p
-                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                        | Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-                        | dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-                        | Aliquam in felis sit amet augue.
-                    ul.list-inline.list-unstyled
-                        li
-                            span
-                                i.glyphicon.glyphicon-calendar
-                                |  2 days, 8 hours
-                        li |
-                        span
-                            i.glyphicon.glyphicon-comment
-                            |  2 comments
-                        li |
-                        li
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star
-                            span.glyphicon.glyphicon-star-empty
-                        li |
+    each val in adventures
+        .container
+            .well
+                .media
+                    a.pull-left(href='#')
+                        img.media-object(src='https://aboutourism.files.wordpress.com/2010/01/adventure-travel-6.jpg')
+                    .media-body
+                        h4.media-heading #{val.title}
+                        p.text-left Adventure from #{val.location}
+                        p.text-right By #{val.login_name}
 
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                            | Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+                            | dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                            | Aliquam in felis sit amet augue.
+                        ul.list-inline.list-unstyled
+                            li
+                                span
+                                    i.glyphicon.glyphicon-calendar
+                                    |  #{val.visit_date}
+                            li |
+                            span
+                                i.glyphicon.glyphicon-comment
+                                |  2 comments
+                            li |
+                            li
+                                span.glyphicon.glyphicon-star
+                                span.glyphicon.glyphicon-star
+                                span.glyphicon.glyphicon-star
+                                span.glyphicon.glyphicon-star
+                                span.glyphicon.glyphicon-star-empty
+                            li |

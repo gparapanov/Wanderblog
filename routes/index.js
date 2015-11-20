@@ -32,6 +32,25 @@ exports.profile = function (req, res) {
     res.render('profile', { title: 'User Profile Page', year: new Date().getFullYear(), message: 'Profile Page' });
 };
 
-exports.profile = function (req, res) {
-    res.render('adventures', { title: 'Adventures Page', year: new Date().getFullYear(), message: 'Profile Page' });
+//exports.adventures = function (req, res) {
+//    var posts = [];
+//    console.log("potato");
+//    var query = connection.query("SELECT * from posts", function (err, rows, fields) {
+//        for(i = 0; i <rows.length; i++) {
+//            posts.push({
+//                id: rows[i].id,
+//                title: rows[i].title,
+//                location: rows[i].location,
+//                visit_date: rows[i].visit_date,
+//                post_date: rows[i].post_date,
+//                user_id: rows[i].user_id
+//            });
+//        }
+//    });
+//    console.log(posts);
+//    res.render('adventures.jade');
+//};
+
+exports.adventure = function (req, res) {
+    res.render('adventure', { title: 'Adventure Page', year: new Date().getFullYear(), message: 'Adventures Page' });
 };

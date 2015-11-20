@@ -56,7 +56,7 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('images/mountains-bg.jpg');
-/ / background : no-repeat, center;
+    background-attachment: fixed;
 }
 
 .navbar {
@@ -127,7 +127,7 @@ body {
     font-family: Lato;
 }
 
-.form-signin-heading, .form-post-heading{
+.form-signin-heading, .form-post-heading {
     font-family: Lato;
     font-size: 24px;
     text-align: center;
@@ -142,7 +142,6 @@ body {
     padding: 10px;
     font-size: 16px;
 }
-
 
 .form-signin .checkbox {
     font-weight: normal;
@@ -202,7 +201,6 @@ body {
     font-size: 20px;
 }
 
-
 *[role="postform"] {
     max-width: 830px;
     height: 700px;
@@ -232,9 +230,6 @@ body {
     font-size: 20px;
 }
 
-
-
-
 .log-btn {
     font-weight: 100;
     font-size: 27px;
@@ -259,55 +254,54 @@ body {
 
 /* User profile */
 
-body
-{
+body {
     font-family: 'Lato', 'sans-serif';
 }
-.profile
-{
+
+.profile {
     min-height: 355px;
     display: inline-block;
 }
-figcaption.ratings
-{
-    margin-top:20px;
+
+figcaption.ratings {
+    margin-top: 20px;
 }
-figcaption.ratings a
-{
-    color:#f1c40f;
-    font-size:11px;
+
+figcaption.ratings a {
+    color: #f1c40f;
+    font-size: 11px;
 }
-figcaption.ratings a:hover
-{
-    color:#f39c12;
-    text-decoration:none;
+
+figcaption.ratings a:hover {
+    color: #f39c12;
+    text-decoration: none;
 }
-.divider
-{
-    border-top:1px solid rgba(0,0,0,0.1);
+
+.divider {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-.emphasis
-{
+
+.emphasis {
     border-top: 4px solid transparent;
 }
-.emphasis:hover
-{
+
+.emphasis:hover {
     border-top: 4px solid #1abc9c;
 }
-.emphasis h2
-{
-    margin-bottom:0;
+
+.emphasis h2 {
+    margin-bottom: 0;
 }
-span.tags
-{
+
+span.tags {
     background: #1abc9c;
     border-radius: 2px;
     color: #f5f5f5;
     font-weight: bold;
     padding: 2px 4px;
 }
-.dropdown-menu
-{
+
+.dropdown-menu {
     background-color: #34495e;
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -315,20 +309,20 @@ span.tags
     margin-left: -125px;
     left: 50%;
 }
-.dropdown-menu .divider
-{
-    background:none;
+
+.dropdown-menu .divider {
+    background: none;
 }
-.dropdown-menu>li>a
-{
-    color:#f5f5f5;
+
+.dropdown-menu > li > a {
+    color: #f5f5f5;
 }
-.dropup .dropdown-menu
-{
-    margin-bottom:10px;
+
+.dropup .dropdown-menu {
+    margin-bottom: 10px;
 }
-.dropup .dropdown-menu:before
-{
+
+.dropup .dropdown-menu:before {
     content: "";
     border-top: 10px solid #34495e;
     border-right: 10px solid transparent;
@@ -340,12 +334,41 @@ span.tags
     z-index: 10;
 }
 
-.signin-box, .signup-box, .profile-box{
+.signin-box, .signup-box, .profile-box {
     padding-top: 100px;
 }
 
-.post-box{
+.post-box {
     padding-top: 50px;
 }
 
+.adventure-content {
+/ / max-width : 330 px;
+/ / height : 330 px;
+    margin: 0 auto;
+    float: none;
+    font-family: 'Lato';
+    -webkit-border-radius: 8px/7px;
+    -moz-border-radius: 8px/7px;
+    border-radius: 8px/7px;
+    background-color: #ebebeb;
+    -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    border: solid 1px #cbc9c9;
+    padding-bottom: 30px;
+}
 
+.container2 {
+    padding-top: 20px;
+}
+
+.adventure-heading {
+    font-family: Lato;
+    font-size: 36px;
+    text-align: center;
+}
+
+.adventure-description{
+    padding: 15px;
+}
