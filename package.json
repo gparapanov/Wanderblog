@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "backbone": "*",
-    "bcrypt-nodejs": "*",
+    "bcryptjs": "^2.3.0",
     "body-parser": "*",
     "bookshelf": "0.5",
     "client-sessions": "*",
