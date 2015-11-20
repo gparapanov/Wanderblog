@@ -98,7 +98,6 @@ app.get('/adventures', function (req, res) {
             };
             adventures.push(adv);
         }
-        console.log(adventures);
         res.render('adventures', {adventures: adventures});
     });
 
@@ -116,7 +115,6 @@ app.get('/login', function (req, res) {
 });
 
 app.post('/login', function (req, res) {
-    user = req.session;
     var loginData = {
         login_name: req.body.login_name,
         password: req.body.password
