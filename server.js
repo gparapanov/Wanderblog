@@ -7,6 +7,8 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
+var bcrypt = require('bcryptjs');
+
 //Body-parser
 var bodyParser = require('body-parser');
 
@@ -25,7 +27,7 @@ var connection = mysql.createConnection({
     //Here put credentials for your local sql.
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: 'biswaSQL94',
     database: 'wanderblog'
 });
 
@@ -82,7 +84,7 @@ app.get('/adventures', function (req, res) {
     // Description of adventure needs to be added,
     // query for amount of comments
     // pictures/avatar
-    connection.query("SELECT u.login_name, u.avatar, u.id, a.visit_date, a.title, a.location, a.user_id FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id", function (err, rows, fields) {
+    connection.query("SELECT u.login_name, u.avatar, u.id, a.visit_date, a.title, a.location, a.user_id FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id", function (err, rows) {
         var adventures = [];
         for (i = 0; i < rows.length; i++) {
             var adv = {
@@ -93,7 +95,7 @@ app.get('/adventures', function (req, res) {
                 visit_date: rows[i].visit_date,
                 post_date: rows[i].post_date,
                 user_id: rows[i].user_id
-            }
+            };
             adventures.push(adv);
         }
         console.log(adventures);
@@ -119,33 +121,35 @@ app.post('/login', function (req, res) {
         login_name: req.body.login_name,
         password: req.body.password
     };
-
-    var query = connection.query("SELECT * from users WHERE login_name=? AND password=? LIMIT 1", [loginData.login_name, loginData.password], function (err, rows, fields) {
-
+    connection.query("SELECT * from users WHERE login_name=? LIMIT 1", [loginData.login_name], function (err, rows) {
         var user = req.session;
-        if (query.rows.length != 0) {
-            user.type = rows[0].type;
-            user.name = rows[0].name;
-            user.login_name = rows[0].login_name;
-            user.email = rows[0].email;
-            user.description = rows[0].description;
-            user.country = rows[0].country;
-            user.avatar = rows[0].avatar;
+        if (rows.length != 0) {
+            if(bcrypt.compareSync(loginData.password,rows[0].password)) {
+                user.type = rows[0].type;
+                user.name = rows[0].name;
+                user.login_name = rows[0].login_name;
+                user.email = rows[0].email;
+                user.description = rows[0].description;
+                user.country = rows[0].country;
+                user.avatar = rows[0].avatar;
 
-            res.render('profile', {
-                type: user.type,
-                name: user.name,
-                login_name: user.login_name,
-                email: user.email,
-                description: user.description,
-                country: user.country,
-                avatar: user.avatar,
-                title: 'Login',
-                year: new Date().getFullYear(),
-                message: 'Your login page'
-            });
+                res.render('profile', {
+                    type: user.type,
+                    name: user.name,
+                    login_name: user.login_name,
+                    email: user.email,
+                    description: user.description,
+                    country: user.country,
+                    avatar: user.avatar,
+                    title: 'Login',
+                    year: new Date().getFullYear(),
+                    message: 'Your login page'
+                });
+            } else {
+                res.render('login.jade', {error: ' Invalid username or password.'});
+            }
         } else {
-            res.render('login.jade', {error: ' Invalid email or password.'});
+            res.render('login.jade', {error: ' Invalid username or password.'});
         }
     });
 
@@ -160,17 +164,18 @@ app.get('/register', function (req, res) {
 app.post('/register', function (req, res) {
     //res.json(req.body);
     //res.render('register.jade');
+    var password_hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
     var user = {
         name: req.body.name,
         login_name: req.body.login_name,
         email: req.body.email,
-        password: req.body.password,
+        password: password_hash,
         country: req.body.country,
         type: req.body.type
 
     };
 
-    var query = connection.query('insert into users set ?', user, function (err, result) {
+    connection.query('insert into users set ?', user, function (err, result) {
         if (err) {
             console.error(err);
             return;
