@@ -29,6 +29,7 @@ CREATE TABLE adventure(
     id INTEGER(10) NOT NULL AUTO_INCREMENT, #primary key
     title VARCHAR(255) NOT NULL, #heading for the adventure
     location VARCHAR(255) NOT NULL, #where the adventure took place
+    content_text TEXT NULL, #about the adventure
     visit_date DATE NOT NULL, #date the user was on the adventure
     post_date DATETIME NOT NULL, #date when the adventure was posted to wanderblog
     user_id INTEGER(10) NOT NULL, #user who posted the adventure
