@@ -195,6 +195,25 @@ app.get('/newPost', function (req, res) {
     res.render('newPost.jade');
 });
 
+app.post('/search', function(req,res){
+    var searched = req.body.searchedFor;
+
+    connection.query('SELECT * from adventure WHERE title=?', [searched], function(err, rows){
+        if(err){
+            console.log(err.stack);
+            res.render('index.jade');
+            return;
+        }
+        if(rows.length <= 0){
+            res.render('search.jade', {noticeresults: 'Nothing found for your search term, please try again'});
+        }else{
+            console.log(rows);
+            res.render('search.jade', {noticeresults: 'Following adventures found!', searchResult:rows});
+        }
+    });
+});
+
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+

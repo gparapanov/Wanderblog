@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Search results!
+        p #{noticeresults}
+        - if (typeof(searchResult) !== 'undefined')
+            ul
+                each val in searchResult
+                    li= val.title + ' posted by user ' + val.user_id + ' on ' + val.post_date
