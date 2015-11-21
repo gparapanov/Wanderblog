@@ -32,6 +32,7 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err){
+    //catch connection error
     if(err){
         console.error("Error connecting: " + err.stack);
         return;
@@ -92,6 +93,11 @@ app.get('/adventures', function (req, res) {
     // query for amount of comments
     // pictures/avatar
     connection.query("SELECT u.login_name, u.avatar, u.id, a.visit_date, a.title, a.location, a.user_id FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id", function (err, rows) {
+        //catch connection error
+        if(err){
+            console.error("Error connecting: " + err.stack);
+            return;
+        }
         var adventures = [];
         for (i = 0; i < rows.length; i++) {
             var adv = {
@@ -127,6 +133,11 @@ app.post('/login', function (req, res) {
         password: req.body.password
     };
     connection.query("SELECT * from users WHERE login_name=? LIMIT 1", [loginData.login_name], function (err, rows) {
+        //catch connection error
+        if(err){
+            console.error("Error connecting: " + err.stack);
+            return;
+        }
         var user = req.session;
         if (rows.length != 0) {
             if(bcrypt.compareSync(loginData.password,rows[0].password)) {
@@ -181,11 +192,11 @@ app.post('/register', function (req, res) {
     };
 
     connection.query('insert into users set ?', user, function (err, result) {
+        //catch mysql connection error
         if (err) {
             console.error(err);
             return;
         }
-        console.error(result);
     });
     res.redirect('/profile');
 });
