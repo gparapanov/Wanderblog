@@ -31,7 +31,13 @@ var connection = mysql.createConnection({
     database: 'wanderblog'
 });
 
-connection.connect();
+connection.connect(function(err){
+    if(err){
+        console.error("Error connecting: " + err.stack);
+        return;
+    }
+    console.log("Connected to mysql servers as id: "+connection.threadId);
+});
 
 app.use(bodyParser.urlencoded({extended: true}));
 //cookies
@@ -204,10 +210,9 @@ app.post('/search', function(req,res){
             return;
         }
         if(rows.length <= 0){
-            res.render('search.jade', {noticeresults: 'Nothing found for your search term, please try again'});
+            res.render('search.jade', {noticeresults: 'Nothing found for your search term, please try again', searchedFor:searched});
         }else{
-            console.log(rows);
-            res.render('search.jade', {noticeresults: 'Following adventures found!', searchResult:rows});
+            res.render('search.jade', {noticeresults: 'Following adventures found!', searchResult:rows, searchedFor:searched});
         }
     });
 });
