@@ -215,12 +215,18 @@ app.post('/search', function(req,res){
     var searched = req.body.searchedFor;
     var searchedFilter = req.body.search_filter_options;
 
-    var query = 'SELECT * from adventure as a';
+    var query = 'SELECT title, uploaded, location, uploader, AVG(r.score) AS averageScore FROM (SELECT a.id AS adventure_id, a.title, a.post_date AS uploaded, a.location, u.login_name AS uploader, u.name FROM adventure AS a INNER JOIN users AS u ON a.user_id = u.id) a_u INNER JOIN rating AS r ON a_u.adventure_id = r.adventure_id GROUP BY a_u.adventure_id';
     if(searched && searchedFilter){
         if(searchedFilter == 'date'){
-            query += ' where a.post_date > ' + req.body.date;
+            query += ' HAVING uploaded > ' + req.body.date;
         }else if(searchedFilter == 'rating'){
-            query += ' INNER JOIN rating as r ON a.id = r.adventure_id AND r.score > '+req.body.rating;
+            query += ' HAVING averageScore > ' + req.body.rating;
+        }else if(searchedFilter == 'author'){
+            query += ' HAVING a_u.name LIKE "%'+req.body.user_name+'%"';
+        }else if(searchedFilter == 'keywords'){
+            var keywords = req.body.keywords.split(",");
+            query += ' from adventure as a INNER JOIN users as u ON a.user_id = u.id INNER JOIN adventure_tag as at ON a.id = at.adventure_id INNER JOIN tag as t ON at.tag_id = tag.id';
+            query += ' WHERE t.name LIKE "%' + keywords.join('%" OR t.name LIKE "%') + '%"';
         }
         query += ' AND a.title LIKE "%'+searched+'%";';
         console.log(query);
