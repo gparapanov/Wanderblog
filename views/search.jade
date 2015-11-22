@@ -2,35 +2,40 @@ extends layout
 
 block content
     h1 Refine search
-    form.form-horizontal(role='form', method='post')
+    form.form-inline(role='form', method='post', action='/search')
         .form-group
-            label.col-sm-3.control-label(for='select_filter') Search for:
-            .col-sm-9
-                 input.form-control(type='text', placeholder='title...', name='searchedFor', value='#{searchedFor}' required=true)
+            label(for='select_filter') Search for:
+                input.form-control(type='text', placeholder='title...', name='searchedFor', value='#{searchedFor}' required=true)
         .form-group
-            label.col-sm-3.control-label(for='search_filter_options') Filter by:
-            .col-sm-9
-                select#search_filter_options.form-control(name ='search_filter_options', onchange='changeSearchFilter()')
+            label(for='search_filter_options') Filter by:
+                select.form-control#search_filter_options(name ='search_filter_options', onchange='changeSearchFilter()')
                     option(value='date') Date
                     option(value='author') Author
                     option(value='rating') Rating
                     option(value='keywords') Keywords
                     option(value='location') Location
         #search_filter_author.form-group.search_filters
-            label.col-sm-3.control-label(for='user_name') Name of author:
-            .col-sm-9
-                input.form-control(type='text', placeholder='Firstname Lastname', name='user_name', required=true)
+            label(for='user_name') Name of author:
+                input(type='text', placeholder='Firstname Lastname', name='user_name', required=true)
         #search_filter_keywords.form-group.search_filters
-            label.col-sm-3.control-label(for='keywords') Keywords:
-            .col-sm-9
-                input.form-control(type='text', placeholder='keyword,keyword,keyword', name='keywords', required=true)
+            label(for='keywords') Keywords:
+                input(type='text', placeholder='keyword,keyword,keyword', name='keywords', required=true)
         #search_filter_location.form-group.search_filters
-            label.col-sm-3.control-label(for='location') Location:
-            .col-sm-9
-                input.form-control(type='text', placeholder='city, country', name='location', required=true)
+            label(for='location') Location:
+                input(type='text', placeholder='city, country', name='location', required=true)
+        #search_filter_date.form-group.search_filters
+            label Uploaded
+            label(for='before') before
+                input(type='radio', id='before' name='beforeafter', value='before')
+            label(for='after') after
+                input(type='radio', id='after' name='beforeafter', value='after')
+            label(for='date') Date:
+                input(type='date', name='date', max='2015-11-22', required=true)
+        #search_filter_rating.form-group.search_filters
+            label(for='rating') Higher than:
+                input(type='number', name='rating', max=5, required=true)
         .form-group
-            .col-sm-9.col-sm-offset-3.btn-toolbar
-                button.btn.btn-success.btn-group(type='submit') Search!
+            button.btn.btn-success(type='submit') Search!
 
     h1 Search results!
     p #{noticeresults}

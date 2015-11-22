@@ -213,6 +213,18 @@ app.get('/newPost', function (req, res) {
 
 app.post('/search', function(req,res){
     var searched = req.body.searchedFor;
+    var searchedFilter = req.body.search_filter_options;
+
+    var query = 'SELECT * from adventure as a';
+    if(searched && searchedFilter){
+        if(searchedFilter == 'date'){
+            query += ' where a.post_date > ' + req.body.date;
+        }else if(searchedFilter == 'rating'){
+            query += ' INNER JOIN rating as r ON a.id = r.adventure_id AND r.score > '+req.body.rating;
+        }
+        query += ' AND a.title LIKE "%'+searched+'%";';
+        console.log(query);
+    }
 
     connection.query('SELECT * from adventure WHERE title LIKE ?', '%'+[searched]+'%', function(err, rows){
         if(err){
