@@ -228,7 +228,7 @@ app.post('/search', function(req,res){
             query += ' from adventure as a INNER JOIN users as u ON a.user_id = u.id INNER JOIN adventure_tag as at ON a.id = at.adventure_id INNER JOIN tag as t ON at.tag_id = tag.id';
             query += ' WHERE t.name LIKE "%' + keywords.join('%" OR t.name LIKE "%') + '%"';
         }
-        query += ' AND a.title LIKE "%'+searched+'%";';
+        query += ' AND title LIKE "%'+searched+'%";';
         console.log(query);
     }
 
