@@ -1,47 +1,80 @@
 extends layout
 
 block content
-    h1 Refine search
-    form.form-inline(role='form', method='post', action='/search')
-        .form-group
-            label(for='select_filter') Search for:
-                input.form-control(type='text', placeholder='title...', name='searchedFor', value='#{searchedFor}' required=true)
-        .form-group
-            label(for='search_filter_options') Filter by:
-                select.form-control#search_filter_options(name ='search_filter_options', onchange='changeSearchFilter()')
-                    option(value='date') Date
-                    option(value='author') Author
-                    option(value='rating') Rating
-                    option(value='keywords') Keywords
-                    option(value='location') Location
-        #search_filter_author.form-group.search_filters
-            label(for='user_name') Name of author:
-                input(type='text', placeholder='Firstname Lastname', name='user_name', required=true)
-        #search_filter_keywords.form-group.search_filters
-            label(for='keywords') Keywords:
-                input(type='text', placeholder='keyword,keyword,keyword', name='keywords', required=true)
-        #search_filter_location.form-group.search_filters
-            label(for='location') Location:
-                input(type='text', placeholder='city, country', name='location', required=true)
-        #search_filter_date.form-group.search_filters
-            label Uploaded
-            label(for='before') before
-                input(type='radio', id='before' name='beforeafter', value='before')
-            label(for='after') after
-                input(type='radio', id='after' name='beforeafter', value='after')
-            label(for='date') Date:
-                input(type='date', name='date', max='2015-11-22', required=true)
-        #search_filter_rating.form-group.search_filters
-            label(for='rating') Higher than:
-                input(type='number', name='rating', max=5, required=true)
-        .form-group
-            button.btn.btn-success(type='submit') Search!
+    .container.container-space
+        .container3.col-md-10
+            h1.search-heading Refine search
+            form.form-inline(role='form-search', method='post', action='/search')
+                .form-group.form-inline
+                    label(for='select_filter') Search for:
+                        input.form-control(type='text', placeholder='title...', name='searchedFor', value='#{searchedFor}' required=true)
+                .form-group.form-inline
+                    label(for='search_filter_options') Filter by:
+                        select.form-control#search_filter_options(name ='search_filter_options', onchange='changeSearchFilter()')
+                            option(value='date') Date
+                            option(value='author') Author
+                            option(value='rating') Rating
+                            option(value='keywords') Keywords
+                            option(value='location') Location
+                .form-group.form-inline
+                    #search_filter_author.form-group.search_filters
+                        label(for='user_name') Name of author:
+                            input(type='text', placeholder='Firstname Lastname', name='user_name', required=true)
+                    #search_filter_keywords.form-group.search_filters
+                        label(for='keywords') Keywords:
+                            input(type='text', placeholder='keyword,keyword,keyword', name='keywords', required=true)
+                    #search_filter_location.form-group.search_filters
+                        label(for='location') Location:
+                            input(type='text', placeholder='city, country', name='location', required=true)
+                    #search_filter_date.form-group.search_filters
+                        label Uploaded
+                        label(for='before') before
+                            input(type='radio', id='before' name='beforeafter', value='before')
+                        label(for='after') after
+                            input(type='radio', id='after' name='beforeafter', value='after')
+                        label(for='date') Date:
+                            input(type='date', name='date', max='2015-11-22', required=true)
+                    #search_filter_rating.form-group.search_filters
+                        label(for='rating') Higher than:
+                            input(type='number', name='rating', max=5, required=true)
+                .form-group.form-inline
+                    button.btn.btn-success(type='submit') Search!
 
-    h1 Search results!
-    p #{noticeresults}
-    - if (typeof(searchResult) !== 'undefined')
-        ul
-            each val in searchResult
-                li= val.title + ' posted by user ' + val.user_id + ' on ' + val.post_date
+            h1.search-heading Search results!
+            p #{noticeresults}
+            - if (typeof(searchResult) !== 'undefined') d
+                each val in searchResult
+                    .container-search-results
+                        .wellTimkur
+                            .media
+                                a.pull-left(href='#')
+                                    img.media-object(src='https://aboutourism.files.wordpress.com/2010/01/adventure-travel-6.jpg')
+                                .media-body
+                                    h4.media-heading #{val.title}
+                                    p.text-left Adventure from #{val.location}
+                                    p.text-right By #{val.user_id}
+                                    p
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                                        | Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+                                        | dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                                        | Aliquam in felis sit amet augue.
+                                    ul.list-inline.list-unstyled
+                                        li
+                                            span
+                                                i.glyphicon.glyphicon-calendar
+                                                |  #{val.visit_date}
+                                        li |
+                                        span
+                                            i.glyphicon.glyphicon-comment
+                                            |  2 comments
+                                        li |
+                                        li
+                                            span.glyphicon.glyphicon-star
+                                            span.glyphicon.glyphicon-star
+                                            span.glyphicon.glyphicon-star
+                                            span.glyphicon.glyphicon-star
+                                            span.glyphicon.glyphicon-star-empty
+                                        li |
+                    br
 block scripts
     script(type='text/javascript', src='/javascripts/search.js')
