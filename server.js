@@ -27,7 +27,7 @@ var connection = mysql.createConnection({
     //Here put credentials for your local sql.
     host: 'localhost',
     user: 'root',
-    password: 'biswaSQL94',
+    password: 'georgi',
     database: 'wanderblog'
 });
 
@@ -71,7 +71,7 @@ app.locals.pretty = true;
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
-
+//georgi
 //ROUTES
 app.get('/', routes.index);
 app.get('/about', routes.about);
