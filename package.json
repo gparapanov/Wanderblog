@@ -23,6 +23,7 @@
     "passport": "*",
     "passport-local": "*",
     "serve-favicon": "*",
+    "nodemon": "*",
     "stylus": "*"
   },
   "repository": {
