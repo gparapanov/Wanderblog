@@ -22,14 +22,7 @@ var app = express();
 //favicon
 var favicon = require('serve-favicon');
 
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    //Here put credentials for your local sql.
-    host: 'localhost',
-    user: 'root',
-    password: 'georgi',
-    database: 'wanderblog'
-});
+var connection = require('./connection.js');
 
 connection.connect(function(err){
     //catch connection error
