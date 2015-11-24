@@ -1,0 +1,31 @@
+//
+   Created by Ponczek on 17/11/2015.
+
+extends layout
+block content
+   - var title = 'New Adventure'
+   .container.post-box.post-form
+      form.form-horizontal(role='postform' method='post')
+         h2.form-post-heading Create Adventure
+         fieldset
+            // Text input
+            .form-group
+               label.col-md-4.control-label.adventure-title(for='textinput') Title
+               .col-md-6
+                  input#textinput.form-control.input-md(name='textinput', type='text', placeholder='', required='')
+            // Textarea
+            .form-group
+               label.col-md-4.control-label(for='adventureContent') Describe Your Adventure
+               .col-md-4
+                  textarea#adventure-content.form-control(name='adventureContent')
+            // File Button
+            .form-group
+               label.col-md-4.control-label(for='adventures-pictures') Add Pictures
+               .col-md-4
+                  input#adventures-pictures.input-file(name='adventures-pictures', type='file')
+            // Button (Double)
+            .form-group
+               label.col-md-4.control-label(for='adventure-back')
+               .col-md-8.btn-toolbar
+                  button#adventure-back.btn.btn-primary(name='adventure-back') Go Back
+                  button#adventure-submit.btn.btn-success(name='adventure-submit') Post Adventure

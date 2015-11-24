@@ -2,7 +2,7 @@ var db = require('../server.js');
 var connection = db();
 module.exports = function (app) {
     app.get('/adventureForm', function (req, res) {
-        res.render('newPost.jade');
+        res.render('adventureForm.jade');
     });
 
     app.post('/adventureForm', function (req, res) {
