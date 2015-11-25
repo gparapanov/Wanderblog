@@ -24,7 +24,16 @@ module.exports = function (app){
                 return;
             }
         });
-        res.redirect('/profile');
+
+        res.render('profile', {
+            type: user.type,
+            name: user.name,
+            login_name: user.login_name,
+            email: user.email,
+            country: user.country,
+            title: 'Profile',
+            message: 'Your profile page'
+        });
     });
 
     app.post('register', function (req, res) {
