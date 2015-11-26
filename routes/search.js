@@ -6,26 +6,26 @@ module.exports = function(app) {
         var searched = req.body.searchedFor;
         var searchedFilter = req.body.search_filter_options;
 
-        var query = 'SELECT title, uploaded, location, uploader, AVG(r.score) AS averageScore FROM (SELECT a.id AS adventure_id, a.title, a.post_date AS uploaded, a.location, u.login_name AS uploader, u.name FROM adventure AS a INNER JOIN users AS u ON a.user_id = u.id) a_u INNER JOIN rating AS r ON a_u.adventure_id = r.adventure_id';
+        var query = 'select a.id as adventureId, a.title, a.post_date as uploadedOn, a.location, a.content_text, a_tt.tags, u.login_name as uploader, rt.averageScore, cm.numComments from adventure as a left join (select a_t.adventure_id, a_t.tag_id, t.id, GROUP_CONCAT(t.name) as tags from adventure_tag as a_t left join tag as t on a_t.tag_id = t.id group by a_t.adventure_id) as a_tt on a.id = a_tt.adventure_id inner join users as u on a.user_id = u.id left join (select r.adventure_id, avg(r.score) as averageScore from rating as r group by r.adventure_id) as rt on a.id = rt.adventure_id left join (select adventure_id, count(adventure_id) as numComments from comment as c group by c.adventure_id) as cm on a.id = cm.adventure_id ';
         if (searched && searchedFilter) {
             if (searchedFilter == 'date') {
-                query += ' GROUP BY a_u.adventure_id HAVING uploaded ' + req.body.date;
+                query += 'HAVING uploadedOn ';
                 query += req.body.beforeafter == 'before' ? '< ' : '> ';
                 query += req.body.date;
             } else if (searchedFilter == 'rating') {
-                query += ' GROUP BY a_u.adventure_id HAVING averageScore > ' + req.body.rating;
+                query += 'HAVING averageScore > ' + req.body.rating;
             } else if (searchedFilter == 'author') {
-                query += ' GROUP BY a_u.adventure_id HAVING a_u.name LIKE "%' + req.body.user_name + '%"';
+                query += 'HAVING uploader LIKE "%' + req.body.user_name + '%"';
             } else if (searchedFilter == 'keywords') {
                 var keywords = req.body.keywords.split(",");
-                query += '';
-                query += ' WHERE t.name LIKE "%' + keywords.join('%" OR t.name LIKE "%') + '%"';
+                query += 'HAVING tags LIKE "%' + keywords.join('%" OR tags LIKE "%') + '%"';
             }
             query += ' AND title LIKE "%' + searched + '%";';
-            console.log(query);
+        }else {
+            query += 'HAVING title LIKE "%' + searched + '%";';
         }
-
-        connection.query('SELECT * from adventure WHERE title LIKE ?', '%' + [searched] + '%', function (err, rows) {
+        console.log(query);
+        connection.query(query, function (err, rows) {
             if (err) {
                 console.log(err.stack);
                 res.render('index.jade');
