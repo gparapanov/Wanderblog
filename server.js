@@ -23,8 +23,9 @@ module.exports = function () {
         db = mysql.createConnection({
             host: 'localhost',
             user: 'root',
-            password: 'georgi',
-            database: 'wanderblog'
+            password: '',
+            database: 'wanderblog',
+            multipleStatements: true
         });
     }
     return db;

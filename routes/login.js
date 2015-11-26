@@ -29,8 +29,10 @@ module.exports = function(app){
                     user.description = rows[0].description;
                     user.country = rows[0].country;
                     user.avatar = rows[0].avatar;
+                    user.id =rows[0].id;
 
-                    res.render('profile', {
+
+                    res.render('profile.jade', {
                         type: user.type,
                         name: user.name,
                         login_name: user.login_name,
@@ -51,4 +53,5 @@ module.exports = function(app){
         });
 
     });
+
 }
