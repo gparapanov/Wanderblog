@@ -1,6 +1,7 @@
 extends layout
 block content
     - var title = 'Profile Page'
+
     .container.profile-box
         .row
             .col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
@@ -24,9 +25,6 @@ block content
                                 strong About:
                                 |  #{description}
                             p
-                                strong Adventures
-                                |  asd, asf, sdf, asd
-                            p
                         .col-xs-12.col-sm-4.text-center
                             figure
                                 img.img-circle.img-responsive(src='https://www.geekinlibrariansclothing.com/wp-content/uploads/2015/10/empirebw2.png', alt='')
@@ -46,7 +44,7 @@ block content
                     .col-xs-12.divider.text-center
                         .col-xs-12.col-sm-4.emphasis
                             h2
-                                strong  20,7K
+                                strong  #{adventures.length}
                             p
                                 small Adventures
 
@@ -60,4 +58,11 @@ block content
                                 strong 43
                             p
                                 small Places visited
+
+                    p
+                        strong Read user's Adventures
+                    div#articles
+                        -each adv in adventures
+                            div.article
+                                a(href =adv) #{adv}
 
