@@ -12,8 +12,7 @@ module.exports = function (app) {
                 if (err) throw err;
                 for ( i = 0; i<rows.length; i ++){
                     if (rows.length != 0){
-                        console.log(rows[3].title);
-                        return rows[3].title;
+
                         if(rows[i].id==adventureid){
                             results.push(rows[i].id);
                             results.push(rows[i].title);
