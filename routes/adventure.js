@@ -15,13 +15,14 @@ module.exports = function (app) {
 
                         if(rows[i].id==adventureid){
                             console.log(rows[i].title);
-                            results.push(rows[i].id);
-                            results.push(rows[i].title);
-                            results.push(rows[i].location);
-                            results.push(rows[i].content_text);
-                            results.push(rows[i].visit_date);
-                            results.push(rows[i].post_date);
-                            results.push(rows[i].user_id);
+
+                            results.push(rows[i].id);//0
+                            results.push(rows[i].title);//1
+                            results.push(rows[i].location);//2
+                            results.push(rows[i].content_text);//3
+                            results.push(rows[i].visit_date);//4
+                            results.push(rows[i].post_date);//5
+                            results.push(rows[i].user_id);//6
                         }
 
                     }

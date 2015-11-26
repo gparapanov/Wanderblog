@@ -1,30 +1,36 @@
 extends layout
 block content
-    - var title = 'Adventures Page'
+
+   - var fields = loadRes;
+   - var title=fields[1];
+   - var location=fields[2];
+   - var author=fields[6];
+    -var date=fields[5];
+   - var content=fields[3];
+
+
     .container2
         .container
             .adventure-content.col-lg-10
-                h1.adventure-heading Blog Post Title
+                h1.adventure-heading
+                    |#{title}
                 // Author
                 p
-                    | by
+                    | by #{author}
                     a(href='#')
                 hr
                 // Date/Time
                 img.img-responsive(src='http://placehold.it/900x300', alt='')
                 p
                     span.glyphicon.glyphicon-time
-                    |  Posted on August 24, 2013 at 9:00 PM
+                    |  Posted on #{date}
                 // Preview Image
                 hr
                 // Post Content
                 p.lead
                     | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?
                 p.adventure-description
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!
+                    | #{content}
                 hr
                 // Blog Comments
                 // Comments Form
