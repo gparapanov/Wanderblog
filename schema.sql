@@ -88,7 +88,7 @@ CREATE TABLE rating(
     id INTEGER(10) auto_increment, #primary key
     adventure_id INTEGER(10) NOT NULL, #adventure rated
     user_id INTEGER(10) NOT NULL, #rated by
-    score TINYINT NOT NULL, #rate given (1-10)
+    score DECIMAL(3,1) NOT NULL, #rate given (1-10)
     PRIMARY KEY(id),
     UNIQUE KEY(adventure_id, user_id), #restricts single rating by a user on particular adventure
     FOREIGN KEY (adventure_id) REFERENCES adventure(id) ON UPDATE CASCADE ON DELETE CASCADE,
