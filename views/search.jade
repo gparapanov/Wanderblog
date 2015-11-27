@@ -68,7 +68,7 @@ block content
                                             i.glyphicon.glyphicon-comment
                                             |  #{val.numComments} comments
                                         li |
-                                        li |
+                                        li(id='rating-for-'+'#{val.adventureId}') |
                                             - var i = val.averageScore/2
                                             - for(i; i >= 1; i--)
                                                 span.fa.fa-star
@@ -78,3 +78,13 @@ block content
                     br
 block scripts
     script(type='text/javascript', src='/javascripts/search.js')
+    script.
+        var rows = !{JSON.stringify(searchResult)};
+        for(var x = 0; x < rows.length; x++){
+            console.log(rows[x]);
+            if(rows[x].averageScore == null) {
+                for (var i = 0; i < 5; i++) {
+                    $("li#rating-for-" + rows[x].adventureId).append("<span class='fa fa-star-o'></span>");
+                }
+            }
+        }
