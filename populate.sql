@@ -4,17 +4,17 @@ USE wanderblog;
 #dummy data
 
 
-INSERT INTO users (id,type,name,login_name,email,password,country,description,avatar)
-VALUES (DEFAULT,"reader","Herrod Whitehead","ipsum","nunc.sed.pede@imperdiet.co.uk","HDV28RVL2CJ","Isle of Man","vulputate dui, nec tempus mauris erat eget","non,"),
-(DEFAULT,"admin","Benjamin Rivas","mollis.","dolor.sit.amet@dapibusrutrum.org","FJN31HCX5WF","Ghana","Aenean eget metus. In nec orci.","turpis"),
-(DEFAULT,"reader","Audra Armstrong","orci","arcu.Morbi.sit@Namporttitorscelerisque.net","RAE39ZUS2HI","Congo (Brazzaville)","posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis","nec"),
-(DEFAULT,"author","Noah Hart","nec","adipiscing.non.luctus@elit.ca","JKS28TMH3ZB","San Marino","molestie sodales. Mauris blandit enim consequat purus. Maecenas","montes,"),
-(DEFAULT,"admin","Stewart Wilder","fermentum","aliquet.molestie.tellus@nulla.edu","NFE07LUK9ZP","Liechtenstein","tempor arcu. Vestibulum ut eros","natoque"),
-(DEFAULT,"reader","Oleg Terrell","aliquam","Pellentesque@arcu.com","PNF00APM5YO","Falkland Islands","natoque penatibus et magnis dis parturient montes, nascetur","metus."),
-(DEFAULT,"author","Emery Gillespie","scelerisque,","mi.tempor@nonnisi.edu","SHE82VQX9DV","Ireland","ut odio vel est tempor bibendum.","aliquet"),
-(DEFAULT,"author","Knox Glass","neque","leo.Cras@malesuada.edu","TYN88ZEX4OL","Congo, the Democratic Republic of the","sem ut cursus luctus, ipsum leo elementum sem, vitae","lacinia"),
-(DEFAULT,"reader","Vance Colon","lorem","mauris.eu@Nulla.org","QWS92VXJ2KT","Panama","diam vel arcu. Curabitur ut odio vel","et"),
-(DEFAULT,"author","Bryar Booth","aba","Nunc@Aliquamornare.ca","TTM88DXQ5EP","Libya","dignissim magna a tortor. Nunc commodo auctor","cursus");
+INSERT INTO users (id,type,name,login_name,email,password,registered_on,country,description,avatar)
+VALUES (DEFAULT,"reader","Herrod Whitehead","ipsum","nunc.sed.pede@imperdiet.co.uk","HDV28RVL2CJ","2014-08-08","Isle of Man","vulputate dui, nec tempus mauris erat eget","non,"),
+(DEFAULT,"admin","Benjamin Rivas","mollis.","dolor.sit.amet@dapibusrutrum.org","FJN31HCX5WF","2014-08-08","Ghana","Aenean eget metus. In nec orci.","turpis"),
+(DEFAULT,"reader","Audra Armstrong","orci","arcu.Morbi.sit@Namporttitorscelerisque.net","RAE39ZUS2HI","2014-08-08","Congo (Brazzaville)","posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis","nec"),
+(DEFAULT,"author","Noah Hart","nec","adipiscing.non.luctus@elit.ca","JKS28TMH3ZB","2014-08-08","San Marino","molestie sodales. Mauris blandit enim consequat purus. Maecenas","montes,"),
+(DEFAULT,"admin","Stewart Wilder","fermentum","aliquet.molestie.tellus@nulla.edu","NFE07LUK9ZP","2014-08-08","Liechtenstein","tempor arcu. Vestibulum ut eros","natoque"),
+(DEFAULT,"reader","Oleg Terrell","aliquam","Pellentesque@arcu.com","PNF00APM5YO","2014-08-08","Falkland Islands","natoque penatibus et magnis dis parturient montes, nascetur","metus."),
+(DEFAULT,"author","Emery Gillespie","scelerisque,","mi.tempor@nonnisi.edu","SHE82VQX9DV","2014-08-08","Ireland","ut odio vel est tempor bibendum.","aliquet"),
+(DEFAULT,"author","Knox Glass","neque","leo.Cras@malesuada.edu","TYN88ZEX4OL","2014-08-08","Congo, the Democratic Republic of the","sem ut cursus luctus, ipsum leo elementum sem, vitae","lacinia"),
+(DEFAULT,"reader","Vance Colon","lorem","mauris.eu@Nulla.org","QWS92VXJ2KT","2014-08-08","Panama","diam vel arcu. Curabitur ut odio vel","et"),
+(DEFAULT,"author","Bryar Booth","aba","Nunc@Aliquamornare.ca","TTM88DXQ5EP","2014-08-08","Libya","dignissim magna a tortor. Nunc commodo auctor","cursus");
 
 
 INSERT INTO adventure (id,title,location,content_text,visit_date,post_date,user_id)
