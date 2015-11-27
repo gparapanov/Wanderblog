@@ -29,7 +29,7 @@ module.exports = function (app) {
         var id = req.params.id;
         var idString = String(id)
         console.log(idString);
-        var ifHasPosts = "SELECT u.name, u.id, u.description, u.type, u.avatar, u.email, u.login_name, u.country, a.title FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id WHERE u.id =?;";
+        var ifHasPosts = "SELECT u.name, u.id, u.description, u.type, u.avatar, u.email, u.login_name, u.country, a.title, a.id FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id WHERE u.id =?;";
         var userCredentials = "SELECT * from users WHERE id = ?;";
         var twoQueries =ifHasPosts+userCredentials;
         console.log(twoQueries);
@@ -43,7 +43,7 @@ module.exports = function (app) {
                     for (i = 0; i < rows.length; i++) {
                         //console.log(rows[i].title)
                         if (rows[i].title != null) {
-                            adventures.push(rows[i].title);
+                            adventures.push({title: rows[i].title, id: rows[i].id});
                         }
                     }
                     console.log(adventures);
