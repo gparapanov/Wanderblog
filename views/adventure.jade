@@ -10,8 +10,7 @@ block content
                     |#{title}
                 // Author
                 p
-                    | by #{user_id}
-                    a(href='#')
+                    a(href ='/profile/#{user_id}') #{user_id}
                 hr
                 // Date/Time
                 img.img-responsive(src='http://placehold.it/900x300', alt='')
