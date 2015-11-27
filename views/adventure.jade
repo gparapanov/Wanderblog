@@ -1,36 +1,30 @@
 extends layout
 block content
 
-   - var fields = loadRes;
-   - var title=fields[1];
-   - var location=fields[2];
-   - var author=fields[6];
-    -var date=fields[5];
-   - var content=fields[3];
-
-
-    .container2
-        .container
+   - var title='Adventure page';
+   each val in adventure
+       .container2
+         .container
             .adventure-content.col-lg-10
                 h1.adventure-heading
-                    |#{title}
+                    |#{val.title}
                 // Author
                 p
-                    | by #{author}
+                    | by #{val.user_id}
                     a(href='#')
                 hr
                 // Date/Time
                 img.img-responsive(src='http://placehold.it/900x300', alt='')
                 p
                     span.glyphicon.glyphicon-time
-                    |  Posted on #{date}
+                    |  Posted on #{val.post_date}
                 // Preview Image
                 hr
                 // Post Content
                 p.lead
                     | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?
                 p.adventure-description
-                    | #{content}
+                    | #{val.content}
                 hr
                 // Blog Comments
                 // Comments Form

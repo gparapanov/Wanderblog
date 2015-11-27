@@ -6,32 +6,32 @@ module.exports = function (app) {
         //...This will allow us to load a page wanderblog.bla/adventures/1 <- this will show a post with id 1.
         var adventureid=req.params.id;
         var results=[];
-        var queryString="SELECT * FROM adventure";
+        var queryString="SELECT * FROM adventure ;";
         var resultsFunc = function () {
             connection.query(queryString, function (err, rows, fields) {
                 if (err) throw err;
-                for ( i = 0; i<rows.length; i ++){
-                    if (rows.length != 0){
+                var advInfo = [];
+                for (i = 0; i < rows.length; i++) {
+                    if(adventureid==rows[i].id){
 
-                        if(rows[i].id==adventureid){
-                            console.log(rows[i].title);
-
-                            results.push(rows[i].id);//0
-                            results.push(rows[i].title);//1
-                            results.push(rows[i].location);//2
-                            results.push(rows[i].content_text);//3
-                            results.push(rows[i].visit_date);//4
-                            results.push(rows[i].post_date);//5
-                            results.push(rows[i].user_id);//6
-                        }
-
+                        var adv = {
+                            title: rows[i].title,
+                            content: rows[i].content_text,
+                            //login_name: rows[i].login_name,
+                            avatar: rows[i].avatar,
+                            location: rows[i].location,
+                            visit_date: rows[i].visit_date,
+                            post_date: rows[i].post_date,
+                            user_id: rows[i].user_id
+                        };
+                        advInfo.push(adv);
                     }
+
                 }
-                return results;
+                res.render('adventure', {adventure: advInfo});
             });
         }
-        var fieldsLoaded = resultsFunc();
-        res.render('adventure', { loadRes: fieldsLoaded });
+
         //in jade you call variable fancy title this way - > #{fancyTitle}
     });
     // we will need this here
