@@ -1,13 +1,4 @@
-
 var bodyParser = require('body-parser');
-var mysql = require('mysql');
-var pool  = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'wanderblog',
-});
-
 function queryRows(col, table) {
     return function(cb) {
         var rows = [];
@@ -20,7 +11,7 @@ function queryRows(col, table) {
             });
     }
 }
-module.exports = function (app) {
+module.exports = function (app,db) {
     app.get('/profile', function (req, res) {
         res.render('profile.jade');
     });
@@ -34,7 +25,7 @@ module.exports = function (app) {
         var twoQueries =ifHasPosts+userCredentials;
         console.log(twoQueries);
 
-        pool.getConnection(function(err, connection) {
+        db.getConnection(function(err, connection) {
             // Use the connection
             connection.query( ifHasPosts,idString, function(err, rows) {
                 console.log(rows);

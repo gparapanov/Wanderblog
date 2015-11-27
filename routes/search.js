@@ -1,7 +1,4 @@
-var db = require('../server.js');
-var connection = db();
-
-module.exports = function(app) {
+module.exports = function(app,db) {
     app.post('/search', function (req, res) {
         var searched = req.body.searchedFor;
         var searchedFilter = req.body.search_filter_options;
@@ -25,24 +22,27 @@ module.exports = function(app) {
             query += 'HAVING title LIKE "%' + searched + '%";';
         }
         console.log(query);
-        connection.query(query, function (err, rows) {
-            if (err) {
-                console.log(err.stack);
-                res.render('index.jade');
-                return;
-            }
-            if (rows.length <= 0) {
-                res.render('search.jade', {
-                    noticeresults: 'Nothing found for your search term, please try again',
-                    searchedFor: searched
-                });
-            } else {
-                res.render('search.jade', {
-                    noticeresults: 'Following adventures found!',
-                    searchResult: rows,
-                    searchedFor: searched
-                });
-            }
+        db.getConnection(function(err,connection){
+            connection.query(query, function (err, rows) {
+                if (err) {
+                    console.log(err.stack);
+                    res.render('index.jade');
+                    return;
+                }
+                if (rows.length <= 0) {
+                    res.render('search.jade', {
+                        noticeresults: 'Nothing found for your search term, please try again',
+                        searchedFor: searched
+                    });
+                } else {
+                    res.render('search.jade', {
+                        noticeresults: 'Following adventures found!',
+                        searchResult: rows,
+                        searchedFor: searched
+                    });
+                }
+                connection.release();
+            });
         });
     });
 }

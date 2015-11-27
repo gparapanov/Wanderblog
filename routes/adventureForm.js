@@ -1,6 +1,5 @@
-var db = require('../server.js');
-var connection = db();
-module.exports = function (app) {
+
+module.exports = function (app,db) {
     app.get('/adventureForm', function (req, res) {
         res.render('adventureForm.jade');
     });
@@ -19,15 +18,18 @@ module.exports = function (app) {
             user_id: 10
 
         };
-
-        connection.query('insert into adventure set ?', adventure, function (err, result) {
-            //catch mysql connection error
-            if (err) {
-                console.error(err);
-                return;
-            }
+        db.getConnection(function(err,connection){
+            connection.query('insert into adventure set ?', adventure, function (err, result) {
+                //catch mysql connection error
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                connection.release();
+            });
+            res.redirect('/');
         });
-        res.redirect('/');
+
     });
 
 

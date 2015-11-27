@@ -12,34 +12,10 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
 var app = express();
+var db = require('./db.js');
 
 //favicon
 var favicon = require('serve-favicon');
-
-var mysql = require('mysql');
-var db = null;
-module.exports = function () {
-    if(!db) {
-        db = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'wanderblog',
-            multipleStatements: true
-        });
-    }
-    return db;
-};
-
-//connection.connect(function (err) {
-//    //catch connection error
-//    if (err) {
-//        console.error("Error connecting: " + err.stack);
-//        return;
-//    }
-//    console.log("Connected to mysql servers as id: " + connection.threadId);
-//});
-
 app.use(bodyParser.urlencoded({extended: true}));
 //cookies
 app.use(cookieParser());
@@ -77,13 +53,13 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 
-require('./routes/login.js')(app);
-require('./routes/profile.js')(app);
-require('./routes/register.js')(app);
-require('./routes/search.js')(app);
-require('./routes/adventures.js')(app);
-require('./routes/adventureForm.js')(app);
-require('./routes/adventure.js')(app);
+require('./routes/login.js')(app,db);
+require('./routes/profile.js')(app,db);
+require('./routes/register.js')(app,db);
+require('./routes/search.js')(app,db);
+require('./routes/adventures.js')(app,db);
+require('./routes/adventureForm.js')(app,db);
+require('./routes/adventure.js')(app,db);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
