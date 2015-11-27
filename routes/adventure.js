@@ -5,32 +5,15 @@ module.exports = function (app) {
         //app.get('adventures/:id', function( req, res){
         //...This will allow us to load a page wanderblog.bla/adventures/1 <- this will show a post with id 1.
         var adventureid=req.params.id;
-        var results=[];
-        var queryString="SELECT * FROM adventure ;";
+        var queryString="SELECT * FROM adventure where id="+adventureid;
         var resultsFunc = function () {
-            connection.query(queryString, function (err, rows, fields) {
+            connection.query(queryString, function (err, rows) {
                 if (err) throw err;
-                var advInfo = [];
-                for (i = 0; i < rows.length; i++) {
-                    if(adventureid==rows[i].id){
-
-                        var adv = {
-                            title: rows[i].title,
-                            content: rows[i].content_text,
-                            //login_name: rows[i].login_name,
-                            avatar: rows[i].avatar,
-                            location: rows[i].location,
-                            visit_date: rows[i].visit_date,
-                            post_date: rows[i].post_date,
-                            user_id: rows[i].user_id
-                        };
-                        advInfo.push(adv);
-                    }
-
-                }
-                res.render('adventure', {adventure: advInfo});
+                console.log(rows[0].title);
+                res.render('adventure', {title: rows[0].title,content: rows[0].content_text,location: rows[0].location,user_id: rows[0].user_id,post_date:rows[0].post_date});
             });
         }
+        resultsFunc();
 
         //in jade you call variable fancy title this way - > #{fancyTitle}
     });
