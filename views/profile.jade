@@ -62,7 +62,10 @@ block content
                     p
                         strong Read user's Adventures
                     div#articles
-                        -each adv in adventures
-                            div.article
-                                a(href =adv) #{adv}
+                    -each index in adventures
+                        .adventure-link
+                            a(href ='/adventure/#{index.id}') #{index.title}
+                        //-each id in adventuresId
+                        //    div.article
+                        //        a(href ='/adventure/#{id}') a
 
