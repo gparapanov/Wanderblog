@@ -15,6 +15,7 @@ CREATE TABLE users(
     login_name VARCHAR(16) NOT NULL, #name used to log in to site
     email VARCHAR(255) NOT NULL, #email used to sign up for site
     password VARCHAR(255) NOT NULL, #user password
+    registered_on DATETIME NOT NULL,
     country VARCHAR(50) NOT NULL, #user's home country
     description TINYTEXT NULL, #short statement about user
     avatar VARCHAR(255) NULL, #user's icon/image
