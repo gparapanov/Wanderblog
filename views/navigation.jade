@@ -1,28 +1,66 @@
-﻿.navbar.navbar-inverse.navbar-fixed-top
-    .container
+﻿//search which was working
+//        li.serc
+//                form(method='post', action='/search').input-group.search-nav
+//                    input.form-control(type='text', placeholder='Search for...', name='searchedFor', required=true)
+//                    input.btn.btn-default(type='submit' value='Go')
+
+
+
+.navbar.navbar-default.nav-style
     .navbar-header
-        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-        img(style='max-width:100px', src='/stylesheets/images/wanderlogo2.png')
-    .navbar-collapse.collapse
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        a.navbar-brand(href='/')
+            img(style='max-width:70px; max-height:70px;',src='/stylesheets/images/wanderlogo2.png',href='/')
+    .navbar-collapse.collapse.navbar-responsive-collapse
         ul.nav.navbar-nav
-        li
-            a(href='/') Home
-        li
-            a(href='/about') About
-        li
-            a(href='/contact') Contact
-        li.serc
-                form(method='post', action='/search').input-group.search-nav
-                    input.form-control(type='text', placeholder='Search for...', name='searchedFor', required=true)
-                    input.btn.btn-default(type='submit' value='Go')
-        li
-            ul.nav-btns
-                .btn-toolbar
-                    a.btn.btn-primary.log-btn(href='/login', role='button') Login
-                    a.btn.btn-info.reg-btn(href='/register', role='button') Register
+            li.active
+                a(href='/adventures') Adventures
+            li
+                a(href='') Members
+            li
+                a(href='/contact') Creators
+            li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                    | Dropdown
+                    b.caret
+                ul.dropdown-menu
+                    li
+                        a(href='#') Action
+                    li
+                        a(href='#') Another action
+                    li
+                        a(href='#') Something else here
+                    li.divider
+                    li.dropdown-header Dropdown header
+                    li
+                        a(href='#') Separated link
+                    li
+                        a(href='#') One more separated link
+        form.navbar-form.navbar-left.form-group(method='post', role='search', action='/search')
+            .form-group
+                input.form-control(type='text', placeholder='Search for...', name='searchedFor', required=true)
+                a.button.btn.btn-default(type='submit' ,value='Go') Search
 
 
+        nav.navbar-nav.navbar-right.btn-toolbar.btn-inline
+            a.btn.btn-primary.btn-responsive.pull-right.btn-lg.outline(href='/login', role='button') Sign In
+            a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/register', role='button') Sign Up
 
+                //this to be loaded on login
+            //li.dropdown
+            //    a.dropdown-toggle(href='#', data-toggle='dropdown')
+            //        | Dropdown
+            //        b.caret
+            //    ul.dropdown-menu
+            //        li
+            //            a(href='#') Action
+            //        li
+            //            a(href='#') Another action
+            //        li
+            //            a(href='#') Something else here
+            //        li.divider
+            //        li
+            //            a(href='#') Separated link
