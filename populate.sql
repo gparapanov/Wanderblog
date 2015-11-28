@@ -21,7 +21,7 @@ INSERT INTO adventure (id,title,location,content_text,visit_date,post_date,user_
 VALUES (DEFAULT,"My fun adventure","Krishnanagar","sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris","2014-08-08","2015-06-23 10:02:44",1),
 (DEFAULT,"Another Day In Paradise","Timkur","tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a","2014-02-24","2015-06-19 17:11:49",3),
 (DEFAULT,"Come On A Safari With Me","Fauvillers","diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer","2015-09-30","2015-10-10 07:10:30",8),
-(DEFAULT,"Bon Voyage!","Şereflikoçhisar","malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit.","2014-08-11","2015-07-08 08:01:45",9),
+(DEFAULT,"Bon Voyage!","Sereflikochisasar","malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit.","2014-08-11","2015-07-08 08:01:45",9),
 (DEFAULT,"Beyond The Sea","Rabbi","tellus lorem eu metus. In lorem. Donec elementum, lorem ut","2015-07-07","2016-06-07 19:17:23",4),
 (DEFAULT,"Having A Wonderful Time","Gonnosfanadiga","vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim.","2015-11-15","2016-03-14 11:54:11",1),
 (DEFAULT,"Around The World","Albagiara","eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit","2014-05-26","2016-06-28 10:29:50",3),
