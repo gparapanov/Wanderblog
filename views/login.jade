@@ -8,7 +8,7 @@ block content
         form.form-signin(method='post')
             h2.form-signin-heading Please sign in
             label.sr-only(for='inputLogin') Login name
-            input#inputLogin.form-control(name='login_name', type='login_name', placeholder='Login name', required='', autofocus='')
+            input#inputLogin.form-control(name='login_name', pattern="[A-Za-z]{4,}" type='login_name', placeholder='Login name', required='', autofocus='')
             label.sr-only(for='inputPassword') Password
             input#inputPassword.form-control(name='password',type='password', placeholder='Password', required='')
             .checkbox
@@ -17,3 +17,28 @@ block content
                     |  Remember me
             button.btn.btn-lg.btn-success.btn-block.signin-btn(type='submit') Sign in
             button.btn.btn-lg.btn-primary.btn-block.signin-btn(type='submit') Register
+block scripts
+    script.
+        var timer;
+        $("#inputLogin").keyup(function(){
+            clearTimeout(timer);
+            if($(this).val().length > 3){
+                timer = setTimeout(function(){
+                    $.ajax({
+                        method: 'POST',
+                        url: '/login/username_validation',
+                        dataType: 'json',
+                        data: {username: $("#inputLogin").val()}
+                    }).done(function (msg) {
+                        console.log(msg.available);
+                        if (msg.available) {
+                            $("#inputLogin").css({border: "1px solid green"});
+                        } else {
+                            $("#inputLogin").css({border: "1px solid red"});
+                        }
+                    });
+                },1000);
+            }else{
+                $("#inputLogin").css({border: "1px solid red"});
+            }
+        });

@@ -53,4 +53,22 @@ module.exports = function(app,db){
             });
         });
     });
+    app.post('/login/username_validation',function(req,res){
+        var username = req.body.username;
+        db.getConnection(function(err,connection){
+            connection.query("SELECT id FROM users where login_name=?",[username],function(err,rows){
+                if(err){
+                    return;
+                }
+                if(rows.length != 0){
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({ available: false }));
+                }else{
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({ available: true }));
+                }
+                connection.release();
+            });
+        });
+    });
 }
