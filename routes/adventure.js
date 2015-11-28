@@ -15,7 +15,7 @@ module.exports = function (app,db) {
                     location=rows[0].location;
                     user_name=rows[0].login_name;
                     post_date=rows[0].post_date;
-                    //select * from comment,users where adventure_id=1 and comment.user_id=users.id;
+                    //select * from comment,users where adventure_id=1 and comment.user_id=users.id;2nd query
                     res.render('adventure', {title: title,content: content,location: location,user_name: user_name,post_date:post_date});
                     connection.release();
                 });
