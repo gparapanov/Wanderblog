@@ -41,39 +41,39 @@ block content
                     h1.search-heading Search results!
         p #{noticeresults}
         - if (typeof(searchResult) !== 'undefined')
-        each val in searchResult
-            .container-search-results
-                .wellTimkur
-                    .media
-                        a.pull-left(href='#')
-                            img.media-object(src='https://aboutourism.files.wordpress.com/2010/01/adventure-travel-6.jpg')
-                        .media-body
-                            h4.media-heading #{val.title}
-                            p.text-left Adventure from #{val.location}
-                            p.text-right By #{val.uploader}
-                            p
-                                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                                | Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-                                | dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-                                | Aliquam in felis sit amet augue.
-                            ul.list-inline.list-unstyled
-                                li
+            each val in searchResult
+                .container-search-results
+                    .wellTimkur
+                        .media
+                            a.pull-left(href='#')
+                                img.media-object(src='https://aboutourism.files.wordpress.com/2010/01/adventure-travel-6.jpg')
+                            .media-body
+                                h4.media-heading #{val.title}
+                                p.text-left Adventure from #{val.location}
+                                p.text-right By #{val.uploader}
+                                p
+                                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+                                    | Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
+                                    | dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
+                                    | Aliquam in felis sit amet augue.
+                                ul.list-inline.list-unstyled
+                                    li
+                                        span
+                                            i.glyphicon.glyphicon-calendar
+                                            |  #{val.uploadedOn}
+                                    li
                                     span
-                                        i.glyphicon.glyphicon-calendar
-                                        |  #{val.uploadedOn}
-                                li
-                                span
-                                    i.glyphicon.glyphicon-comment
-                                    |  #{val.numComments} comments
-                                li |
-                                li(id='rating-for-' + '#{val.adventureId}') |
-                                    - var i = val.averageScore/2
-                                    - for(i; i >= 1; i--)
-                                    span.fa.fa-star
-                                    - if(i >= 0.5)
-                                    span.fa.fa-star-half-o
-                                li |
-            br
+                                        i.glyphicon.glyphicon-comment
+                                        |  #{val.numComments} comments
+                                    li |
+                                    li(id='rating-for-' + '#{val.adventureId}') |
+                                        - var i = val.averageScore/2
+                                        - for(i; i >= 1; i--)
+                                        span.fa.fa-star
+                                        - if(i >= 0.5)
+                                        span.fa.fa-star-half-o
+                                    li |
+                br
 block scripts
     script(type='text/javascript', src='/javascripts/search.js')
     script.

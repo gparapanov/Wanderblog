@@ -29,20 +29,23 @@ module.exports = function(app,db) {
                     res.render('index.jade');
                     return;
                 }
+                console.log("Query successful!\nRetrieved rows:");
+                console.log(rows);
                 if (rows.length <= 0) {
-                    res.render('search.jade', {
+                    res.render('search',{
                         noticeresults: 'Nothing found for your search term, please try again',
                         searchedFor: searched
                     });
                 } else {
-                    res.render('search.jade', {
+                    console.log("Rendering search.jade!")
+                    res.render('search',{
                         noticeresults: 'Following adventures found!',
                         searchResult: rows,
                         searchedFor: searched
                     });
                 }
-                connection.release();
             });
+            connection.release();
         });
     });
 }
