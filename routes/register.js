@@ -23,6 +23,7 @@ module.exports = function (app,db){
                     console.error(err);
                     return;
                 }
+                connection.release();
             });
         });
 
