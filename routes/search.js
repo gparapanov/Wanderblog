@@ -2,7 +2,6 @@ module.exports = function(app,db) {
     app.post('/search', function (req, res) {
         var searched = req.body.searchedFor;
         var searchedFilter = req.body.search_filter_options;
-
         var query = 'select a.id as adventureId, a.title, a.post_date as uploadedOn, a.location, a.content_text, a_tt.tags, u.login_name as uploader, rt.averageScore, cm.numComments from adventure as a left join (select a_t.adventure_id, a_t.tag_id, t.id, GROUP_CONCAT(t.name) as tags from adventure_tag as a_t left join tag as t on a_t.tag_id = t.id group by a_t.adventure_id) as a_tt on a.id = a_tt.adventure_id inner join users as u on a.user_id = u.id left join (select r.adventure_id, avg(r.score) as averageScore from rating as r group by r.adventure_id) as rt on a.id = rt.adventure_id left join (select adventure_id, count(adventure_id) as numComments from comment as c group by c.adventure_id) as cm on a.id = cm.adventure_id ';
         if (searched && searchedFilter) {
             if (searchedFilter == 'date') {
@@ -21,7 +20,6 @@ module.exports = function(app,db) {
         }else {
             query += 'HAVING title LIKE "%' + searched + '%";';
         }
-        console.log(query);
         db.getConnection(function(err,connection){
             connection.query(query, function (err, rows) {
                 if (err) {
@@ -29,15 +27,12 @@ module.exports = function(app,db) {
                     res.render('index.jade');
                     return;
                 }
-                console.log("Query successful!\nRetrieved rows:");
-                console.log(rows);
                 if (rows.length <= 0) {
                     res.render('search',{
                         noticeresults: 'Nothing found for your search term, please try again',
                         searchedFor: searched
                     });
                 } else {
-                    console.log("Rendering search.jade!")
                     res.render('search',{
                         noticeresults: 'Following adventures found!',
                         searchResult: rows,
