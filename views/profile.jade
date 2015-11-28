@@ -1,71 +1,156 @@
 extends layout
 block content
     - var title = 'Profile Page'
-
-    .container.profile-box
+    .container
         .row
-            .col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
-                .well.profile
-                    .col-sm-12
-                        .col-xs-12.col-sm-8
-                            h2 #{login_name}
-                            p
-                                strong Full Name:
-                                |  #{name}
-                            p
-                                strong Contact:
-                                |  #{email}
-                            p
-                                strong User type:
-                                |  #{type}
-                            p
-                            strong country address:
-                                |  #{country}
-                            p
-                                strong About:
-                                |  #{description}
-                            p
-                        .col-xs-12.col-sm-4.text-center
-                            figure
-                                img.img-circle.img-responsive(src='https://www.geekinlibrariansclothing.com/wp-content/uploads/2015/10/empirebw2.png', alt='')
-                                figcaption.ratings
+            .col-md-12
+                .panel.panel-default
+                    .panel-body
+                        .row
+                            .col-xs-12.col-sm-8
+                                .profile-about
+                                    h2 #{login_name} (#{country})
                                     p
-                                        | Ratings
+                                        strong Full name:
+                                        |  #{name}
+                                    p
+                                        strong About:
+                                        |  #{description}
+                                    p
+                                        strong User type:
+                                        |  #{type}
+                                    p
+                                        strong Contact:
+                                        |  #{email}
+                                    p
+                                        strong Adventures:
+                                            if adventures.length != undefined
+                                                -each index in adventures
+                                                    .adventure-link
+                                                        a.span.label.label-info.tags(href ='/adventure/#{index.id}') #{index.title}
+                                            else
+                                                p User has not added any adventures.
+                                // /col
+                            .col-xs-12.col-sm-4.text-center
+                                img.center-block.img-circle.img-responsive(src='https://www.geekinlibrariansclothing.com/wp-content/uploads/2015/10/empirebw2.png', alt='')
+                                ul.list-inline.ratings.text-center(title='Ratings')
+                                    li
                                         a(href='#')
-                                            span.fa.fa-star
+                                            span.fa.fa-star.fa-lg
+                                    li
                                         a(href='#')
-                                            span.fa.fa-star
+                                            span.fa.fa-star.fa-lg
+                                    li
                                         a(href='#')
-                                            span.fa.fa-star
+                                            span.fa.fa-star.fa-lg
+                                    li
                                         a(href='#')
-                                            span.fa.fa-star
+                                            span.fa.fa-star.fa-lg
+                                    li
                                         a(href='#')
-                                            span.fa.fa-star-o
-                    .col-xs-12.divider.text-center
-                        .col-xs-12.col-sm-4.emphasis
-                            h2
-                                strong  #{adventures}
-                            p
-                                small Adventures
+                                            span.fa.fa-star.fa-lg
+                            // /col
+                            .col-xs-12.col-sm-4
+                                if adventures.length != undefined
+                                    h2
+                                        strong  #{adventures.length}
+                                    p
+                                        small Adventures
+                                else
+                                    h2
+                                        strong  0
+                                    p
+                                        small Adventures
+                            // /col
+                            .col-xs-12.col-sm-4
+                                h2
+                                    strong To be added
+                                p
+                                    small Wanderblog member (days)
+                            // /col
+                            .col-xs-12.col-sm-4
+                                h2
+                                    strong To be added
+                                p
+                                    small Comments
+                            // /col
+                        // /row
+                    // /panel-body
+                // /panel
 
-                        .col-xs-12.col-sm-4.emphasis
-                            h2
-                                strong 245
-                            p
-                                small Member of Wander blog in days
-                        .col-xs-12.col-sm-4.emphasis
-                            h2
-                                strong 43
-                            p
-                                small Places visited
+    //.container.profile-box
+    //    .row
+    //        .col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
+    //            .well.profile
+    //                .col-sm-12
+    //                    .col-xs-12.col-sm-8
+    //                        h2 #{login_name}
+    //                        p
+    //                            strong Full Name:
+    //                            |  #{name}
+    //                        p
+    //                            strong Contact:
+    //                            |  #{email}
+    //                        p
+    //                            strong User type:
+    //                            |  #{type}
+    //                        p
+    //                        strong country address:
+    //                            |  #{country}
+    //                        p
+    //                            strong About:
+    //                            |  #{description}
+    //                        p
+    //                    .col-xs-12.col-sm-4.text-center
+    //                        figure
+    //                            img.img-circle.img-responsive(src='https://www.geekinlibrariansclothing.com/wp-content/uploads/2015/10/empirebw2.png', alt='')
+    //                            figcaption.ratings
+    //                                p
+    //                                    | Ratings
+    //                                    a(href='#')
+    //                                        span.fa.fa-star
+    //                                    a(href='#')
+    //                                        span.fa.fa-star
+    //                                    a(href='#')
+    //                                        span.fa.fa-star
+    //                                    a(href='#')
+    //                                        span.fa.fa-star
+    //                                    a(href='#')
+    //                                        span.fa.fa-star-o
+    //
+    //                        .col-lg-12.divider.text-center
+    //                            .row
+    //                                p
+    //                                    .col-xs-10.col-sm-4.emphasis
+    //                                        if adventures.length != undefined
+    //                                            h2
+    //                                                strong  #{adventures.length}
+    //                                            p
+    //                                                small Adventures
+    //                                        else
+    //                                            h2
+    //                                                strong  0
+    //                                            p
+    //                                                small Adventures
+    //                                    .col-xs-10.col-sm-4.emphasis
+    //                                        h2
+    //                                            strong 245
+    //                                        p
+    //                                            small Member of Wander blog in days
+    //                                    .col-xs-10.col-sm-4.emphasis
+    //                                        h2
+    //                                            strong 43
+    //                                        p
+    //                                            small Places visited
+    //                    .row
+    //                        p
+    //                            p Adventures:
+    //                                if adventures.length != undefined
+    //                                    -each index in adventures
+    //                                        .adventure-link
+    //                                            a(href ='/adventure/#{index.id}') #{index.title}
+    //                                else
+    //                                    p User has not added any adventures.
 
-                    p
-                        strong Read user's Adventures
-                    //div#articles
-                    //-each index in adventures
-                        .adventure-link
-                            a(href ='/adventure/#{index.id}') #{index.title}
-                        //-each id in adventuresId
-                        //    div.article
-                        //        a(href ='/adventure/#{id}') a
+
 
