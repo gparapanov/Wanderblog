@@ -9,11 +9,10 @@ module.exports = function (app,db) {
         //res.render('register.jade');
         var dateNow=new Date().toISOString().slice(0, 19).replace('T', ' ');
         var adventure = {
-            id:17,
-            title: req.body.textinput,
-            location:"Somalia",
-            content_text: req.body.adventureContent,
-            visit_date: "2014-02-21",
+            title: req.body.textinput+"",
+            location:req.body.adventureLocation+"",
+            content_text: req.body.adventureContent+"",
+            visit_date: '2014-02-21',
             post_date: dateNow,
             user_id: 10
 
