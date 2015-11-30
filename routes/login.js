@@ -58,6 +58,7 @@ module.exports = function(app,db){
                                 title: 'Login',
                                 year: new Date().getFullYear(),
                                 message: 'Your login page',
+                                //to be replaced with user object
                                 isLoggedIn: req.session.isLoggedIn
                             });
                             //res.session.user = user;
