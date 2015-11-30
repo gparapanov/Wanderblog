@@ -3,6 +3,7 @@
  */
 module.exports = function (app,db) {
     app.get('/comment', function (req, res) {
+        console.log(titlePage);
         res.render('comment.jade');
     });
 };

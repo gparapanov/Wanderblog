@@ -2,7 +2,9 @@ module.exports = function (app, db) {
     app.get('/adventure/:id', function (req, res) {
         //app.get('adventures/:id', function( req, res){
         //...This will allow us to load a page wanderblog.bla/adventures/1 <- this will show a post with id 1.
-        if (req.session.isLoggedIn) {
+
+        //uncomment if and else statements to use session
+        //if (req.session.isLoggedIn) {
             var adventureid = req.params.id;
             var title, content, location, user_name, post_date;
             var queryString = "SELECT * FROM adventure,users where adventure.user_id=users.id and adventure.id= " + adventureid;
@@ -27,7 +29,7 @@ module.exports = function (app, db) {
                                     content: rows1[i].content,
                                     login_name: rows1[i].login_name,
                                 };
-                                comments.push(adv);
+                                comments.push((adv));
                             }
 
                             res.render('adventure', {
@@ -50,11 +52,11 @@ module.exports = function (app, db) {
                 //res.render('adventure', {title: title1,content: content,location: location,user_name: user_name,post_date:post_date});
             }
             resultsFunc();
-        }
-        else{
+        //}
+        //else{
             // add message that you need to be signed in to see this page
-            res.redirect('/')
-        }
+           // res.redirect('/')
+        //}
         //console.log(location);
         //in jade you call variable fancy title this way - > #{fancyTitle}
     });

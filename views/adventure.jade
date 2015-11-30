@@ -36,7 +36,10 @@ block content
                 hr
                 // Posted Comments
                 // Comment
-                include comment
+                for val,index in comments
+                    include comment
+                    //adding comments from the db working
+
                 .media
                     a.pull-left(href='#')
                         img.media-object(src='http://placehold.it/64x64', alt='')
