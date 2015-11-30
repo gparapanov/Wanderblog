@@ -8,8 +8,9 @@ var bodyParser = require('body-parser');
 
 //cookies
 var multer = require('multer');
-var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
 
 var app = express();
 var db = require('./db.js');
@@ -23,9 +24,13 @@ app.use(multer());
 app.use(session({
     resave: true,
     saveUninitialized: true,
-    cookie: {maxAge: 6000},
+    cookie: {maxAge: 6000*300},
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000,
     secret: 'uwotm8'
 }));
+
+var sess;
 
 // all environments
 app.set('port', process.env.PORT || 8011);
