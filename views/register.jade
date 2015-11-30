@@ -57,4 +57,28 @@ block content
                     button.btn.btn-primary.btn-group(type='submit') Sign in
         // /form
     // ./container
-
+block scripts
+    script.
+        var timer;
+        $("input#login_name").keyup(function(){
+            clearTimeout(timer);
+            if($(this).val().length > 3){
+                timer = setTimeout(function(){
+                    $.ajax({
+                        method: 'POST',
+                        url: '/register/username_validation',
+                        dataType: 'json',
+                        data: {username: $("#inputLogin").val()}
+                    }).done(function (msg) {
+                        console.log(msg.available);
+                        if (msg.available) {
+                            $("input#login_name").css({border: "1px solid green"});
+                        } else {
+                            $("input#login_name").css({border: "1px solid red"});
+                        }
+                    });
+                },1000);
+            }else{
+                $("input#login_name").css({border: "1px solid red"});
+            }
+        });
