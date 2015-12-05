@@ -60,6 +60,29 @@ module.exports = function (app, db) {
         //console.log(location);
         //in jade you call variable fancy title this way - > #{fancyTitle}
     });
-    // we will need this here
+    app.post('/adventure/:id', function (req, res) {
+        var comment=req.body.commText;
+        var dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        var adventureid = req.params.id;
+        var commQuery={
+            post_date:dateNow,
+            content:comment,
+            user_id:1,//later get this from the session
+            adventure_id:adventureid
+        };
+        console.log("aaaa");
+        db.getConnection(function (err, connection) {
+            connection.query('insert into comment set ?', commQuery, function (err, result) {
+                //catch mysql connection error
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log("bbb");
+                connection.release();
+            });
+            res.redirect('back');
+        });
+    });
 
 };
