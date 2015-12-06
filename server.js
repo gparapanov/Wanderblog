@@ -1,4 +1,4 @@
-﻿var express = require('express');
+﻿﻿var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
@@ -31,7 +31,7 @@ app.use(session({
 }));
 
 var sess;
-
+var $ = require('jQuery');
 // all environments
 app.set('port', process.env.PORT || 8011);
 app.set('views', path.join(__dirname, 'views'));
@@ -58,6 +58,7 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 
+require('./routes/comment.js')(app,db);
 require('./routes/login.js')(app,db);
 require('./routes/profile.js')(app,db);
 require('./routes/register.js')(app,db);
