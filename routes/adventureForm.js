@@ -7,11 +7,11 @@ module.exports = function (app,db) {
     app.post('/adventureForm', function (req, res) {
         //res.json(req.body);
         //res.render('register.jade');
-        if(req.session.isLoggedIn) {
+       // if(req.session.isLoggedIn) {
             var dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
             var adventure = {
                 title: req.body.textinput + "",
-                location: req.body.adventureLocation + "",
+                location: req.body.lat+"!"+req.body.lon,
                 content_text: req.body.adventureContent + "",
                 visit_date: '2014-02-21',
                 post_date: dateNow,
@@ -29,24 +29,14 @@ module.exports = function (app,db) {
                 });
                 res.redirect('/');
             });
-        }
-        else{
+      //  }
+      //  else{
             //Add message that user has to be logged in to see this page.
-            res.redirect('/');
-        }
+           // res.redirect('/');
+        //}
     });
 
 
 
 
 }
-    $('#us2').locationpicker({
-        location: {latitude: 46.15242437752303, longitude: 2.7470703125},
-        radius: 300,
-        inputBinding: {
-            latitudeInput: $('#us2-lat'),
-            longitudeInput: $('#us2-lon'),
-            radiusInput: $('#us2-radius'),
-            locationNameInput: $('#us2-address')
-        }
-    });

@@ -2,6 +2,7 @@
    Created by Ponczek on 17/11/2015.
 
 extends layout
+
 block content
    - var title = 'New Adventure'
    .container.post-box.post-form
@@ -21,7 +22,34 @@ block content
             .form-group
                label.col-md-4.control-label(for='adventureLocation') Location
                .col-md-4
-                  input#textinput.form-control.location-md(name='adventureLocation', type='text', placeholder='', required='')
+                  //input#textinput.form-control.location-md(name='adventureLocation', type='text', placeholder='', required='')
+                  input#us3-address.form-control.location-md(name="adventureLocation",type='text', placeholder='', required='')
+            .form-group
+               label.col-md-4.control-label(for='adventureRadius') Radius
+               .col-md-4
+                  input#us3-radius.form-control.location-md(name="adventureRadius",type='text')
+                  #us3(style='width: 450px; height: 360px;')
+                  | Lat.:
+                  input#us3-lat(name='lat',type='text' )
+                  | Long.:
+                  input#us3-lon(name='lon',type='text' )
+                  script.
+                     $('#us3').locationpicker({
+                        location: {latitude: 57.15088263202686, longitude: -2.098320136718712},
+                        radius: 200,
+                        inputBinding: {
+                           latitudeInput: $('#us3-lat'),
+                           longitudeInput: $('#us3-lon'),
+                           radiusInput: $('#us3-radius'),
+                           locationNameInput: $('#us3-address')
+                        },
+                        enableAutocomplete: true,
+                        onchanged: function (currentLocation, radius, isMarkerDropped) {
+                           //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+
+                        }
+                     });
+
             // File Button
             .form-group
                label.col-md-4.control-label(for='adventures-pictures') Add Pictures
