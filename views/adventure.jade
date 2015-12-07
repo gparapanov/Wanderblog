@@ -24,7 +24,13 @@ block content
                     | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?
                 p.adventure-description
                     | #{content}
-                hr
+                p.adventure-map0
+                    iframe(width='900', height='370', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src="https://maps.google.com/maps?q=#{locationLat},#{locationLon}&hl=en;z=10&output=embed")
+                    br
+                    small
+                    a(href="https://maps.google.com/maps?q=#{locationLat},#{locationLon}&hl=es;z=10&output=embed", style='color:#0000FF;text-align:left', target='_blank') See map bigger
+
+                 hr
                 // Blog Comments
                 // Comments Form
                 .well

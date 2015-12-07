@@ -21,6 +21,10 @@ module.exports = function (app, db) {
                             location = rows[0].location;
                             user_name = rows[0].login_name;
                             post_date = rows[0].post_date;
+                            var separatorIndex=location.indexOf("!");
+                            var locationLat=location.substring(0,separatorIndex);
+                            var locationLon=location.substring(separatorIndex+1);
+
 
                             var comments = [];
                             for (i = 0; i < rows1.length; i++) {
@@ -39,6 +43,8 @@ module.exports = function (app, db) {
                                 user_name: user_name,
                                 post_date: post_date,
                                 comments: comments,
+                                locationLat:locationLat,
+                                locationLon:locationLon,
                                 isLoggedIn: req.session.isLoggedIn
                             });
 
