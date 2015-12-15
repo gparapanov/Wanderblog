@@ -35,18 +35,29 @@ module.exports = function (app, db) {
                                 };
                                 comments.push((adv));
                             }
+                            var tagsString="select name from adventure_tag,tag where adventure_tag.tag_id=tag.id and adventure_tag.adventure_id=";
+                            var tags="";
+                            connection.query(tagsString+adventureid, function (err, rows) {
+                                if (err) throw err;
+                                for(var i=0;i<rows.length;i++){
+                                    tags=tags.concat("#"+rows[i].name);
 
-                            res.render('adventure', {
-                                title: title,
-                                content: content,
-                                location: location,
-                                user_name: user_name,
-                                post_date: post_date,
-                                comments: comments,
-                                locationLat:locationLat,
-                                locationLon:locationLon,
-                                isLoggedIn: req.session.isLoggedIn
+                                }
+                                console.log(tags);
+                                res.render('adventure', {
+                                    title: title,
+                                    content: content,
+                                    tags:tags,
+                                    location: location,
+                                    user_name: user_name,
+                                    post_date: post_date,
+                                    comments: comments,
+                                    locationLat:locationLat,
+                                    locationLon:locationLon,
+                                    isLoggedIn: req.session.isLoggedIn
+                                });
                             });
+
 
                             connection.release();
                         });
