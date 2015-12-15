@@ -41,7 +41,7 @@ CREATE TABLE adventure(
 /*create table tag - tags*/
 DROP TABLE IF EXISTS tag;
 CREATE TABLE tag(
-    id INTEGER(10) auto_increment, #primary key
+    id INTEGER(10) NOT NULL auto_increment, #primary key
     name VARCHAR(255) NOT NULL, #a tag name
     PRIMARY KEY(id),
     UNIQUE KEY(name) #tag names must be unique (dupicates increase redundancy)

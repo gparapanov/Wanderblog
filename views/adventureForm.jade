@@ -18,7 +18,11 @@ block content
             .form-group
                label.col-md-4.control-label(for='adventureContent') Describe Your Adventure
                .col-md-4
-                  textarea#adventure-content.form-control(name='adventureContent')
+                  textarea#adventure-content.form-control(name='adventureContent' style='width:500px;!')
+            .form-group
+               label.col-md-4.control-label(for='adventureTags') Tags separated by #
+               .col-md-4
+                  textarea#tags.form-control(name='adventureTags', style='width:500px;!',placeholder='', required='')
             .form-group
                label.col-md-4.control-label(for='adventureLocation') Location
                .col-md-4
@@ -29,10 +33,14 @@ block content
                .col-md-4
                   input#us3-radius.form-control.location-md(name="adventureRadius",type='text')
                   #us3(style='width: 450px; height: 360px;')
+            .form-group
+               label.col-md-4.control-label(for='mapLocation') Details
+               .col-md-4
                   | Lat.:
-                  input#us3-lat(name='lat',type='text' )
+                  input#us3-lat.form-control.location-md(name='lat',type='text' )
                   | Long.:
-                  input#us3-lon(name='lon',type='text' )
+                  input#us3-lon.form-control.location-md(name='lon',type='text' )
+
                   script.
                      $('#us3').locationpicker({
                         location: {latitude: 57.15088263202686, longitude: -2.098320136718712},
