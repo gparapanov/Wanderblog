@@ -22,7 +22,7 @@ module.exports = function(app,db){
                 password: req.body.password
             };
 
-            var user = req.session
+            var user = req.session;
             //req.session.isLoggedIn = "Logged in";
             db.getConnection(function (err, connection) {
                 connection.query("SELECT * from users WHERE login_name=? LIMIT 1", [loginData.login_name], function (err, rows) {
