@@ -17,7 +17,8 @@ module.exports = function(app,db){
                     }
                     var adventures = [];
                     for (i = 0; i < rows.length; i++) {
-                        var adv = {
+                            var adv = {
+                            adv_id: i+1,
                             title: rows[i].title,
                             content: rows[i].content_text,
                             login_name: rows[i].login_name,

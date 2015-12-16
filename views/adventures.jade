@@ -8,9 +8,10 @@ block content
                     a.pull-left(href='#')
                         img.media-object(src='https://aboutourism.files.wordpress.com/2010/01/adventure-travel-6.jpg')
                     .media-body
-                        h4.media-heading #{val.title}
+
+                        a.media-heading(href='/adventure/#{val.adv_id}') #{val.title}
                         p.text-left Adventure from #{val.location}
-                        p.text-right By #{val.login_name}
+                        a.pull-right(href='/profile/#{val.user_id}') By #{val.login_name}
 
                         p #{val.content}
 
