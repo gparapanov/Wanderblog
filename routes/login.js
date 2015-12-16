@@ -3,20 +3,19 @@ var bcrypt = require('bcryptjs');
 var stringify = require('json-stringify-safe');
 
 
-module.exports = function(app,db){
+module.exports = function (app, db) {
     //Login
     app.get('/login', function (req, res) {
-        if(req.session.user){
+        if (req.session.user) {
             res.redirect('/profile');
         }
-        else{
+        else {
             res.render('login.jade');
         }
     });
 
     app.post('/login', function (req, res) {
-        req.session.isLoggedIn = "Logged in."
-        if(!req.session.user) {
+        if (!req.session.user) {
             var loginData = {
                 login_name: req.body.login_name,
                 password: req.body.password
@@ -35,6 +34,8 @@ module.exports = function(app,db){
                     //var user = req.session;
                     if (rows.length != 0) {
                         req.session.isLoggedIn = rows[0].id;
+                        req.session.login_name = rows[0].login_name;
+                        req.session.type = rows[0].type;
                         if (bcrypt.compareSync(loginData.password, rows[0].password)) {
                             user.type = rows[0].type;
                             user.name = rows[0].name;
@@ -73,16 +74,21 @@ module.exports = function(app,db){
                 });
             });
         }
-        else{
+        else {
             res.redirect('/profile');
         }
     });
 
-    app.use('/logout', function(req,res){
-       req.session.isLoggedIn = null;
-       //res.session.isLoggedIn = 'POTATO';
-       res.header('Cache-Control', 'no-cache');
-       res.redirect('/');
+    app.use('/logout', function (req, res) {
+        console.log(req.session.isLoggedIn);
+        console.log(req.session.login_name);
+        console.log(req.session.type);
+        req.session.isLoggedIn = null;
+        req.session.login_name = null;
+        req.session.type = null;
+        //res.session.isLoggedIn = 'POTATO';
+        res.header('Cache-Control', 'no-cache');
+        res.redirect('/');
 
     });
 }
