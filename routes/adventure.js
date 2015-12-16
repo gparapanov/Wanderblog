@@ -6,6 +6,7 @@ module.exports = function (app, db) {
         //uncomment if and else statements to use session
         //if (req.session.isLoggedIn) {
             var adventureid = req.params.id;
+
             var title, content, location, user_name, post_date;
             var queryString = "SELECT * FROM adventure,users where adventure.user_id=users.id and adventure.id= " + adventureid;
             var resultsFunc = function () {
@@ -24,8 +25,6 @@ module.exports = function (app, db) {
                             var separatorIndex=location.indexOf("!");
                             var locationLat=location.substring(0,separatorIndex);
                             var locationLon=location.substring(separatorIndex+1);
-
-
                             var comments = [];
                             for (i = 0; i < rows1.length; i++) {
                                 var adv = {
@@ -57,12 +56,8 @@ module.exports = function (app, db) {
                                     isLoggedIn: req.session.isLoggedIn
                                 });
                             });
-
-
                             connection.release();
                         });
-
-
                     });
                 });
 

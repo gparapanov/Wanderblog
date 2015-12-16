@@ -26,6 +26,9 @@ block content
                            $(':radio').change(
                                    function(){
                                        $('.uchose').text( $(this).val() + ' stars' );
+                                       $.post('adventure/'+req.params.id,{
+                                           star:$(this).val
+                                       });
                                    }
                            )
 
