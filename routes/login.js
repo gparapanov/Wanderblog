@@ -34,7 +34,7 @@ module.exports = function(app,db){
 
                     //var user = req.session;
                     if (rows.length != 0) {
-
+                        req.session.isLoggedIn = rows[0].id;
                         if (bcrypt.compareSync(loginData.password, rows[0].password)) {
                             user.type = rows[0].type;
                             user.name = rows[0].name;
