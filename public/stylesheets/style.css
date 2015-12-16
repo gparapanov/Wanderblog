@@ -82,15 +82,3 @@ input[type="checkbox"].input-validation-error {
 .star-rating i ~ i ~ i ~ i ~ i {
   width: 100%;
 }
-.choice {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: 20px;
-  display: block;
-}
-
-
-
