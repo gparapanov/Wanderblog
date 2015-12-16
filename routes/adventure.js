@@ -96,5 +96,28 @@ module.exports = function (app, db) {
             res.redirect('back');
         });
     });
+    app.post('/ratings', function (req, res) {
+        var score = req.body.rating;
+        console.log(req.body.user_id);
+        var advID = req.params.id;
+        console.log(window.location.href );
+        var rateValue = {
+            adventure_id: advID,
+            user_id: req.session.isLoggedIn,
+            score: req.body.rating
+        };
 
+        db.getConnection(function (err, connection) {
+            connection.query('insert into rating set ?', rateValue, function (err, result) {
+                //catch mysql connection error
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log("bbb");
+                connection.release();
+            });
+            res.redirect('back');
+        });
+    });
 };
