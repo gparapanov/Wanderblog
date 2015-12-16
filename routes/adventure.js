@@ -31,7 +31,7 @@ module.exports = function (app, db) {
                                 var adv = {
                                     post_date: rows1[i].post_date,
                                     content: rows1[i].content,
-                                    login_name: rows1[i].login_name,
+                                    login_name: rows1[i].login_name
                                 };
                                 comments.push((adv));
                             }

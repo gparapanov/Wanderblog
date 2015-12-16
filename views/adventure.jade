@@ -11,13 +11,32 @@ block content
                 // Author
                 p
                     a(href ='/profile/#{user_id}') #{user_name}
+                    span.star-rating.navbar-right
+                       input(type='radio', name='rating', value='1')
+                       i
+                       input(type='radio', name='rating', value='2')
+                       i
+                       input(type='radio', name='rating', value='3')
+                       i
+                       input(type='radio', name='rating', value='4')
+                       i
+                       input(type='radio', name='rating', value='5')
+                       i
+                       script.
+                           $(':radio').change(
+                                   function(){
+                                       $('.uchose').text( $(this).val() + ' stars' );
+                                   }
+                           )
+
+                       div.uchose dog
                 hr
                 // Date/Time
                 img.img-responsive(src='http://placehold.it/900x300', alt='')
                 p
                     span.glyphicon.glyphicon-time
                     |  Posted on #{post_date}
-                p.help-block  #{tags}
+                p.fa-lg.pull-left #{tags}
                 // Preview Image
                 hr
                 // Post Content
