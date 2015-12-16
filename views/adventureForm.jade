@@ -27,29 +27,29 @@ block content
                label.col-md-4.control-label(for='adventureLocation') Location
                .col-md-4
                   //input#textinput.form-control.location-md(name='adventureLocation', type='text', placeholder='', required='')
-                  input#us3-address.form-control.location-md(name="adventureLocation",type='text', placeholder='', required='')
+                  input.us3-address.form-control.location-md(name="adventureLocation",type='text', placeholder='', required='')
             .form-group
                label.col-md-4.control-label(for='adventureRadius') Radius
                .col-md-4
-                  input#us3-radius.form-control.location-md(name="adventureRadius",type='text')
-                  #us3(style='width: 450px; height: 360px;')
+                  input.us3-radius.form-control.location-md(name="adventureRadius",type='text')
+                  .us3(style='width: 450px; height: 360px;')
             .form-group
                label.col-md-4.control-label(for='mapLocation') Details
                .col-md-4
                   | Lat.:
-                  input#us3-lat.form-control.location-md(name='lat',type='text' )
+                  input.us3-lat.form-control.location-md(name='lat',type='text' )
                   | Long.:
-                  input#us3-lon.form-control.location-md(name='lon',type='text' )
+                  input.us3-lon.form-control.location-md(name='lon',type='text' )
 
                   script.
-                     $('#us3').locationpicker({
+                     $('.us3').locationpicker({
                         location: {latitude: 57.15088263202686, longitude: -2.098320136718712},
                         radius: 200,
                         inputBinding: {
-                           latitudeInput: $('#us3-lat'),
-                           longitudeInput: $('#us3-lon'),
-                           radiusInput: $('#us3-radius'),
-                           locationNameInput: $('#us3-address')
+                           latitudeInput: $('.us3-lat'),
+                           longitudeInput: $('.us3-lon'),
+                           radiusInput: $('.us3-radius'),
+                           locationNameInput: $('.us3-address')
                         },
                         enableAutocomplete: true,
                         onchanged: function (currentLocation, radius, isMarkerDropped) {
@@ -60,9 +60,11 @@ block content
 
             // File Button
             .form-group
-               label.col-md-4.control-label(for='adventures-pictures') Add Pictures
-               .col-md-4
-                  input#adventures-pictures.input-file(name='adventures-pictures', type='file')
+               form(method='post', enctype='multipart/form-data', action='/upload').col-md-4.control-label Upload Pictures
+                  .col-md-4
+                     input.input-file(type='file', name='file')
+                     input.input-file(type='submit', value='Submit')
+
             // Button (Double)
             .form-group
                label.col-md-4.control-label(for='adventure-back')
