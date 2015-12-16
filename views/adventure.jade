@@ -1,38 +1,18 @@
 extends layout
 block content
 
-   - var titlePage='Adventure page';
+    - var titlePage='Adventure page';
 
-       .container2
-         .container
+    .container2
+        .container
             .adventure-content.col-lg-10
                 h1.adventure-heading
-                    |#{title}
+                    |#{title} #{adv_id}
                 // Author
                 p
                     a(href ='/profile/#{user_id}') #{user_name}
-                    span.star-rating.navbar-right
-                       input(type='radio', name='rating', value='1')
-                       i
-                       input(type='radio', name='rating', value='2')
-                       i
-                       input(type='radio', name='rating', value='3')
-                       i
-                       input(type='radio', name='rating', value='4')
-                       i
-                       input(type='radio', name='rating', value='5')
-                       i
-                       script.
-                           $(':radio').change(
-                                   function(){
-                                       $('.uchose').text( $(this).val() + ' stars' );
-                                       $.post('adventure/'+req.params.id,{
-                                           star:$(this).val
-                                       });
-                                   }
-                           )
+                        include ratings
 
-                       div.uchose dog
                 hr
                 // Date/Time
                 img.img-responsive(src='http://placehold.it/900x300', alt='')
@@ -53,7 +33,7 @@ block content
                     small
                     a(href="https://maps.google.com/maps?q=#{locationLat},#{locationLon}&hl=es;z=10&output=embed", style='color:#0000FF;text-align:left', target='_blank') See map bigger
 
-                 hr
+                hr
                 // Blog Comments
                 // Comments Form
                 .well

@@ -1,0 +1,25 @@
+form#ratingsForm(name='send-form',action='/ratings', method='POST')
+   span.star-rating.navbar-right
+      input(type='radio', name='rating', value='1')
+      i
+      input(type='radio', name='rating', value='2')
+      i
+      input(type='radio', name='rating', value='3')
+      i
+      input(type='radio', name='rating', value='4')
+      i
+      input(type='radio', name='rating', value='5')
+      i
+      button.btn.btn-primary(name="ratingSubmit", type = "submit") Submit
+      script.
+         $(':radio').change(
+                 function () {
+                    $('.uchose').text($(this).val() + ' stars');
+                    $.post('adventure/' + req.params.id, {
+                       star: $(this).val
+                    });
+                 }
+         )
+      div.uchose dog
+
+
