@@ -39,23 +39,30 @@ module.exports = function (app, db) {
                             var tags="";
                             connection.query(tagsString+adventureid, function (err, rows) {
                                 if (err) throw err;
-                                for(var i=0;i<rows.length;i++){
-                                    tags=tags.concat("#"+rows[i].name);
+                                for(var i=0;i<rows.length;i++) {
+                                    tags = tags.concat("#" + rows[i].name);
 
                                 }
                                 console.log(tags);
-                                res.render('adventure', {
-                                    title: title,
-                                    content: content,
-                                    tags:tags,
-                                    location: location,
-                                    user_name: user_name,
-                                    post_date: post_date,
-                                    comments: comments,
-                                    locationLat:locationLat,
-                                    locationLon:locationLon,
-                                    isLoggedIn: req.session.isLoggedIn
-                                });
+
+                            });
+                            var advRating=0;
+                            connection.query("select avg(score) as aver from rating where adventure_id="+adventureid, function (err, rows) {
+                                if (err) throw err;
+                                advRating=rows[0].aver;
+                            });
+                            res.render('adventure', {
+                                title: title,
+                                content: content,
+                                tags:tags,
+                                location: location,
+                                user_name: user_name,
+                                post_date: post_date,
+                                comments: comments,
+                                ratings:advRating,
+                                locationLat:locationLat,
+                                locationLon:locationLon,
+                                isLoggedIn: req.session.isLoggedIn
                             });
                             connection.release();
                         });

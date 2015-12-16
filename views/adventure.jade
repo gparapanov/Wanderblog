@@ -12,6 +12,13 @@ block content
                 p
                     a(href ='/profile/#{user_id}') #{user_name}
                         include ratings
+                p
+                    span Overall score:
+                    - for (var i = 0; i < #{ratings}; i++) {
+                        span.fa.fa-star.fa-2x
+
+                    - }
+
 
                 hr
                 // Date/Time
