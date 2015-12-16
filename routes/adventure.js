@@ -1,11 +1,12 @@
 module.exports = function (app, db) {
+    var adventureid;
     app.get('/adventure/:id', function (req, res) {
         //app.get('adventures/:id', function( req, res){
         //...This will allow us to load a page wanderblog.bla/adventures/1 <- this will show a post with id 1.
 
         //uncomment if and else statements to use session
         //if (req.session.isLoggedIn) {
-            var adventureid = req.params.id;
+            adventureid = req.params.id;
 
             var title, content, location, user_name, post_date;
             var queryString = "SELECT * FROM adventure,users where adventure.user_id=users.id and adventure.id= " + adventureid;
@@ -79,7 +80,7 @@ module.exports = function (app, db) {
         var commQuery={
             post_date:dateNow,
             content:comment,
-            user_id:1,//later get this from the session
+            user_id:req.session.isLoggedIn,//later get this from the session
             adventure_id:adventureid
         };
         console.log("aaaa");
@@ -98,11 +99,11 @@ module.exports = function (app, db) {
     });
     app.post('/ratings', function (req, res) {
         var score = req.body.rating;
-        console.log(req.body.user_id);
-        var advID = req.params.id;
-        console.log(window.location.href );
+        console.log(req.session.isLoggedIn);
+
+        //console.log(window.location.href );
         var rateValue = {
-            adventure_id: advID,
+            adventure_id: adventureid,
             user_id: req.session.isLoggedIn,
             score: req.body.rating
         };

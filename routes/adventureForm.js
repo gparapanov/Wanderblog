@@ -15,7 +15,7 @@ module.exports = function (app,db) {
                 content_text: req.body.adventureContent + "",
                 visit_date: '2014-02-21',
                 post_date: dateNow,
-                user_id: 10
+                user_id: req.session.isLoggedIn
                 //http://logicify.github.io/jquery-locationpicker-plugin/
             };
 
