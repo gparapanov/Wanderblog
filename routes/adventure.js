@@ -41,29 +41,33 @@ module.exports = function (app, db) {
                                 if (err) throw err;
                                 for(var i=0;i<rows.length;i++) {
                                     tags = tags.concat("#" + rows[i].name);
-
                                 }
                                 console.log(tags);
+                                connection.query(scoreString+adventureid, function (err, rows) {
+                                    if (err) throw err;
+                                    //console.log(rows[0].score);
+                                    advRating=advRating.concat(rows[0].score);
+                                    res.render('adventure', {
+                                        title: title,
+                                        content: content,
+                                        tags:tags,
+                                        location: location,
+                                        user_name: user_name,
+                                        post_date: post_date,
+                                        comments: comments,
+                                        ratings: advRating,
+                                        locationLat:locationLat,
+                                        locationLon:locationLon,
+                                        isLoggedIn: req.session.isLoggedIn
+                                    });
+                                });
+                            });
+                            var advRating="";
+                            var scoreString="select avg(score) as score from rating where adventure_id=";
 
-                            });
-                            var advRating=0;
-                            connection.query("select avg(score) as aver from rating where adventure_id="+adventureid, function (err, rows) {
-                                if (err) throw err;
-                                advRating=rows[0].aver;
-                            });
-                            res.render('adventure', {
-                                title: title,
-                                content: content,
-                                tags:tags,
-                                location: location,
-                                user_name: user_name,
-                                post_date: post_date,
-                                comments: comments,
-                                ratings:advRating,
-                                locationLat:locationLat,
-                                locationLon:locationLon,
-                                isLoggedIn: req.session.isLoggedIn
-                            });
+                            console.log(advRating);
+
+
                             connection.release();
                         });
                     });

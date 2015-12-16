@@ -14,9 +14,8 @@ block content
                         include ratings
                 p
                     span Overall score:
-                    - for (var i = 0; i < #{ratings}; i++) {
+                    - for (var i = 0; i < parseInt(ratings); i++) {
                         span.fa.fa-star.fa-2x
-
                     - }
 
 
