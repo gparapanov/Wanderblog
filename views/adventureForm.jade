@@ -6,7 +6,7 @@ extends layout
 block content
    - var title = 'New Adventure'
    .container.post-box.post-form
-      form.form-horizontal(role='postform' method='post')
+      form.form-horizontal.col-md-12(role='postform' method='post')
          h2.form-post-heading Create Adventure
          fieldset
             // Text input
@@ -17,20 +17,20 @@ block content
             // Textarea
             .form-group
                label.col-md-4.control-label(for='adventureContent') Describe Your Adventure
-               .col-md-4
-                  textarea#adventure-content.form-control(name='adventureContent' style='width:500px;!')
+               .col-md-6
+                  textarea#adventure-content.form-control(name='adventureContent',rows='8')
             .form-group
                label.col-md-4.control-label(for='adventureTags') Tags separated by #
-               .col-md-4
-                  textarea#tags.form-control(name='adventureTags', style='width:500px;!',placeholder='', required='')
+               .col-md-6
+                  textarea#tags.form-control(name='adventureTags',placeholder='', required='')
             .form-group
                label.col-md-4.control-label(for='adventureLocation') Location
-               .col-md-4
+               .col-md-6
                   input.us3-address.form-control.location-md(name="adventureLocation",type='text', placeholder='', required='')
             .form-group
-               label.col-md-4.control-label(for='adventureRadius') Pick a location:
-               .col-md-4
-                  .us3(style='width: 450px; height: 360px;')
+               //label.col-md-2.control-label(for='adventureRadius') Pick a location:
+               .col-md-12.col-md-offset-1
+                  .us3(style='width: 900px; height: 370px;')
             .form-group
                label.col-md-4.control-label(for='mapLocation')
                .col-md-4
@@ -54,14 +54,15 @@ block content
 
             // File Button
             .form-group
-               form(method='post', enctype='multipart/form-data', action='/upload').col-md-4.control-label Upload Pictures
-                  .col-md-4
+               form(method='post', enctype='multipart/form-data', action='/upload')
+                  label.control-label.col-md-6 Upload Pictures
+                  .col-md-6.col-md-offset-5
                      input.input-file(type='file', name='file')
-                     input.input-file(type='submit', value='Submit')
+                     input.input-file.btn.btn-default(type='submit', value='Submit')
 
             // Button (Double)
             .form-group
-               label.col-md-4.control-label(for='adventure-back')
-               .col-md-8.btn-toolbar
+               //label.col-md-4.control-label(for='adventure-back')
+               .col-md-12.btn-toolbar.text-center
                   button#adventure-back.btn.btn-primary(name='adventure-back') Go Back
                   button#adventure-submit.btn.btn-success(name='adventure-submit') Post Adventure
