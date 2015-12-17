@@ -11,7 +11,8 @@ module.exports = function (app,db) {
             var dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
             var adventure = {
                 title: req.body.textinput + "",
-                location: req.body.lat+"!"+req.body.lon,
+                //location: req.body.lat+"!"+req.body.lon,
+                location:req.body.adventureLocation+"",
                 content_text: req.body.adventureContent + "",
                 visit_date: '2014-02-21',
                 post_date: dateNow,

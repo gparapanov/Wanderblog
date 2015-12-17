@@ -56,8 +56,8 @@ module.exports = function (app, db) {
                                         post_date: post_date,
                                         comments: comments,
                                         ratings: advRating,
-                                        locationLat:locationLat,
-                                        locationLon:locationLon,
+                                        //locationLat:locationLat,
+                                        //locationLon:locationLon,
                                         isLoggedIn: req.session.isLoggedIn
                                     });
                                 });

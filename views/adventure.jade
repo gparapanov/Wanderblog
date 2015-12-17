@@ -34,7 +34,7 @@ block content
                 p.adventure-description
                     | #{content}
                 p.adventure-map0
-                    iframe(width='900', height='370', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src="https://maps.google.com/maps?q=#{locationLat},#{locationLon}&hl=en;z=10&output=embed")
+                    iframe(width='900', height='370', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src="https://maps.google.com/maps?q=#{location}&hl=en;z=10&output=embed")
                     br
                     small
                     a(href="https://maps.google.com/maps?q=#{locationLat},#{locationLon}&hl=es;z=10&output=embed", style='color:#0000FF;text-align:left', target='_blank') See map bigger
