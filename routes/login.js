@@ -7,7 +7,7 @@ module.exports = function (app, db) {
     //Login
     app.get('/login', function (req, res) {
         if (req.session.user) {
-            res.redirect('/profile');
+            res.redirect('/adventures');
         }
         else {
             res.render('login.jade');
@@ -36,46 +36,47 @@ module.exports = function (app, db) {
                         req.session.isLoggedIn = rows[0].id;
                         req.session.login_name = rows[0].login_name;
                         req.session.type = rows[0].type;
-                        if (bcrypt.compareSync(loginData.password, rows[0].password)) {
-                            user.type = rows[0].type;
-                            user.name = rows[0].name;
-                            user.login_name = rows[0].login_name;
-                            user.email = rows[0].email;
-                            user.description = rows[0].description;
-                            user.country = rows[0].country;
-                            user.avatar = rows[0].avatar;
-                            user.id = rows[0].id;
-
-                            //res.send(user);
-                            //req.session.user = JSON.parse(stringify(user));
-                            res.render('profile.jade', {
-                                type: user.type,
-                                name: user.name,
-                                login_name: user.login_name,
-                                email: user.email,
-                                description: user.description,
-                                country: user.country,
-                                avatar: user.avatar,
-                                title: 'Login',
-                                year: new Date().getFullYear(),
-                                message: 'Your login page',
-                                //to be replaced with user object
-                                isLoggedIn: req.session.isLoggedIn
-                            });
-                            //res.session.user = user;
-                            console.log(user);
-                        } else {
-                            res.render('login.jade', {error: ' Invalid username or password.'});
-                        }
-                    } else {
-                        res.render('login.jade', {error: ' Invalid username or password.'});
+                        res.redirect('/adventures');
+                    //    if (bcrypt.compareSync(loginData.password, rows[0].password)) {
+                    //        user.type = rows[0].type;
+                    //        user.name = rows[0].name;
+                    //        user.login_name = rows[0].login_name;
+                    //        user.email = rows[0].email;
+                    //        user.description = rows[0].description;
+                    //        user.country = rows[0].country;
+                    //        user.avatar = rows[0].avatar;
+                    //        user.id = rows[0].id;
+                    //
+                    //        //res.send(user);
+                    //        //req.session.user = JSON.parse(stringify(user));
+                    //        res.render('profile.jade', {
+                    //            type: user.type,
+                    //            name: user.name,
+                    //            login_name: user.login_name,
+                    //            email: user.email,
+                    //            description: user.description,
+                    //            country: user.country,
+                    //            avatar: user.avatar,
+                    //            title: 'Login',
+                    //            year: new Date().getFullYear(),
+                    //            message: 'Your login page',
+                    //            //to be replaced with user object
+                    //            isLoggedIn: req.session.isLoggedIn
+                    //        });
+                    //        //res.session.user = user;
+                    //        console.log(user);
+                    //    } else {
+                    //        res.render('login.jade', {error: ' Invalid username or password.'});
+                    //    }
+                    //} else {
+                    //    res.render('login.jade', {error: ' Invalid username or password.'});
                     }
                     connection.release();
                 });
             });
         }
         else {
-            res.redirect('/profile');
+            res.redirect('/adventures');
         }
     });
 

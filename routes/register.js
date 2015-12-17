@@ -40,7 +40,7 @@ module.exports = function (app,db){
             });
         }
         else{
-            res.redirect('/profile');
+            res.redirect('/adventures');
         }
     });
 
