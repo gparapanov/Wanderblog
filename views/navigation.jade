@@ -42,13 +42,17 @@
         form.navbar-form.navbar-left.form-group(method='post', role='search', action='/search')
             .form-group
                 input.form-control(type='text', placeholder='Search for...', name='searchedFor', required=true)
-                button.button.btn.btn-default(type='submit' ,value='Go') Search
+            button.button.btn.btn-default(type='submit' ,value='Go') Search
 
 
         nav.navbar-nav.navbar-right.btn-toolbar.btn-inline
-            a.btn.btn-primary.btn-responsive.pull-right.btn-lg.outline(href='/login', role='button') Sign In
-            a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/register', role='button') Sign Up
-
+            if (!locals.isLoggedIn)
+                a.btn.btn-primary.btn-responsive.pull-right.btn-lg.outline(href='/login', role='button') Sign In
+                a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/register', role='button') Sign Up
+            else
+                a.btn.btn-danger.btn-responsive.pull-right.btn-lg.outline(href='/logout', role='button') Log Out
+                a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/adventureForm', role='button') New Adventure
+                a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/profile/#{locals.isLoggedIn}', role='button') My Profile
                 //this to be loaded on login
             //li.dropdown
             //    a.dropdown-toggle(href='#', data-toggle='dropdown')

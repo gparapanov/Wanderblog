@@ -81,6 +81,8 @@ body {
     background: none;
     padding: 12px 22px;
 }
+
+
 .btn-primary.outline {
     border: 2px solid green;
     color: green;
@@ -112,6 +114,45 @@ body {
     color: #007299;
     box-shadow: none;
 }
+
+.btn.outline {
+    background: none;
+    padding: 12px 22px;
+}
+
+
+.btn-primary.outline {
+    border: 2px solid green;
+    color: green;
+    background: white;
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: white;
+    border-color: white;
+    background: green;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+
+.btn-danger.outline {
+    border: 2px solid whitesmoke;
+    color: white;
+    background: red;
+}
+.btn-danger.outline:hover, .btn-danger.outline:focus, .btn-danger.outline:active, .btn-danger.outline.active, .open > .dropdown-toggle.btn-danger {
+    color: red;
+    border-color: red;
+    background: whitesmoke ;
+}
+.btn-danger.outline:active, .btn-danger.outline.active {
+    border-color: red;
+    color: whitesmoke;
+    box-shadow: none;
+}
+
 
 .navbar.btn-toolbar{
     padding-right: 5px;

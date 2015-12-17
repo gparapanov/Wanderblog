@@ -22,30 +22,64 @@ module.exports = function (app,db) {
         }
     });
 
+
     app.get('/profile/:id', function (req, res) {
         if(req.session.isLoggedIn) {
             var id = req.params.id;
             var idString = String(id)
             console.log(idString);
-            var ifHasPosts = "SELECT u.name, u.id, u.description, u.type, u.avatar, u.email, u.login_name, u.country, a.title, a.id FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id WHERE u.id =?;";
+            var ifHasPosts = "SELECT u.name, u.id, u.description, u.type, u.avatar, u.email, u.login_name, u.country, u.registered_on, a.title, a.id, c.user_id, c.post_date FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id  INNER JOIN comment as c ON u.id = c.user_id WHERE u.id = ?";
             var userCredentials = "SELECT * from users WHERE id = ?;";
+            var hasComments = "Select*from comment where user_id = ?;";
             var twoQueries = ifHasPosts + userCredentials;
             console.log(twoQueries);
 
             db.getConnection(function (err, connection) {
                 // Use the connection
+                var comments = 0;
+
+                connection.query(hasComments, idString, function (err, rows) {
+
+                    if (rows.length != 0) {
+                        for (i = 0; i < rows.length; i++) {
+                            //console.log(rows[i].title)
+                            if (rows[i].post_date != null) {
+                                comments++;
+                            }
+
+                        }
+                        //res.render('profile.jade', {commentsAmount : comments});
+                    }
+                });
+
                 connection.query(ifHasPosts, idString, function (err, rows) {
                     console.log(rows);
                     var adventures = [];
+
                     if (rows.length != 0) {
                         for (i = 0; i < rows.length; i++) {
                             //console.log(rows[i].title)
                             if (rows[i].title != null) {
                                 adventures.push({title: rows[i].title, id: rows[i].id});
                             }
+
                         }
                         console.log(adventures);
-                        //return rows;
+                        var membershipDate = rows[0].registered_on;
+                        var today = new Date();
+                        var oneDay = 24*60*60*1000;
+                        var diffDays = Math.round(Math.abs((membershipDate.getTime() - today.getTime())/(oneDay)));
+                        //var newDate = function mysqlDate(){
+                        //    var regDate = membership.substring()
+                        //    var today = new Dax   te();
+                        //    today = today.toISOString().split('T')[0];
+                        //    console.log(today);
+                        //    return membership.toISOString().split('T')[0];
+                        //}
+                        console.log(diffDays);
+                        //console.log(newDate());
+                            //return rows;
+
                         res.render('profile.jade', {
                             //user credentials
                             type: rows[0].type,
@@ -58,10 +92,12 @@ module.exports = function (app,db) {
                             //user posts
                             adventures: adventures,
                             title: 'Profile',
-                            year: new Date().getFullYear(),
+                            membership: diffDays,
                             message: 'Profile page',
+                            commentsAmount : comments,
                             isLoggedIn: req.session.isLoggedIn
                         });
+                        console.log(comments);
                     }
                     else {
                         connection.query(userCredentials, idString, function (err, rows) {
@@ -76,8 +112,9 @@ module.exports = function (app,db) {
                                 avatar: rows[0].avatar,
                                 //user posts
                                 adventures: adventures,
+                                commentsAmount : comments,
                                 title: 'Profile',
-                                year: new Date().getFullYear(),
+                                year: diffDays,
                                 message: 'Profile page',
                                 isLoggedIn: req.session.isLoggedIn
                             });
