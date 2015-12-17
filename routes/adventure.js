@@ -43,8 +43,11 @@ module.exports = function (app, db) {
                                     tags = tags.concat("#" + rows[i].name);
                                 }
                                 console.log(tags);
+                                var scoreString="select avg(score) as score from rating where adventure_id=";
                                 connection.query(scoreString+adventureid, function (err, rows) {
                                     if (err) throw err;
+                                    var advRating="";
+
                                     //console.log(rows[0].score);
                                     advRating=advRating.concat(rows[0].score);
                                     res.render('adventure', {
@@ -62,10 +65,9 @@ module.exports = function (app, db) {
                                     });
                                 });
                             });
-                            var advRating="";
-                            var scoreString="select avg(score) as score from rating where adventure_id=";
 
-                            console.log(advRating);
+
+                            //console.log(advRating);
 
 
                             connection.release();
