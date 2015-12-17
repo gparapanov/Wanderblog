@@ -43,8 +43,16 @@ module.exports = function (app, db) {
                                     tags = tags.concat("#" + rows[i].name);
                                 }
                                 console.log(tags);
+                                var scoreString="select avg(score) as score from rating where adventure_id=";
                                 connection.query(scoreString+adventureid, function (err, rows) {
                                     if (err) throw err;
+                                    var advRating="";
+                                    var leadText=content.split(".");
+                                    var rand1=Math.floor((Math.random() * 4) + 1);
+                                    var leadDisplay=[];
+                                    for(var i=rand1;i<rand1+3;i++){
+                                        leadDisplay.push('"'+leadText[i]+'"');
+                                    }
                                     //console.log(rows[0].score);
                                     advRating=advRating.concat(rows[0].score);
                                     res.render('adventure', {
@@ -56,16 +64,16 @@ module.exports = function (app, db) {
                                         post_date: post_date,
                                         comments: comments,
                                         ratings: advRating,
+                                        leadDisplay:leadDisplay,
                                         //locationLat:locationLat,
                                         //locationLon:locationLon,
                                         isLoggedIn: req.session.isLoggedIn
                                     });
                                 });
                             });
-                            var advRating="";
-                            var scoreString="select avg(score) as score from rating where adventure_id=";
 
-                            console.log(advRating);
+
+                            //console.log(advRating);
 
 
                             connection.release();
