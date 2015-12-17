@@ -240,8 +240,8 @@ body {
 }
 
 *[role="postform"] {
-    max-width: 830px;
-    height: 700px;
+    max-width: 1100px;
+    height: 1100px;
     padding: 15px;
     margin: 0 auto;
     font-family: 'Lato';
@@ -483,5 +483,15 @@ span.tags {
     -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
     box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
     border: solid 1px #cbc9c9;
+}
+
+.div3{
+    height: 100px !important;
+}
+
+.resp-img{
+    height: 70%;
+    width: 70%;
+    margin: 0 auto;
 }
 
