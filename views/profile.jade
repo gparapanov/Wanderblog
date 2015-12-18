@@ -24,8 +24,8 @@ block content
                                         |  #{email}
                                     p
                                         strong Adventures:
-                                             if locals.adventures
-                                                -each index in adventures
+                                             if adventures
+                                                each index in adventures
                                                     .adventure-link
                                                         a.span.label.label-info.tags(href ='/adventure/#{index.id}') #{index.title}
                                              else

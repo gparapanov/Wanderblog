@@ -31,15 +31,15 @@ module.exports = function (app,db) {
             var ifHasPosts = "SELECT u.name, u.id, u.description, u.type, u.avatar, u.email, u.login_name, u.country, u.registered_on, a.title, a.id, c.user_id, c.post_date FROM users as u INNER JOIN adventure AS a ON u.id = a.user_id  INNER JOIN comment as c ON u.id = c.user_id WHERE u.id = ?";
             var userCredentials = "SELECT * from users WHERE id = ?;";
             var hasComments = "Select*from comment where user_id = ?;";
+            var hasAdventure = "Select*from adventure where user_id = ?;";
             var twoQueries = ifHasPosts + userCredentials;
-            console.log(twoQueries);
 
             db.getConnection(function (err, connection) {
                 // Use the connection
                 var comments = 0;
-
+                var adventures = [];
+                //check amount of comments
                 connection.query(hasComments, idString, function (err, rows) {
-
                     if (rows.length != 0) {
                         for (i = 0; i < rows.length; i++) {
                             //console.log(rows[i].title)
@@ -48,13 +48,10 @@ module.exports = function (app,db) {
                             }
 
                         }
-                        //res.render('profile.jade', {commentsAmount : comments});
                     }
                 });
-
-                connection.query(ifHasPosts, idString, function (err, rows) {
-                    console.log(rows);
-                    var adventures = [];
+                //check amount of adventures//store them
+                connection.query(hasAdventure, idString, function (err, rows) {
 
                     if (rows.length != 0) {
                         for (i = 0; i < rows.length; i++) {
@@ -64,21 +61,19 @@ module.exports = function (app,db) {
                             }
 
                         }
+                    }
+                });
+
+                connection.query(ifHasPosts, idString, function (err, rows) {
+
+                    if (rows.length != 0) {
+                        console.log("ADVENTURES 1");
                         console.log(adventures);
                         var membershipDate = rows[0].registered_on;
                         var today = new Date();
                         var oneDay = 24*60*60*1000;
                         var diffDays = Math.round(Math.abs((membershipDate.getTime() - today.getTime())/(oneDay)));
-                        //var newDate = function mysqlDate(){
-                        //    var regDate = membership.substring()
-                        //    var today = new Dax   te();
-                        //    today = today.toISOString().split('T')[0];
-                        //    console.log(today);
-                        //    return membership.toISOString().split('T')[0];
-                        //}
-                        console.log(diffDays);
-                        //console.log(newDate());
-                            //return rows;
+
 
                         res.render('profile.jade', {
                             //user credentials
@@ -97,7 +92,6 @@ module.exports = function (app,db) {
                             commentsAmount : comments,
                             isLoggedIn: req.session.isLoggedIn
                         });
-                        console.log(comments);
                     }
                     else {
                         connection.query(userCredentials, idString, function (err, rows) {
@@ -121,11 +115,10 @@ module.exports = function (app,db) {
                         });
                         connection.release();
                     }
-                });
+                });connection.release();
             });
         }
         else{
-            // + flash message suppose to be loaded "U need to be logged  to see this pag"
             res.redirect('/');
         }
 
