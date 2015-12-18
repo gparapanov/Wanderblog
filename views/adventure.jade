@@ -29,13 +29,10 @@ block content
                 // Preview Image
                 hr
                 // Post Content
-                p.lead(style='font-size:20px;')
+                p.lead(style='font-size:20px;') #{content}
+
                     //#{leadDisplay}
-                    each val in leadDisplay
-                        span= val
                     //span Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?
-                p.adventure-description
-                    | #{content}
                 p.adventure-map0
                     iframe(width='900', height='370', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src="https://maps.google.com/maps?q=#{location}&hl=en;z=10&output=embed")
                     br
@@ -45,12 +42,13 @@ block content
                 hr
                 // Blog Comments
                 // Comments Form
-                .well
-                    h4 Leave a Comment:
-                    form(role='form' method="post")
-                        .form-group
-                            textarea.form-control(name="commText",rows='3')
-                        button.btn.btn-primary(name="commentSubmit") Submit
+                if(locals.isLoggedIn)
+                    .well
+                        h4 Leave a Comment:
+                        form(role='form' method="post")
+                            .form-group
+                                textarea.form-control(name="commText",rows='3')
+                            button.btn.btn-primary(name="commentSubmit") Submit
                 hr
                 // Posted Comments
                 // Comment

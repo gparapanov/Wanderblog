@@ -1,13 +1,7 @@
 module.exports = function (app, db) {
     var adventureid;
     app.get('/adventure/:id', function (req, res) {
-        //app.get('adventures/:id', function( req, res){
-        //...This will allow us to load a page wanderblog.bla/adventures/1 <- this will show a post with id 1.
-
-        //uncomment if and else statements to use session
-        //if (req.session.isLoggedIn) {
             adventureid = req.params.id;
-
             var title, content, location, user_name, post_date;
             var queryString = "SELECT * FROM adventure,users where adventure.user_id=users.id and adventure.id= " + adventureid;
             var resultsFunc = function () {
@@ -68,74 +62,66 @@ module.exports = function (app, db) {
                                         leadDisplay:leadDisplay,
                                         //locationLat:locationLat,
                                         //locationLon:locationLon,
-                                        isLoggedIn: req.session.isLoggedIn
+                                        isLoggedIn: req.session.isLoggedIn,
+                                        login_name: req.session.login_name,
+                                        type: req.session.type
                                     });
                                 });
                             });
                             //console.log(advRating);
                             connection.release();
                         });
-
                     });
                 });
-
-                //res.render('adventure', {title: title1,content: content,location: location,user_name: user_name,post_date:post_date});
             }
             resultsFunc();
-        //}
-        //else{
-            // add message that you need to be signed in to see this page
-           // res.redirect('/')
-        //}
-        //console.log(location);
-        //in jade you call variable fancy title this way - > #{fancyTitle}
     });
     app.post('/adventure/:id', function (req, res) {
-        var comment=req.body.commText;
-        var dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        var adventureid = req.params.id;
-        var commQuery={
-            post_date:dateNow,
-            content:comment,
-            user_id:req.session.isLoggedIn,//later get this from the session
-            adventure_id:adventureid
-        };
-        console.log("aaaa");
-        db.getConnection(function (err, connection) {
-            connection.query('insert into comment set ?', commQuery, function (err, result) {
-                //catch mysql connection error
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log("bbb");
-                connection.release();
+        if(req.session.isLoggedIn && (req.session.type === "Author" || req.session.type ==="Admin")) {
+            var comment = req.body.commText;
+            var dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            var adventureid = req.params.id;
+            var commQuery = {
+                post_date: dateNow,
+                content: comment,
+                user_id: req.session.isLoggedIn,//later get this from the session
+                adventure_id: adventureid
+            };
+            db.getConnection(function (err, connection) {
+                connection.query('insert into comment set ?', commQuery, function (err, result) {
+                    //catch mysql connection error
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    connection.release();
+                });
+                res.redirect('back');
             });
-            res.redirect('back');
-        });
+        }
     });
     app.post('/ratings', function (req, res) {
-        var score = req.body.rating;
-        console.log(req.session.isLoggedIn);
+        if(req.session.isLoggedIn) {
+            var score = req.body.rating;
+            //console.log(window.location.href );
+            var rateValue = {
+                adventure_id: adventureid,
+                user_id: req.session.isLoggedIn,
+                score: req.body.rating
+            };
 
-        //console.log(window.location.href );
-        var rateValue = {
-            adventure_id: adventureid,
-            user_id: req.session.isLoggedIn,
-            score: req.body.rating
-        };
-
-        db.getConnection(function (err, connection) {
-            connection.query('insert into rating set ?', rateValue, function (err, result) {
-                //catch mysql connection error
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log("bbb");
-                connection.release();
+            db.getConnection(function (err, connection) {
+                connection.query('insert into rating set ?', rateValue, function (err, result) {
+                    //catch mysql connection error
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    console.log("bbb");
+                    connection.release();
+                });
+                res.redirect('back');
             });
-            res.redirect('back');
-        });
+        }
     });
 };

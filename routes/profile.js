@@ -65,10 +65,7 @@ module.exports = function (app,db) {
                 });
 
                 connection.query(ifHasPosts, idString, function (err, rows) {
-
                     if (rows.length != 0) {
-                        console.log("ADVENTURES 1");
-                        console.log(adventures);
                         var membershipDate = rows[0].registered_on;
                         var today = new Date();
                         var oneDay = 24*60*60*1000;
@@ -113,7 +110,7 @@ module.exports = function (app,db) {
                                 isLoggedIn: req.session.isLoggedIn
                             });
                         });
-                        connection.release();
+
                     }
                 });connection.release();
             });

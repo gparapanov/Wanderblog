@@ -35,5 +35,6 @@
                 a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/register', role='button') Sign Up
             else
                 a.btn.btn-danger.btn-responsive.pull-right.btn-lg.outline(href='/logout', role='button') Log Out
-                a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/adventureForm', role='button') New Adventure
+                if(locals.type === "Author"||locals.type == "Admin")
+                    a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/adventureForm', role='button') New Adventure
                 a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/profile/#{locals.isLoggedIn}', role='button') My Profile
