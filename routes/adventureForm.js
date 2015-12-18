@@ -1,10 +1,44 @@
 
-module.exports = function (app,db) {
+module.exports = function (app,db,path,fs,fse,multer) {
+
+    //multer
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, './uploads')
+        },
+        filename: function (req, file, cb) {
+            cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
+        }
+    });
+
+    function moveFiles(req, res, next){
+        var to_path = './uploads/2'; // change the number 2 to user id
+        fs.exists(to_path, function(exists){
+            if(!exists){
+                fse.mkdirs(to_path, function(err){
+                    if(err){
+                        res.send("Error uploading files!");
+                    }
+                });
+            }
+        });
+        for(var i = 0; i < req.files.length; i++){
+            var c_file = req.files[i];
+            fse.move('./uploads/'+c_file.filename, to_path+'/'+c_file.filename, function(err){
+                if(err){
+                    res.send("Error uploading files!");
+                }
+            });
+        }
+        next();
+    }
+    var upload = multer({storage: storage});
+
     app.get('/adventureForm', function (req, res) {
         res.render('adventureForm.jade');
     });
 
-    app.post('/adventureForm', function (req, res) {
+    app.post('/adventureForm', upload.array('pictures',5), moveFiles, function (req, res) {
         //res.json(req.body);
         //res.render('register.jade');
        // if(req.session.isLoggedIn) {
@@ -73,8 +107,4 @@ module.exports = function (app,db) {
            // res.redirect('/');
         //}
     });
-
-
-
-
 }

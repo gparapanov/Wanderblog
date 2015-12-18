@@ -2,12 +2,14 @@
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var multer = require('multer');
+var fs = require('fs');
+var fse = require('fs-extra');
 
 //Body-parser
 var bodyParser = require('body-parser');
 
 //cookies
-var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
@@ -20,7 +22,6 @@ var favicon = require('serve-favicon');
 app.use(bodyParser.urlencoded({extended: true}));
 //cookies
 app.use(cookieParser());
-app.use(multer());
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -66,7 +67,7 @@ require('./routes/profile.js')(app,db);
 require('./routes/register.js')(app,db);
 require('./routes/search.js')(app,db);
 require('./routes/adventures.js')(app,db);
-require('./routes/adventureForm.js')(app,db);
+require('./routes/adventureForm.js')(app,db,path,fs,fse,multer);
 require('./routes/adventure.js')(app,db);
 
 http.createServer(app).listen(app.get('port'), function () {

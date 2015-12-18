@@ -6,7 +6,7 @@ extends layout
 block content
    - var title = 'New Adventure'
    .container.post-box.post-form
-      form.form-horizontal.col-md-12(role='postform' method='post')
+      form.form-horizontal.col-md-12(role='postform' method='post', enctype='multipart/form-data')
          h2.form-post-heading Create Adventure
          fieldset
             // Text input
@@ -51,15 +51,12 @@ block content
 
                         }
                      });
-
-            // File Button
             .form-group
-               form(method='post', enctype='multipart/form-data', action='/upload')
-                  label.control-label.col-md-6 Upload Pictures
+               label.control-label.col-md-6 Upload Pictures
                   .col-md-6.col-md-offset-5
-                     input.input-file(type='file', name='file')
-                     input.input-file.btn.btn-default(type='submit', value='Submit')
-
+                     input.input-file(type='file', name='pictures', accept='image/*')
+                     input.input-file(type='file', name='pictures', accept='image/*')
+                     input.input-file(type='file', name='pictures', accept='image/*')
             // Button (Double)
             .form-group
                //label.col-md-4.control-label(for='adventure-back')
