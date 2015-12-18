@@ -104,26 +104,38 @@ module.exports = function (app, db) {
     });
     app.post('/ratings', function (req, res) {
         if(req.session.isLoggedIn) {
-            var score = req.body.rating;
-            //console.log(window.location.href );
-            var rateValue = {
-                adventure_id: adventureid,
-                user_id: req.session.isLoggedIn,
-                score: req.body.rating
-            };
-
             db.getConnection(function (err, connection) {
-                connection.query('insert into rating set ?', rateValue, function (err, result) {
-                    //catch mysql connection error
-                    if (err) {
-                        console.error(err);
-                        return;
+                connection.query('select user_id from adventure where id='+ adventureid, function (err, rows) {
+                    if(rows[0].user_id!=req.session.isLoggedIn){
+                        var score = req.body.rating;
+                        //console.log(window.location.href );
+                        var rateValue = {
+                            adventure_id: adventureid,
+                            user_id: req.session.isLoggedIn,
+                            score: req.body.rating
+                        };
+                        db.getConnection(function (err, connection) {
+                            connection.query('insert ignore into rating set ?', rateValue, function (err, result) {
+                                //catch mysql connection error
+                                if (err) {
+                                    console.error(err);
+                                    return;
+                                }
+                                //console.log("bbb");
+
+                            });
+                            res.redirect('back');
+                        });
+                    }else{
+                        console.log("You cant vote for your own adventure!");
+                        res.redirect('back');
                     }
-                    console.log("bbb");
-                    connection.release();
                 });
-                res.redirect('back');
+                connection.release();
             });
+
+
+
         }
     });
 };
