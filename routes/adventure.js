@@ -2,7 +2,7 @@ module.exports = function (app, db) {
     var adventureid;
     app.get('/adventure/:id', function (req, res) {
             adventureid = req.params.id;
-            var title, content, location, user_name, post_date;
+            var title, content, location, user_name, post_date,user_id;
             var queryString = "SELECT * FROM adventure,users where adventure.user_id=users.id and adventure.id= " + adventureid;
             var resultsFunc = function () {
                 db.getConnection(function (err, connection) {
@@ -17,6 +17,7 @@ module.exports = function (app, db) {
                             location = rows[0].location;
                             user_name = rows[0].login_name;
                             post_date = rows[0].post_date;
+                            user_id=rows[0].user_id;
                             var separatorIndex=location.indexOf("!");
                             var locationLat=location.substring(0,separatorIndex);
                             var locationLon=location.substring(separatorIndex+1);
@@ -56,6 +57,7 @@ module.exports = function (app, db) {
                                         tags:tags,
                                         location: location,
                                         user_name: user_name,
+                                        user_id:user_id,
                                         post_date: post_date,
                                         comments: comments,
                                         ratings: advRating,
