@@ -1,19 +1,65 @@
 extends layout
 
 block content
-  h2 #{title}
-  h3 #{message}
-  address
-    | One Microsoft Way
-    br
-    | Redmond, WA 98052-6399
-    br
-    abbr(title='Phone') P: 
-    | 425.555.0100
+  .jumbotron.jumbotron-sm
+    .container
+      .row
+        .col-sm-12.col-lg-12
+          h1.h1
+            | Contact {Fruitato} Team
+            small
+  .container
+    .row
+      .col-md-8
+        .well.well-sm
+          form
+            .row
+              .col-md-6
+                .form-group
+                  label(for='name')
+                    | Name
+                  input#name.form-control(type='text', placeholder='Enter name', required='required')
+                .form-group
+                  label(for='email')
+                    | Email Address
+                  .input-group
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-envelope
+                    input#email.form-control(type='email', placeholder='Enter email', required='required')
+                .form-group
+                  label(for='subject')
+                    | Subject
+                  select#subject.form-control(name='subject', required='required')
+                    option(value='na', selected='') Choose One:
+                    option(value='service') General Customer Service
+                    option(value='suggestions') Suggestions
+                    option(value='product') Product Support
+              .col-md-6
+                .form-group
+                  label(for='name')
+                    | Message
+                  textarea#message.form-control(name='message', rows='9', cols='25', required='required', placeholder='Message')
+              .col-md-12
+                button#btnContactUs.btn.btn-primary.pull-right(type='submit')
+                  | Send Message
+      .col-md-4
+        form
+          legend
+            span.glyphicon.glyphicon-globe
+            |  Our Address
+            br
+            strong Robert Gordon University
+            br
+            br
+            |                 Garthdee Road, Aberdee
+            br
+            |                 Aberdeen City AB10 7QB
+            br
+            abbr(title='Phone')
+              | P:
+            |                 01224 262000
+          address
+            strong Fruitato Team
+            br
+            a(href='mailto:1204969@rgu.ac.uk') Mail
 
-  address
-    strong Support: 
-    a(href='mailto:Support@example.com') Support@example.com
-    br
-    strong Marketing: 
-    a(href='mailto:Marketing@example.com') Marketing@example.com

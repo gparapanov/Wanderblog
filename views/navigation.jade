@@ -4,8 +4,6 @@
 //                    input.form-control(type='text', placeholder='Search for...', name='searchedFor', required=true)
 //                    input.btn.btn-default(type='submit' value='Go')
 
-
-
 .navbar.navbar-default.nav-style
     .navbar-header
         button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
@@ -22,23 +20,6 @@
                 a(href='') Members
             li
                 a(href='/contact') Creators
-            li.dropdown
-                a.dropdown-toggle(href='#', data-toggle='dropdown')
-                    | Dropdown
-                    b.caret
-                ul.dropdown-menu
-                    li
-                        a(href='#') Action
-                    li
-                        a(href='#') Another action
-                    li
-                        a(href='#') Something else here
-                    li.divider
-                    li.dropdown-header Dropdown header
-                    li
-                        a(href='#') Separated link
-                    li
-                        a(href='#') One more separated link
         form.navbar-form.navbar-left.form-group(method='post', role='search', action='/search')
             .form-group
                 input.form-control(type='text', placeholder='Search for...', name='searchedFor', required=true)
@@ -53,18 +34,3 @@
                 a.btn.btn-danger.btn-responsive.pull-right.btn-lg.outline(href='/logout', role='button') Log Out
                 a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/adventureForm', role='button') New Adventure
                 a.btn.btn-info.btn-responsive.pull-right.btn-lg.outline(href='/profile/#{locals.isLoggedIn}', role='button') My Profile
-                //this to be loaded on login
-            //li.dropdown
-            //    a.dropdown-toggle(href='#', data-toggle='dropdown')
-            //        | Dropdown
-            //        b.caret
-            //    ul.dropdown-menu
-            //        li
-            //            a(href='#') Action
-            //        li
-            //            a(href='#') Another action
-            //        li
-            //            a(href='#') Something else here
-            //        li.divider
-            //        li
-            //            a(href='#') Separated link
