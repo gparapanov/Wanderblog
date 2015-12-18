@@ -34,6 +34,7 @@ module.exports = function (app, db) {
                                     login_name: rows1[i].login_name
                                 };
                                 comments.push((adv));
+                                console.log(comments);
                             }
                             var tagsString="select name from adventure_tag,tag where adventure_tag.tag_id=tag.id and adventure_tag.adventure_id=";
                             var tags="";
@@ -71,13 +72,10 @@ module.exports = function (app, db) {
                                     });
                                 });
                             });
-
-
                             //console.log(advRating);
-
-
                             connection.release();
                         });
+
                     });
                 });
 
