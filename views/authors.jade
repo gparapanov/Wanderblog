@@ -1,0 +1,16 @@
+//
+   Created by Georgi on 19.12.2015 ã..
+
+extends layout
+block content
+   - var title = 'Authors Page'
+   .container
+      .col-md-10
+         p
+            strong Authors:
+               if authors
+                  each index in authors
+                     .adventure-link
+                        a.span.label.label-info.tags(href ='/profile/#{index.id}') #{index.name}
+               else
+                  p User has not added any adventures.
