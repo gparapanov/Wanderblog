@@ -1,3 +1,22 @@
 ﻿extends layout
 
-
+block content
+    //each index in topAdventures
+    //    .adventure-link
+    //        a.span.label.label-info.tags(href ='/adventure/#{i}') #{index.adv_id} #{index.adv_title}
+    .container
+        .row
+            .col-lg-12
+                .db-wrapper
+                    .top-5
+                        ul
+                            li.price
+                                i.fa.fa-globe.fa-6
+                                    br
+                                    p TOP 5 Adventures
+                            each index in topAdventures
+                                li
+                                    a(href='/adventure/#{index.adv_id}') #{index.adv_title}
+                                    br
+                                    strong Score:
+                                    strong  #{index.adv_score}
