@@ -15,6 +15,7 @@ module.exports = function(app,db){
                         console.error("Error connecting: " + err.stack);
                         return;
                     }
+
                     var adventures = [];
                     for (i = 0; i < rows.length; i++) {
                             var adv = {

@@ -16,8 +16,9 @@
         ul.nav.navbar-nav
             li.active
                 a(href='/adventures') Adventures
-            li
-                a(href='') Members
+            if (locals.isLoggedIn)
+                li
+                    a(href='') Members
             li
                 a(href='/contact') Creators
         form.navbar-form.navbar-left.form-group(method='post', role='search', action='/search')
