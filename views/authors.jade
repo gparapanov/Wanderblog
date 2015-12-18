@@ -11,6 +11,6 @@ block content
                if authors
                   each index in authors
                      .adventure-link
-                        a.span.label.label-info.tags(href ='/profile/#{index.auth_id}') #{index.name}
+                        a.span.label.label-info.tags(href ='/profile/#{index.auth_id}') #{index.name} aka #{index.login_name}
                else
                   p User has not added any adventures.
