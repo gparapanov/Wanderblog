@@ -1,4 +1,4 @@
-﻿﻿var express = require('express');
+﻿var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
@@ -30,7 +30,6 @@ app.use(session({
     secret: 'uwotm8'
 }));
 
-var sess;
 var $ = require('jQuery');
 // all environments
 app.set('port', process.env.PORT || 8011);
@@ -52,12 +51,15 @@ app.locals.pretty = true;
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
-//georgi
-//ROUTES
-app.get('/', routes.index);
-app.get('/about', routes.about);
-app.get('/contact', routes.contact);
 
+//ROUTES
+
+//app.get('/about', routes.about);
+//app.get('/contact', routes.contact);
+
+require('./routes/index.js')(app,db);
+require('./routes/contact.js')(app,db);
+require('./routes/about.js')(app,db);
 require('./routes/comment.js')(app,db);
 require('./routes/login.js')(app,db);
 require('./routes/profile.js')(app,db);

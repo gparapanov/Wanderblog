@@ -14,13 +14,15 @@
             img(style='max-width:70px; max-height:70px;',src='/stylesheets/images/wanderlogo2.png',href='/')
     .navbar-collapse.collapse.navbar-responsive-collapse
         ul.nav.navbar-nav
+            li
+                a(href='/about') About
+            li
+                a(href='/contact') Creators
             li.active
                 a(href='/adventures') Adventures
             if (locals.isLoggedIn)
                 li
                     a(href='') Members
-            li
-                a(href='/contact') Creators
         form.navbar-form.navbar-left.form-group(method='post', role='search', action='/search')
             .form-group
                 input.form-control(type='text', placeholder='Search for...', name='searchedFor', required=true)
