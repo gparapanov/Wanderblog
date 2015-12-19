@@ -8,7 +8,7 @@ block content
         form.form-signin(method='post')
             h2.form-signin-heading Please sign in
             label.sr-only(for='inputLogin') Login name
-            input#inputLogin.form-control(name='login_name', pattern="[A-Za-z]{4,}" type='login_name', placeholder='Login name', required='', autofocus='')
+            input#inputLogin.form-control(name='login_name', pattern="[A-Za-z0-9]{4,}" type='login_name', placeholder='Login name', required='', autofocus='')
             label.sr-only(for='inputPassword') Password
             input#inputPassword.form-control(name='password',type='password', placeholder='Password', required='')
             .checkbox

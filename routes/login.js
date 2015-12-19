@@ -37,6 +37,8 @@ module.exports = function (app, db) {
                         req.session.login_name = rows[0].login_name;
                         req.session.type = rows[0].type;
                         res.redirect('/adventures');
+                    }else{
+                        res.redirect('back');
                     }
 
                 });
