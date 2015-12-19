@@ -1,5 +1,16 @@
 ﻿# Wander blog 
-
+Dummy accounts added for John:
+type    name        username    email                           password
+admin	John Smith	admin123	nunc.sed.pe1d1e@imperdiet.co.uk	123456
+admin	Dave Smith	admin1234	nunc.sed.pe1d1e1@imperdiet.co.uk	123456
+reader	Pete Smith	psmith	nunc.sed.pe11d1e@imperdiet.co.uk	123456
+reader	Frank Longbottom	flongb	nunc.sed2.pe1d1e@imperdiet.co.uk	123456
+reader	Harry Potter	hpotter	nunc.sed.p3e1d1e@imperdiet.co.uk	123456
+reader	Ron Weasley	rweasley	nunc.sed.p4e1d1e@imperdiet.co.uk	123456
+reader	Severus Snape	ssnape	nunc.sed.p5e1d1e@imperdiet.co.uk	123456
+author	Donald Trump	dtrump	nunc.sed.pe61d1e@imperdiet.co.uk	123456
+author	Jeb Bush	jebbush	nunc.sed.pe17d1e@imperdiet.co.uk	123456
+author	Barack Obama	mrpresident	nunc.8sed.pe1d1e@imperdiet.co.uk	123456
 
 Wander blog is  a blog engine designed for travellers who want to share their experience with their fans.
 
