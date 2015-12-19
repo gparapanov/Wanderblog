@@ -12,22 +12,16 @@ module.exports = function (app,db,path,fs,fse,multer) {
     });
 
     function moveFiles(req, res, next){
-        var to_path = './uploads/2'; // change the number 2 to user id
+        var to_path = './uploads/' + req.session.isLoggedIn;
         fs.exists(to_path, function(exists){
             if(!exists){
                 fse.mkdirs(to_path, function(err){
-                    if(err){
-                        res.send("Error uploading files!");
-                    }
                 });
             }
         });
         for(var i = 0; i < req.files.length; i++){
             var c_file = req.files[i];
             fse.move('./uploads/'+c_file.filename, to_path+'/'+c_file.filename, function(err){
-                if(err){
-                    res.send("Error uploading files!");
-                }
             });
         }
         next();
@@ -38,7 +32,7 @@ module.exports = function (app,db,path,fs,fse,multer) {
         res.render('adventureForm.jade',{isLoggedIn: req.session.isLoggedIn, type: req.session.type ,login_name:req.session.login_name} );
     });
 
-    app.post('/adventureForm', upload.array('pictures',5), moveFiles, function (req, res) {
+    app.post('/adventureForm', upload.array('pictures',5), function (req, res, next) {
         if((req.session.type === "Author" || req.session.type ==="Admin")) {
             var dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
             var adventure = {
@@ -102,6 +96,6 @@ module.exports = function (app,db,path,fs,fse,multer) {
         else{
             res.redirect('/');
         }
-    });
-
+        next();
+    }, moveFiles);
 }
