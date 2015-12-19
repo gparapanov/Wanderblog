@@ -7,7 +7,8 @@ block content
             //img.media-object(src='http://placehold.it/64x64', alt='')
          .media-body
             h4.media-heading
-               div= val.login_name
+               div
+                  a(href ='/profile/#{user_id}') #{user_name}
                small
                   div=val.post_date
          div=val.content
