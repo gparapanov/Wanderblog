@@ -4,7 +4,7 @@ module.exports = function (app,db,path,fs,fse,multer) {
     //multer
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, './uploads')
+            cb(null, './public/uploads')
         },
         filename: function (req, file, cb) {
             cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
@@ -32,7 +32,7 @@ module.exports = function (app,db,path,fs,fse,multer) {
             };
 
             if(req.files.length > 0) {
-                var to_path = './uploads/' + req.session.isLoggedIn;
+                var to_path = './public/uploads/' + req.session.isLoggedIn;
                 fs.exists(to_path, function (exists) {
                     if (!exists) {
                         fse.mkdirs(to_path, function (err) {
@@ -41,7 +41,7 @@ module.exports = function (app,db,path,fs,fse,multer) {
                 });
                 for (var i = 0; i < req.files.length; i++) {
                     var c_file = req.files[i];
-                    fse.move('./uploads/' + c_file.filename, to_path + '/' + c_file.filename, function (err) {
+                    fse.move('./public/uploads/' + c_file.filename, to_path + '/' + c_file.filename, function (err) {
                     });
                 }
             }

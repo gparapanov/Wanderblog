@@ -51,22 +51,30 @@ module.exports = function (app, db) {
                                     }
                                     //console.log(rows[0].score);
                                     advRating=advRating.concat(rows[0].score);
-                                    res.render('adventure', {
-                                        title: title,
-                                        content: content,
-                                        tags:tags,
-                                        location: location,
-                                        user_name: user_name,
-                                        user_id:user_id,
-                                        post_date: post_date,
-                                        comments: comments,
-                                        ratings: advRating,
-                                        leadDisplay:leadDisplay,
-                                        //locationLat:locationLat,
-                                        //locationLon:locationLon,
-                                        isLoggedIn: req.session.isLoggedIn,
-                                        login_name: req.session.login_name,
-                                        type: req.session.type
+                                    var pictureString = 'select * from picture where picture.adventure_id=';
+                                    connection.query(pictureString+adventureid+' limit 1', function(err,rows) {
+                                        var picUrl = null;
+                                        if(rows.length > 0){
+                                            picUrl = rows[0].url;
+                                        }
+                                        res.render('adventure', {
+                                            title: title,
+                                            content: content,
+                                            tags: tags,
+                                            location: location,
+                                            user_name: user_name,
+                                            user_id: user_id,
+                                            post_date: post_date,
+                                            comments: comments,
+                                            ratings: advRating,
+                                            leadDisplay: leadDisplay,
+                                            //locationLat:locationLat,
+                                            //locationLon:locationLon,
+                                            isLoggedIn: req.session.isLoggedIn,
+                                            login_name: req.session.login_name,
+                                            type: req.session.type,
+                                            picUrl: picUrl
+                                        });
                                     });
                                 });
                             });
