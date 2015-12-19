@@ -24,7 +24,11 @@ block content
                .col-md-6
                   textarea#tags.form-control(name='adventureTags',placeholder='', required='')
             .form-group
-               label.col-md-4.control-label(for='adventureLocation') Location
+               label.col-md-4.control-label(for='adventureDate') When?
+               .col-md-6
+                  input.form-control.input-md(name="adventureDate", type='date', placeholder='yyyy-mm-dd', min="2000-01-01" required='')
+            .form-group
+               label.col-md-4.control-label(for='adventureLocation') Where?
                .col-md-6
                   input.us3-address.form-control.location-md(name="adventureLocation",type='text', placeholder='', required='')
             .form-group

@@ -11,28 +11,13 @@ module.exports = function (app,db,path,fs,fse,multer) {
         }
     });
 
-    function moveFiles(req, res, next){
-        var to_path = './uploads/' + req.session.isLoggedIn;
-        fs.exists(to_path, function(exists){
-            if(!exists){
-                fse.mkdirs(to_path, function(err){
-                });
-            }
-        });
-        for(var i = 0; i < req.files.length; i++){
-            var c_file = req.files[i];
-            fse.move('./uploads/'+c_file.filename, to_path+'/'+c_file.filename, function(err){
-            });
-        }
-        next();
-    }
     var upload = multer({storage: storage});
 
     app.get('/adventureForm', function (req, res) {
         res.render('adventureForm.jade',{isLoggedIn: req.session.isLoggedIn, type: req.session.type ,login_name:req.session.login_name} );
     });
 
-    app.post('/adventureForm', upload.array('pictures',5), function (req, res, next) {
+    app.post('/adventureForm', upload.array('pictures',5), function (req, res) {
         if((req.session.type === "Author" || req.session.type ==="Admin")) {
             var dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
             var adventure = {
@@ -40,22 +25,56 @@ module.exports = function (app,db,path,fs,fse,multer) {
                 //location: req.body.lat+"!"+req.body.lon,
                 location: req.body.adventureLocation + "",
                 content_text: req.body.adventureContent + "",
-                visit_date: '2014-02-21',
+                visit_date: req.body.adventureDate,
                 post_date: dateNow,
                 user_id: req.session.isLoggedIn
                 //http://logicify.github.io/jquery-locationpicker-plugin/
             };
 
+            if(req.files.length > 0) {
+                var to_path = './uploads/' + req.session.isLoggedIn;
+                fs.exists(to_path, function (exists) {
+                    if (!exists) {
+                        fse.mkdirs(to_path, function (err) {
+                        });
+                    }
+                });
+                for (var i = 0; i < req.files.length; i++) {
+                    var c_file = req.files[i];
+                    fse.move('./uploads/' + c_file.filename, to_path + '/' + c_file.filename, function (err) {
+                    });
+                }
+            }
 
             db.getConnection(function (err, connection) {
                 connection.query('insert into adventure set ?', adventure, function (err, result) {
                     //catch mysql connection error
                     if (err) throw err;
+                    var insertId = result.insertId;
+                    console.log(insertId);
                     connection.release();
+                    if(req.files.length > 0) {
+                        console.log('Files exist!');
+                        db.getConnection(function (err, connection) {
+                            for (var i = 0; i < req.files.length; i++) {
+                                var file = req.files[i];
+                                var picture = {
+                                    adventure_id: insertId,
+                                    user_id: req.session.isLoggedIn,
+                                    url: file.filename
+                                };
+                                console.log("File: "+picture);
+                                connection.query('INSERT INTO picture set ?', picture, function(err,result){
+                                    console.log('Picture added!');
+                                });
+                            }
+                            connection.release();
+                        });
+                    }
+
                 });
-
-
             });
+
             var alltags = req.body.adventureTags + "";
             var tagArray = alltags.split('#');
             db.getConnection(function (err, connection) {
@@ -96,6 +115,5 @@ module.exports = function (app,db,path,fs,fse,multer) {
         else{
             res.redirect('/');
         }
-        next();
-    }, moveFiles);
+    });
 }
