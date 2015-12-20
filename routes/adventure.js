@@ -40,7 +40,7 @@ module.exports = function (app, db) {
                                 }
                                 console.log(tags);
                                 var scoreString="select avg(score) as score from rating where adventure_id=";
-                                connection.query(scoreString+adventureid+ ' group by "adventure_id"', function (err, rows) {
+                                connection.query(scoreString+adventureid, function (err, rows) {
                                     if (err) throw err;
                                     var advRating="";
                                     var leadText=content.split(".");
