@@ -7,11 +7,12 @@
 //
 //};
 
+
 module.exports = function (app, db) {
     //Login
     app.get('/', function (req, res) {
         db.getConnection(function (err, connection) {
-            connection.query("SELECT adventure_id,title, avg(score) as total from rating,adventure where adventure_id=adventure.id group by adventure_id,title order by avg(score) DESC", function (err, rows) {
+            connection.query("SELECT adventure_id,title, avg(score) as total from rating,adventure where adventure_id=adventure.id group by adventure_id,title order by avg(score) DESC;", function (err, rows) {
                 //catch connection error
                 if (err) {
                     console.error("Error connecting: " + err.stack);
@@ -36,5 +37,4 @@ module.exports = function (app, db) {
         });
     });
 }
-
 
