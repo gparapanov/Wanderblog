@@ -105,6 +105,7 @@ module.exports = function (app, db) {
                 user_name:req.session.login_name,
                 adventure_id: adventureid
             };
+            console.log(commQuery);
             db.getConnection(function (err, connection) {
                 connection.query('insert into comment set ?', commQuery, function (err, result) {
                     //catch mysql connection error
