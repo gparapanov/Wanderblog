@@ -33,10 +33,17 @@ module.exports = function (app, db) {
 
                     //var user = req.session;
                     if (rows.length != 0) {
-                        req.session.isLoggedIn = rows[0].id;
-                        req.session.login_name = rows[0].login_name;
-                        req.session.type = rows[0].type;
-                        res.redirect('/adventures');
+                        bcrypt.compare(loginData.password, rows[0].password, function(err, res) {
+                        // res === true
+                            if(res){
+                                req.session.isLoggedIn = rows[0].id;
+                                req.session.login_name = rows[0].login_name;
+                                req.session.type = rows[0].type;
+                                res.redirect('/adventures');
+                            }
+                            
+                        });
+                        
                     }else{
                         res.redirect('back');
                     }
