@@ -23,7 +23,13 @@ block content
                 // Date/Time
                 //img.img-responsive(src='/uploads/#{user_id}/#{picUrl}', alt='')
                 for val in picUrl
-                    img.img-responsive(src='/uploads/#{user_id}/'+val.url, alt='')
+                    //img.img-responsive(src='/uploads/#{user_id}/'+val.url, alt='')
+                    a.fancybox(rel='group', href='/uploads/#{user_id}/'+val.url)
+                        img(src='/uploads/#{user_id}/'+val.url, alt='')
+                script(type='text/javascript').
+                    $(document).ready(function() {
+                    $("a.fancybox").fancybox();
+                    });
                 p
                     span.glyphicon.glyphicon-time
                     |  Posted on #{post_date}
@@ -35,7 +41,7 @@ block content
                 p(style='font-size:15px;') #{content}
                     //#{leadDisplay}
                     //span Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?
-                p.adventure-map0
+                p.adventure-map0.google-maps
                     iframe(width='900', height='370', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src="https://maps.google.com/maps?q=#{location}&hl=en;z=10&output=embed")
                     br
                     small
