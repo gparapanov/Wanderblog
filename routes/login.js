@@ -39,7 +39,6 @@ module.exports = function (app, db) {
                             req.session.type = rows[0].type;
                             res.redirect('/adventures');
                         }else{
-                            alert("Wrong username/password!");
                             res.redirect('back');
                         }
                     }else{
