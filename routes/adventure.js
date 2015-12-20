@@ -101,7 +101,8 @@ module.exports = function (app, db) {
             var commQuery = {
                 post_date: dateNow,
                 content: comment,
-                user_id: req.session.isLoggedIn,//later get this from the session
+                user_id: req.session.isLoggedIn,
+                user_name:req.session.login_name,
                 adventure_id: adventureid
             };
             db.getConnection(function (err, connection) {
