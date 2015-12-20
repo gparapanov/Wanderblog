@@ -32,13 +32,15 @@ module.exports = function (app, db) {
                     }
 
                     //var user = req.session;
-                    if (rows.length != 0 && bcrypt.compareSync(loginData.password, rows[0].password)) {
+                    if (rows.length != 0) {
+                        if(bcrypt.compareSync(loginData.password, rows[0].password)){
                             req.session.isLoggedIn = rows[0].id;
                             req.session.login_name = rows[0].login_name;
                             req.session.type = rows[0].type;
                             res.redirect('/adventures');
-                        });
-                        
+                        }else{
+                            res.redirect('back');
+                        }
                     }else{
                         res.redirect('back');
                     }
