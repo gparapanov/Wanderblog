@@ -1,6 +1,9 @@
 module.exports = function (app, db) {
     //Login
     app.get('/about', function (req, res) {
-        res.render('about.jade');
+        res.render('about',
+                    {isLoggedIn: req.session.isLoggedIn,
+                    login_name: req.session.login_name,
+                    type: req.session.type});
     });
 };
