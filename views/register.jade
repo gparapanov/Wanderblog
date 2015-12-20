@@ -17,6 +17,10 @@ block content
                     input#firstName.form-control(type='text', placeholder='Full Name', autofocus='', name ='name')
                     span.help-block full name eg.: John Doe
             .form-group
+                 label.col-sm-3.control-label(for='name') About you
+                 .col-sm-9
+                     textarea#aboutYou.form-control(type='text', placeholder='About you', autofocus='', name ='aboutYou')
+            .form-group
                 label.col-sm-3.control-label(for='email') Email
                 .col-sm-9
                     input#email.form-control(type='email', placeholder='Email', name ='email')
