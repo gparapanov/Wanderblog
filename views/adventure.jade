@@ -14,9 +14,11 @@ block content
                         include ratings
                 p
                     span Overall score:
-                    - for (var i = 0; i < Math.round(ratings); i++) {
-                        span.fa.fa-star.fa-2x
-                    - }
+                    - if(ratings.length > 0)
+                        - for (var i = 0; i < Math.round(ratings)/2; i++)
+                            span.fa.fa-star.fa-2x
+                    - else
+                        span 'N/A'
 
 
                 hr
