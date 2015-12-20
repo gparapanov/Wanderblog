@@ -48,9 +48,9 @@ block content
                                 a.pull-left(href='#')
                                     img.media-object(src='https://aboutourism.files.wordpress.com/2010/01/adventure-travel-6.jpg')
                                 .media-body
-                                    h4.media-heading(href='http://wanderblog-fruitato.azurewebsites.net/adventure/#{val.adventureId}') #{val.title}
+                                    a.h4.media-heading(href='/adventure/#{val.adventureId}') #{val.title}
                                     p.text-left Adventure from #{val.location}
-                                    p.text-right(href='http://wanderblog-fruitato.azurewebsites.net/profile/#{val.userId}') By #{val.uploader}
+                                    a.text-right(href='/profile/#{val.userId}') By #{val.uploader}
                                     p
                                         | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
                                         | Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
