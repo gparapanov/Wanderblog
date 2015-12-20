@@ -31,7 +31,7 @@ module.exports = function (app, db) {
 
                 connection.release();
                 console.log(top);
-                res.render('index.jade', {topAdventures: top, isLoggedIn: req.session.isLoggedIn});
+                res.render('index.jade', {topAdventures: top, isLoggedIn: req.session.isLoggedIn,type: req.session.type});
                 //console.log(top);
             });
         });
