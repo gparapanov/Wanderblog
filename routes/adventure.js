@@ -95,7 +95,7 @@ module.exports = function (app, db) {
             resultsFunc();
     });
     app.post('/adventure/:id', function (req, res) {
-        if(req.session.isLoggedIn && (req.session.type === "Author" || req.session.type ==="Admin")) {
+        if(req.session.isLoggedIn && (req.session.type === "Author" || req.session.type ==="Admin"|| req.session.type ==="Reader")) {
             var comment = req.body.commText;
             var dateNow = new Date().toISOString().slice(0, 19).replace('T', ' ');
             var adventureid = req.params.id;
@@ -117,6 +117,8 @@ module.exports = function (app, db) {
                 });
                 res.redirect('back');
             });
+        }else{
+            res.redirect('back');
         }
     });
     app.post('/ratings', function (req, res) {
