@@ -133,13 +133,13 @@ module.exports = function (app, db) {
                             connection.query('insert ignore into rating set ?', rateValue, function (err, result) {
                                 //catch mysql connection error
                                 if (err) {
-                                    console.error(err);
+                                    console.log(err);
                                     return;
                                 }
-                                //console.log("bbb");
+                                res.redirect('back');
 
                             });
-                            res.redirect('back');
+                            
                         });
                     }else{
                         console.log("You cant vote for your own adventure!");
