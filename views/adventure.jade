@@ -25,8 +25,8 @@ block content
                 // Date/Time
                 //img.img-responsive(src='/uploads/#{user_id}/#{picUrl}', alt='')
                 for val in picUrl
-                    //img.img-responsive(src='/uploads/#{user_id}/'+val.url, alt='')
-                    a.fancybox(rel='group', href='/uploads/#{user_id}/'+val.url)
+                    img.img-responsive(src='/uploads/#{user_id}/'+val.url, alt='' style='margin: 20px auto; border-radius: 5px;')
+                    //a.fancybox(rel='group', href='/uploads/#{user_id}/'+val.url)
                         img(src='/uploads/#{user_id}/'+val.url, alt='')
                 script(type='text/javascript').
                     $(document).ready(function() {
