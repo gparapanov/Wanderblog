@@ -26,7 +26,8 @@ module.exports = function (app, db) {
                                 var adv = {
                                     post_date: rows1[i].post_date,
                                     content: rows1[i].content,
-                                    login_name: rows1[i].login_name
+                                    login_name: rows1[i].login_name,
+                                    user_id:rows1[i].user_id
                                 };
                                 comments.push((adv));
                                 console.log(comments);
@@ -102,7 +103,6 @@ module.exports = function (app, db) {
                 post_date: dateNow,
                 content: comment,
                 user_id: req.session.isLoggedIn,
-                user_name:req.session.login_name,
                 adventure_id: adventureid
             };
             console.log(commQuery);
