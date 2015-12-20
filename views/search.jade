@@ -18,13 +18,13 @@ block content
                 .form-group.form-inline
                     #search_filter_author.form-group.search_filters
                         label(for='user_name') Name of author:
-                            input(type='text', placeholder='Firstname Lastname', name='user_name', required=true)
+                            input(type='text', placeholder='Firstname Lastname', name='user_name', required=false)
                     #search_filter_keywords.form-group.search_filters
                         label(for='keywords') Keywords:
-                            input(type='text', placeholder='keyword,keyword,keyword', name='keywords', required=true)
+                            input(type='text', placeholder='keyword,keyword,keyword', name='keywords', required=false)
                     #search_filter_location.form-group.search_filters
                         label(for='location') Location:
-                            input(type='text', placeholder='city, country', name='location', required=true)
+                            input(type='text', placeholder='city, country', name='location', required=false)
                     #search_filter_date.form-group.search_filters
                         label Uploaded
                         label(for='before') before
@@ -32,10 +32,10 @@ block content
                         label(for='after') after
                             input(type='radio', id='after' name='beforeafter', value='after')
                         label(for='date') Date:
-                            input(type='date', name='date', max='2015-11-22', required=true)
+                            input(type='date', name='date', max='2015-11-22', required=false)
                     #search_filter_rating.form-group.search_filters
                         label(for='rating') Higher than:
-                            input(type='number', name='rating', max=10, step=0.5, required=true)
+                            input(type='number', name='rating', max=10, step=0.5, required=false)
                 .form-group.form-inline
                     button.btn.btn-success(type='submit') Search!
                         h1.search-heading Search results!
