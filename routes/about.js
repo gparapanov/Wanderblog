@@ -3,7 +3,6 @@ module.exports = function (app, db) {
     app.get('/about', function (req, res) {
         res.render('about',
                     {isLoggedIn: req.session.isLoggedIn,
-                    login_name: req.session.login_name,
                     type: req.session.type});
     });
 };
