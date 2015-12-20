@@ -1,5 +1,5 @@
 //
-   Created by Georgi on 29.11.2015 ã..
+   Created by Georgi on 29.11.2015 Ã£..
 
 block content
       .media
@@ -8,7 +8,7 @@ block content
          .media-body
             h4.media-heading
                div
-                  a(href ='/profile/#{user_id}') #{user_name}
+                  a(href ='/profile/'+val.user_id)=val.user_name
                small
                   div=val.post_date
          div=val.content
