@@ -52,11 +52,18 @@ module.exports = function (app, db) {
                                     //console.log(rows[0].score);
                                     advRating=advRating.concat(rows[0].score);
                                     var pictureString = 'select * from picture where picture.adventure_id=';
-                                    connection.query(pictureString+adventureid+' limit 1', function(err,rows) {
-                                        var picUrl = null;
-                                        if(rows.length > 0){
-                                            picUrl = rows[0].url;
+                                    connection.query(pictureString+adventureid, function(err,rows2) {
+                                        var picUrl = [];
+                                        if(rows2.length > 0){
+
+                                            for(var i=0;i<rows2.length;i++){
+                                                var picUrl1 = {
+                                                    url:rows2[i].url.toString()
+                                                };
+                                                picUrl.push(picUrl1);
+                                            }
                                         }
+
                                         res.render('adventure', {
                                             title: title,
                                             content: content,
