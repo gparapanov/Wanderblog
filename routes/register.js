@@ -13,6 +13,7 @@ module.exports = function (app,db){
                 login_name: req.body.login_name,
                 email: req.body.email,
                 registered_on: date,
+                description:req.body.aboutYou,
                 password: password_hash,
                 country: req.body.country,
                 type: req.body.type
@@ -33,6 +34,7 @@ module.exports = function (app,db){
                 name: user.name,
                 login_name: user.login_name,
                 email: user.email,
+                description:user.description,
                 country: user.country,
                 title: 'Profile',
                 message: 'Your profile page',
